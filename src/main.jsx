@@ -4,6 +4,7 @@ import {
   BarChart3, Boxes, CheckCircle2, ChevronDown, CircleHelp, Database, Factory, Home,
   MoreHorizontal, PackageOpen, Play, Plus, Settings, Sparkles, Trash2, SlidersHorizontal
 } from 'lucide-react'
+import { solver } from './lotSizing.js'
 import './styles.css'
 
 const methods = [
@@ -38,101 +39,6 @@ function loadLocal(key, fallback) {
 }
 
 const money = (value) => `${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(Math.round(value))} TL`
-
-function holdingCost(rows, start, end) {
-  return rows.slice(start + 1, end + 1).reduce((sum, row, offset) => sum + row.demand * rows[start].holding * (offset + 1), 0)
-}
-
-function lotsToPlan(rows, lots) {
-  const production = Array(rows.length).fill(0)
-  lots.forEach(([start, end]) => { production[start] = rows.slice(start, end + 1).reduce((s, x) => s + x.demand, 0) })
-  let inventory = 0
-  const stock = rows.map((row, index) => {
-    inventory += production[index] - row.demand
-    return inventory
-  })
-  const setupCost = lots.reduce((sum, [s]) => sum + rows[s].setup, 0)
-  const stockCost = lots.reduce((sum, [s, e]) => sum + holdingCost(rows, s, e), 0)
-  return { production, stock, lots, setupCost, stockCost, total: setupCost + stockCost }
-}
-
-function l4l(rows) { return lotsToPlan(rows, rows.map((_, i) => [i, i])) }
-
-function silverMeal(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    let end = start; let prev = rows[start].setup
-    while (end + 1 < rows.length) {
-      const candidate = holdingCost(rows, start, end + 1)
-      const periods = end + 2 - start
-      const avg = (rows[start].setup + candidate) / periods
-      if (avg > prev) break
-      prev = avg; end += 1
-    }
-    lots.push([start, end]); start = end + 1
-  }
-  return lotsToPlan(rows, lots)
-}
-
-function leastUnitCost(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    let end = start; let quantity = rows[start].demand
-    let prev = rows[start].setup / Math.max(quantity, 1)
-    while (end + 1 < rows.length) {
-      const nextQty = quantity + rows[end + 1].demand
-      const candidate = (rows[start].setup + holdingCost(rows, start, end + 1)) / Math.max(nextQty, 1)
-      if (candidate > prev) break
-      prev = candidate; end += 1; quantity = nextQty
-    }
-    lots.push([start, end]); start = end + 1
-  }
-  return lotsToPlan(rows, lots)
-}
-
-function ppb(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    const target = rows[start].setup; let end = start
-    while (end + 1 < rows.length) {
-      const current = holdingCost(rows, start, end)
-      const next = holdingCost(rows, start, end + 1)
-      if (Math.abs(next - target) > Math.abs(current - target)) break
-      end += 1
-    }
-    lots.push([start, end]); start = end + 1
-  }
-  return lotsToPlan(rows, lots)
-}
-
-function leastTotalCost(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    let end = start; let best = Math.abs(rows[start].setup - holdingCost(rows, start, start))
-    for (let j = start + 1; j < rows.length; j += 1) {
-      const diff = Math.abs(rows[start].setup - holdingCost(rows, start, j))
-      if (diff > best) break
-      best = diff; end = j
-    }
-    lots.push([start, end]); start = end + 1
-  }
-  return lotsToPlan(rows, lots)
-}
-
-function wagnerWhitin(rows) {
-  const n = rows.length; const dp = Array(n + 1).fill(Infinity); const choice = Array(n).fill(0); dp[n] = 0
-  for (let i = n - 1; i >= 0; i -= 1) {
-    for (let j = i; j < n; j += 1) {
-      const candidate = rows[i].setup + holdingCost(rows, i, j) + dp[j + 1]
-      if (candidate < dp[i]) { dp[i] = candidate; choice[i] = j }
-    }
-  }
-  const lots = []; let i = 0
-  while (i < n) { lots.push([i, choice[i]]); i = choice[i] + 1 }
-  return lotsToPlan(rows, lots)
-}
-
-const solver = { l4l, silver: silverMeal, luc: leastUnitCost, ww: wagnerWhitin, ppb, ltc: leastTotalCost }
 
 function IconButton({ children, label, ...props }) { return <button className="icon-button" aria-label={label} {...props}>{children}</button> }
 

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node --test src/lotSizing.test.js"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
