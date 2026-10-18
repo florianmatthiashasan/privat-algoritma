@@ -1,142 +1,64 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import {
-  BarChart3, Boxes, CheckCircle2, ChevronDown, CircleHelp, Database, Factory, Home,
-  MoreHorizontal, PackageOpen, Play, Plus, Settings, Sparkles, Trash2, SlidersHorizontal
-} from 'lucide-react'
-import { solver } from './lotSizing.js'
+import { BarChart3, BookOpen, CircleHelp, Database, Factory, FlaskConical, Home, PackageOpen, Settings } from 'lucide-react'
+import PlanningView, { bookRows, calculateWorkspace, money } from './PlanningView.jsx'
+import ExperimentView from './ExperimentView.jsx'
+import DataManagement from './DataManagement.jsx'
+import ThesisGuide from './ThesisGuide.jsx'
+import { MODEL_VERSION, methods } from './lotSizing.js'
+import { normalizeRows } from './persistence.js'
+import { download, jsonDownload } from './download.js'
+import { reportMarkdown } from './report.js'
+import { SeriesChart } from './Charts.jsx'
 import './styles.css'
-
-const methods = [
-  { id: 'l4l', name: 'Lot-for-Lot', short: 'L4L', description: 'Her dönemin talebini yalnızca o dönemde karşılar.' },
-  { id: 'silver', name: 'Silver-Meal', short: 'SM', description: 'Ortalama dönem maliyetini en düşükte tutar.' },
-  { id: 'luc', name: 'Least Unit Cost', short: 'LUC', description: 'Birim başına maliyeti en düşükte tutar.' },
-  { id: 'ww', name: 'Wagner–Whitin', short: 'WW', description: 'Dinamik programlama ile küresel optimumu bulur.' },
-  { id: 'ppb', name: 'Part-Period Balancing', short: 'PPB', description: 'Hazırlık ve stok maliyetini dengeler.' },
-  { id: 'ltc', name: 'Least Total Cost', short: 'LTC', description: 'Yakın toplam maliyet dengesini seçer.' },
-]
-
-const initialRows = [
-  { demand: 120, setup: 500, holding: 5 }, { demand: 80, setup: 500, holding: 5 },
-  { demand: 150, setup: 500, holding: 5 }, { demand: 90, setup: 500, holding: 5 },
-  { demand: 130, setup: 500, holding: 5 }, { demand: 110, setup: 500, holding: 5 },
-  { demand: 70, setup: 500, holding: 5 }, { demand: 100, setup: 500, holding: 5 },
-]
-
-const storageKeys = {
-  rows: 'parti-planlama.rows.v1',
-  scenarios: 'parti-planlama.scenarios.v1',
-  product: 'parti-planlama.product.v1',
-}
-
-function loadLocal(key, fallback) {
-  try {
-    const saved = window.localStorage.getItem(key)
-    return saved ? JSON.parse(saved) : fallback
-  } catch {
-    return fallback
+const defaultWorkspace = () => ({ rows: bookRows.map(r => ({ ...r })), allowBacklog: false, unitCost: 0 })
+function loadLocal(key, fallback) { try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback } catch { return fallback } }
+function loadStore() {
+  const stored = loadLocal('parti-tez.workspace.v2', null)
+  if (stored?.products?.length) {
+    try { for (const p of stored.products) { normalizeRows(p.workspace.rows); if (!Number.isFinite(p.workspace.unitCost) || p.workspace.unitCost < 0 || p.workspace.unitCost > 1e9) throw new Error() }; if (!stored.products.some(p => p.id === stored.activeId)) stored.activeId = stored.products[0].id; return stored } catch { /* recover valid legacy data below */ }
   }
+  let workspace = defaultWorkspace()
+  try { workspace = { rows: normalizeRows(loadLocal('parti-planlama.rows.v1', bookRows)), allowBacklog: loadLocal('parti-planlama.backlog.v1', false) === true, unitCost: 0 } } catch { /* use the book example */ }
+  return { activeId: 'standard', products: [{ id: 'standard', name: loadLocal('parti-planlama.product.v1', 'Standart ürün'), workspace }] }
 }
-
-const money = (value) => `${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(Math.round(value))} TL`
-
-function IconButton({ children, label, ...props }) { return <button className="icon-button" aria-label={label} {...props}>{children}</button> }
-
-function Sidebar({ active, onChange }) {
-  const nav = [[Home, 'home', 'Ana sayfa'], [Factory, 'planning', 'Planlama'], [Database, 'data', 'Veri yönetimi'], [PackageOpen, 'products', 'Ürünler'], [BarChart3, 'reports', 'Raporlar']]
-  return <aside className="sidebar"><div className="brand"><span className="brand-mark"><i></i><i></i><i></i></span><span>Planlama</span></div><nav>{nav.map(([Icon, id, label]) => <button key={id} aria-current={active === id ? 'page' : undefined} onClick={() => onChange(id)} className={active === id ? 'nav-item active' : 'nav-item'}><Icon size={19}/><span>{label}</span></button>)}</nav><div className="side-bottom"><button onClick={() => onChange('settings')} className={active === 'settings' ? 'nav-item active' : 'nav-item'}><Settings size={19}/><span>Ayarlar</span></button><div className="account"><div className="avatar">HY</div><div><b>Hasan Yücedağ</b><small>Planlama uzmanı</small></div><ChevronDown size={16}/></div></div></aside>
+const nav = [[Home,'home','Ana sayfa'],[Factory,'planning','Planlama'],[Database,'data','Veri yönetimi'],[PackageOpen,'products','Ürünler'],[FlaskConical,'experiments','Deney laboratuvarı'],[BarChart3,'reports','Raporlar'],[BookOpen,'guide','Model ve yöntemler'],[Settings,'settings','Ayarlar']]
+const route = () => nav.some(n => n[1] === location.hash.slice(1)) ? location.hash.slice(1) : 'planning'
+function Navigation({ active, navigate }) {
+  return <><aside className="sidebar"><a className="brand" href="#home"><span className="brand-mark"><i/><i/><i/></span><span>Parti • Tez</span></a><nav aria-label="Ana gezinme">{nav.map(([Icon,id,label]) => <a key={id} href={`#${id}`} aria-label={label} title={label} aria-current={active === id ? 'page' : undefined} className={active === id ? 'nav-item active' : 'nav-item'}><Icon size={18} aria-hidden="true"/><span>{label}</span></a>)}</nav><div className="side-bottom"><div className="account"><span className="avatar">ÜPK</span><div><b>Tez çalışma alanı</b><small>{MODEL_VERSION}</small></div></div></div></aside><nav className="mobile-nav" aria-label="Mobil gezinme">{nav.map(([Icon,id,label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'page' : undefined}><Icon size={16} aria-hidden="true"/>{label}</a>)}</nav></>
 }
-
-function DataTable({ rows, onChange, onAdd, onRemove }) {
-  return <section className="panel data-panel"><div className="panel-head"><div><h2>Veri seti</h2><p>Her dönem için planlama parametreleri</p></div><button className="text-button" onClick={() => onChange(initialRows)}><Sparkles size={15}/> Örnek veriyi yükle</button></div><div className="table-wrap"><table className="input-table"><thead><tr><th>Dönem</th><th>Talep</th><th>Hazırlık maliyeti</th><th>Stok maliyeti</th><th></th></tr></thead><tbody>{rows.map((row, index) => <tr key={index}><td><span className="period-num">{index + 1}</span></td>{['demand', 'setup', 'holding'].map((field) => <td key={field}><input aria-label={`${field} ${index+1}`} value={row[field]} type="number" min="0" onChange={(e) => { const next = rows.map((r, i) => i === index ? { ...r, [field]: Number(e.target.value) } : r); onChange(next) }}/></td>)}<td><button className="row-delete" aria-label="Dönemi sil" onClick={() => onRemove(index)} disabled={rows.length <= 2}><Trash2 size={15}/></button></td></tr>)}</tbody></table></div><button className="add-period" onClick={onAdd}><Plus size={17}/> Yeni dönem</button></section>
+function Products({ store, setStore }) {
+  const [name, setName] = useState(''); const [error, setError] = useState('')
+  const add = () => { const text = name.trim(); if (!text || store.products.some(p => p.name === text)) { setError('Benzersiz bir ürün adı girin.'); return }; const id = crypto.randomUUID(); setStore({ activeId: id, products: [...store.products,{id,name:text,workspace:defaultWorkspace()}] }); setName(''); setError('') }
+  return <><section className="page-intro"><div><h1>Ürünler</h1><p>Her kayıt ayrı bir tek ürün problemidir; veri, model ve birim maliyeti ürünle birlikte saklanır. Ortak kapasiteye sahip çok ürün modeli değildir.</p></div></section><div className="management-grid"><section className="panel"><div className="panel-head"><h2>Ürün kayıtları</h2></div>{store.products.map(p => <button key={p.id} className={`product-row ${p.id === store.activeId ? 'selected-product' : ''}`} onClick={() => setStore({ ...store, activeId: p.id })}><PackageOpen size={20}/><span><b>{p.name}</b><small>{p.workspace.rows.length} dönem · {p.workspace.allowBacklog ? 'Yok satmalı' : 'Yok satmasız'}</small></span><span>{p.id === store.activeId ? 'Aktif' : 'Seç'}</span></button>)}</section><section className="panel add-product"><div className="panel-head"><h2>Yeni ürün kaydı</h2></div><label>Ürün adı<input placeholder="Örn. Kompakt model" value={name} maxLength="160" onChange={e => setName(e.target.value)} onKeyDown={e => e.key === 'Enter' && add()}/></label>{error && <p className="experiment-error" role="alert">{error}</p>}<button className="run-button" onClick={add}>Ürünü ekle</button></section></div></>
 }
-
-function Comparison({ calculations, selected, onSelect }) {
-  const sorted = [...calculations].sort((a, b) => a.plan.total - b.plan.total)
-  return <section className="panel comparison"><div className="panel-head"><div><h2>Algoritma karşılaştırması</h2><p>Aynı veri setiyle maliyet ve plan yapısı</p></div><span className="subtle-label">{calculations.length} yöntem</span></div><div className="comparison-list"><div className="comparison-header"><span>Yöntem</span><span>Toplam maliyet</span><span>Hazırlık</span><span>Stok</span></div>{sorted.map(({ method, plan }, index) => <button className={`method-row ${selected === method.id ? 'selected' : ''}`} onClick={() => onSelect(method.id)} key={method.id}><span className="method-name"><span className="rank">{index + 1}</span><span className="radio">{selected === method.id && <span/>}</span><span><b>{method.name}</b><small>{method.description}</small></span></span><strong>{money(plan.total)}</strong><span>{money(plan.setupCost)}</span><span>{money(plan.stockCost)}</span></button>)}</div></section>
+function SettingsView({ workspace, setWorkspace }) {
+  const [setup,setSetup] = useState(String(workspace.rows[0]?.setup ?? 100)); const [backlog,setBacklog] = useState(String(workspace.rows[0]?.backlog ?? 1)); const [notice,setNotice] = useState(''); const [error,setError] = useState('')
+  const apply = () => { const a=Number(setup), b=Number(backlog); if (!setup.trim() || !backlog.trim() || !Number.isFinite(a) || !Number.isFinite(b) || a<0 || b<0 || a>1e9 || b>1e9) { setError('Maliyetler sonlu, 0–1.000.000.000 arasında olmalıdır. Değerleri düzeltin.'); setNotice(''); return }; setWorkspace({...workspace,rows:workspace.rows.map(r=>({...r,setup:a,backlog:b}))}); setError(''); setNotice('Hazırlık ve gecikme maliyeti aktif ürünün bütün dönemlerine uygulandı.') }
+  return <><section className="page-intro"><div><h1>Ayarlar</h1><p>Aktif ürünün dönem maliyetlerini topluca düzenleyin.</p></div></section><section className="panel guide-section"><div className="settings-form"><label>Varsayılan hazırlık maliyeti<input type="number" min="0" max="1000000000" value={setup} onChange={e=>setSetup(e.target.value)}/></label><label>Varsayılan gecikme maliyeti<input type="number" min="0" max="1000000000" step="any" value={backlog} onChange={e=>setBacklog(e.target.value)}/></label><button className="run-button" onClick={apply}>Uygula</button></div>{error && <p className="experiment-error" role="alert">{error}</p>}{notice && <p className="local-notice" role="status">{notice}</p>}<p>Model varsayımları ve hocayla teyit edilecek konular <a href="#guide">Model ve yöntemler</a> ekranındadır. Depolama yereldir; JSON yedeklerini başka cihazda geri yükleyebilirsiniz.</p></section></>
 }
-
-function PlanTimeline({ rows, plan, method, activePeriod }) {
-  return <section className="panel timeline"><div className="panel-head"><div><h2>Üretim planı <span>({method.name})</span></h2><p>Dönemler ilerledikçe üretim ve stok dengesi</p></div><button className="text-button"><MoreHorizontal size={18}/></button></div><div className="timeline-table"><div className="timeline-labels"><span>Dönem</span><span>Talep</span><span>Üretim miktarı</span><span>Dönem sonu stok</span></div><div className="timeline-grid">{rows.map((row, i) => <div className={`period-column ${i === activePeriod ? 'current' : ''}`} key={i}><b>{i + 1}</b><span>{row.demand}</span><strong>{plan.production[i] || '—'}</strong><span>{plan.stock[i]}</span></div>)}</div></div><div className="timeline-legend"><span><i className="dot production"/> Üretim</span><span><i className="dot inventory"/> Dönem sonu stok</span><span className="current-note">Dönem {activePeriod + 1} inceleniyor</span></div></section>
+function Reports({ workspace, experiment }) {
+  const { calculations,error }=useMemo(()=>calculateWorkspace(workspace),[workspace]); const rows=workspace.rows
+  return <><section className="page-intro"><div><h1>Raporlar</h1><p>Aktif problem ve son tamamlanan deney için dışa aktarılabilir bulgular.</p></div><button className="secondary-button" onClick={()=>window.print()}>Yazdır / PDF kaydet</button></section>{error && <p className="validation-notice" role="alert">{error}</p>}{calculations.length>0 && <section className="panel"><div className="panel-head"><h2>Aktif problem maliyet özeti</h2><button className="text-button" onClick={()=>jsonDownload('tek-problem-raporu.json',{version:2,modelVersion:MODEL_VERSION,...workspace,calculations})}>Planları JSON indir</button></div><div className="table-wrap"><table className="experiment-table"><thead><tr><th>Yöntem</th><th>Karar maliyeti</th><th>Üretim dahil toplam</th><th>En yüksek gecikmiş talep</th></tr></thead><tbody>{calculations.map(({method,plan})=><tr key={method.id}><td>{method.name}</td><td>{money(plan.total)}</td><td>{money(plan.grandTotal)}</td><td>{plan.maxBacklog} adet</td></tr>)}</tbody></table></div></section>}<section className="panel guide-section"><h2>Son deney raporu</h2>{experiment ? <><p>{experiment.problems.length} temel problem · tohum {experiment.config.seed} · {experiment.modelVersion}. Ortalama, medyan, P95, güven aralıkları ve eşleştirilmiş testler aynı raporda yer alır.</p><div className="button-row"><button className="run-button" onClick={()=>download('tez-deney-raporu.md',reportMarkdown(experiment),'text/markdown;charset=utf-8')}>Açıklamalı raporu indir</button><a className="secondary-button" href="#experiments">Grafikleri ve istatistiği incele</a></div></> : <p>Önce <a href="#experiments">Deney laboratuvarı</a> ekranında deney çalıştırın veya kayıtlı deney açın.</p>}</section>{!error && <SeriesChart title="Aktif problemin talebi" series={[{name:'Talep',values:rows.map(r=>r.demand)}]}/>}</>
 }
-
-function CostChart({ calculations, selected }) {
-  const ordered = [...calculations].sort((a,b) => a.plan.total - b.plan.total)
-  const max = Math.max(...ordered.map(x => x.plan.total))
-  const selectedItem = calculations.find(item => item.method.id === selected) || calculations[0]
-  return <section className="panel chart-panel"><div className="panel-head"><div><h2>Toplam maliyet</h2><p>Yöntem bazında karşılaştırma</p></div><div className="chart-selection"><span>Seçili yöntem</span><b>{selectedItem.method.name}</b><strong>{money(selectedItem.plan.total)}</strong></div></div><div className="chart"><div className="y-axis"><span>{money(max)}</span><span>{money(max / 2)}</span><span>0 TL</span></div><div className="bars">{ordered.map(({ method, plan }) => <div className="bar-unit" key={method.id}><div className="bar-track"><div className={`bar ${method.id === selected ? 'selected-bar' : ''}`} style={{ height: `${Math.max(12, plan.total / max * 100)}%` }}><span>{money(plan.total)}</span></div></div><small>{method.short}</small></div>)}</div></div></section>
+function HomeView({ workspace, experiment }) {
+  const {calculations,error}=useMemo(()=>calculateWorkspace(workspace),[workspace]); const best=calculations.find(x=>x.method.id==='ww')
+  return <><section className="page-intro"><div><h1>Tez çalışma alanı</h1><p>Tek problemi öğrenin, kontrollü deneyi çalıştırın ve sonuçları gerekçeleriyle raporlayın.</p></div></section><div className="home-grid"><section className="home-hero"><div><span className="home-overline">AKTİF PROBLEM</span><h2>Üretim kararlarını karşılaştırın.</h2><p>{error || `${workspace.rows.length} dönem · ${workspace.allowBacklog?'ertelenmiş talep serbest':'yok satma yasak'} · karar maliyeti ${money(best?.plan.total ?? 0)}`}</p><a className="plain-action" href="#planning">Planı ve karar mantığını aç →</a></div></section><section className="panel home-stat"><span>Son tamamlanan deney</span><strong>{experiment ? `${experiment.problems.length} problem` : 'Henüz açılmadı'}</strong><small>{experiment ? `Tohum ${experiment.config.seed}` : 'Deney geçmişi laboratuvardan açılabilir.'}</small><a href="#experiments">Deney laboratuvarına git →</a></section><section className="panel guide-section"><h2>Önce modelin kapsamını okuyun</h2><p>300 temel veri setini iki modelde kullanmak ve sabit c seçimi araştırmacı önerisidir. Kaynak ve onay bekleyen ayrıntılar ayrıdır.</p><a href="#guide">Model ve tez protokolü →</a></section><section className="panel guide-section"><h2>İlk adımlar</h2><p>CSV şablonunu yükleyin; kitap örneğini ve küçük örneği inceleyin; ardından 300 problemli deney ve istatistik raporunu oluşturun.</p><a href="#data">Veri yönetimi →</a></section></div></>
 }
-
-function Summary({ plan, method }) { return <section className="panel summary"><div className="panel-head"><div><h2>Plan özeti</h2><p>Seçili üretim stratejisi</p></div></div><div className="summary-method"><span className="summary-icon"><Boxes size={20}/></span><div><b>{method.name}</b><small>{method.description}</small></div></div><dl><div><dt>Toplam maliyet</dt><dd>{money(plan.total)}</dd></div><div><dt>Hazırlık maliyeti</dt><dd>{money(plan.setupCost)}</dd></div><div><dt>Stok maliyeti</dt><dd>{money(plan.stockCost)}</dd></div><div><dt>Toplam üretim</dt><dd>{plan.production.reduce((a,b)=>a+b,0)} adet</dd></div><div><dt>Üretim dönemi</dt><dd>{plan.lots.length} / {plan.production.length}</dd></div></dl><div className="summary-foot"><span className="blue-dot"/> Hesaplama tamamlandı</div></section> }
-
-function SectionIntro({ title, text, action }) { return <section className="page-intro section-intro"><div><h1>{title}</h1><p>{text}</p></div>{action}</section> }
-
-function HomeView({ best, rows, onNavigate }) {
-  const demand = rows.reduce((sum, row) => sum + row.demand, 0)
-  return <><SectionIntro title="Çalışma alanı" text="Parti büyüklüğü deneylerinizi tek yerde yönetin; veriyi güncelleyin, algoritmaları çalıştırın ve sonuçları raporlayın." action={<button className="run-button" onClick={() => onNavigate('planning')}><Play size={16} fill="currentColor"/> Yeni analiz</button>}/><div className="home-grid"><section className="home-hero"><div><span className="home-overline">AKTİF SENARYO</span><h2>Son analiziniz hazır.</h2><p>{best.method.name}, mevcut maliyet koşullarında en düşük toplam maliyeti üretti.</p><button className="plain-action" onClick={() => onNavigate('planning')}>Planı incele <span>→</span></button></div><div className="hero-cost"><b>{money(best.plan.total)}</b><small>önerilen toplam maliyet</small></div></section><section className="panel home-stat"><span>Toplam dönemsel talep</span><strong>{demand} adet</strong><small>{rows.length} dönemden hesaplandı</small></section><section className="panel home-stat"><span>En iyi yöntem</span><strong>{best.method.short}</strong><small>{best.plan.lots.length} üretim siparişi</small></section><section className="panel quick-links"><h2>Hızlı işlemler</h2><button onClick={() => onNavigate('data')}><Database size={17}/> Veri setini düzenle</button><button onClick={() => onNavigate('reports')}><BarChart3 size={17}/> Sonuç raporunu aç</button><button onClick={() => onNavigate('products')}><PackageOpen size={17}/> Ürün seçimini yönet</button></section></div></>
+function Help({close}) {
+  useEffect(()=>{ const previous=document.activeElement; const handler=e=>{if(e.key==='Escape') close(); if(e.key==='Tab'){const nodes=[...document.querySelectorAll('.help-dialog button,.help-dialog a')];const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}; document.addEventListener('keydown',handler);document.querySelector('.help-dialog button')?.focus();return()=>{document.removeEventListener('keydown',handler);previous?.focus()} },[close])
+  return <div className="modal-backdrop" onClick={close}><section className="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title" onClick={e=>e.stopPropagation()}><button className="dialog-close" aria-label="Yardımı kapat" onClick={close}>×</button><h2 id="help-title">İki kullanım biçimi</h2><p>Planlama ekranı tek problemi ve algoritmanın geleceğe bakışını açıklar. Deney laboratuvarı kontrollü problemleri iki modelde çözer, istatistikleri ve kayıtları oluşturur. Yok satma ertelenmiş taleptir; kayıp satış değildir.</p><a href="#guide" onClick={close}>Model ve yöntemleri oku</a><button className="run-button" onClick={close}>Anladım</button></section></div>
 }
-
-function DataView({ rows, setRows, onPeriodCount, saved, onSave, onLoad, savedMessage }) {
-  const [name, setName] = useState('Ekim senaryosu')
-  return <><SectionIntro title="Veri yönetimi" text="Planlama senaryolarını doğrudan tarayıcınızda kaydedip yeniden yükleyin — veri tabanı ve sunucu olmadan." action={<button className="run-button" onClick={() => onSave(name)}><CheckCircle2 size={16}/> Senaryoyu kaydet</button>}/>{savedMessage && <div className="local-notice" role="status"><CheckCircle2 size={16}/>{savedMessage}</div>}<div className="management-grid"><section className="panel scenario-create"><div className="panel-head"><div><h2>Aktif senaryo</h2><p>Planlama ekranıyla aynı canlı veri seti</p></div></div><div className="form-row"><label>Senaryo adı<input value={name} onChange={e => setName(e.target.value)} /></label><label>Dönem sayısı<input aria-label="Dönem sayısı" type="number" min="2" max="24" value={rows.length} onChange={e => onPeriodCount(e.target.value)} /></label></div><div className="dataset-preview">{rows.map((row, i) => <button onClick={() => setRows(rows.map((x, j) => j === i ? { ...x, demand: x.demand + 10 } : x))} key={i}><b>{i + 1}. dönem</b><span>{row.demand} adet talep</span></button>)}</div><p className="hint">Dönem sayısı 2–24 arasında değiştirilebilir. Bir döneme tıklamak talebi 10 adet artırır; değişiklikler tarayıcıda yerel olarak saklanır.</p></section><section className="panel saved-list"><div className="panel-head"><div><h2>Kayıtlı senaryolar</h2><p>{saved.length} senaryo kullanılabilir</p></div></div>{saved.length ? saved.map((item, i) => <button className="saved-row" onClick={() => onLoad(item.rows)} key={`${item.name}-${i}`}><span className="summary-icon"><Database size={18}/></span><span><b>{item.name}</b><small>{item.rows.length} dönem · {item.rows.reduce((s,x)=>s+x.demand,0)} adet talep</small></span><span>Yükle →</span></button>) : <div className="empty-state">Henüz bir senaryo kaydedilmedi.</div>}</section></div></>
-}
-
-function ProductsView({ product, setProduct }) {
-  const [draft, setDraft] = useState('')
-  const [products, setProducts] = useState(['Standart ürün', 'Mevsimsel ürün', 'Siparişe özel ürün'])
-  const add = () => { const next = draft.trim(); if (next && !products.includes(next)) { setProducts([...products, next]); setProduct(next); setDraft('') } }
-  return <><SectionIntro title="Ürünler" text="Her ürün için ayrı talep ve maliyet senaryosu çalıştırmaya başlayın." action={null}/><div className="management-grid"><section className="panel products-list"><div className="panel-head"><div><h2>Ürün kataloğu</h2><p>Aktif ürünü seçin</p></div></div>{products.map(item => <button className={product === item ? 'product-row selected-product' : 'product-row'} key={item} onClick={() => setProduct(item)}><span className="summary-icon"><PackageOpen size={18}/></span><span><b>{item}</b><small>{product === item ? 'Aktif planlama ürünü' : 'Planlama için seç'}</small></span><span className="radio">{product === item && <span/>}</span></button>)}</section><section className="panel add-product"><div className="panel-head"><div><h2>Yeni ürün</h2><p>Ürün ekleyip onu aktif senaryo için seçin</p></div></div><label>Ürün adı<input placeholder="Örn. Kompakt model" value={draft} onChange={e => setDraft(e.target.value)} onKeyDown={e => e.key === 'Enter' && add()} /></label><button className="run-button" onClick={add}><Plus size={16}/> Ürünü ekle</button></section></div></>
-}
-
-function ReportsView({ calculations, rows }) {
-  const [view, setView] = useState('summary')
-  const ordered = [...calculations].sort((a,b) => a.plan.total - b.plan.total)
-  return <><SectionIntro title="Raporlar" text="Algoritmaların maliyet farkını ve seçilen planın dönemsel etkisini izleyin." action={null}/><div className="report-tabs"><button className={view === 'summary' ? 'selected' : ''} onClick={() => setView('summary')}>Maliyet özeti</button><button className={view === 'periods' ? 'selected' : ''} onClick={() => setView('periods')}>Dönem incelemesi</button></div>{view === 'summary' ? <section className="panel report-table"><div className="panel-head"><div><h2>Yöntem sıralaması</h2><p>En düşük toplam maliyete göre sıralanır</p></div></div>{ordered.map(({method, plan}, index) => <div className="report-row" key={method.id}><span className="rank">{index+1}</span><b>{method.name}</b><span>{plan.lots.length} sipariş</span><strong>{money(plan.total)}</strong></div>)}</section> : <section className="panel report-table"><div className="panel-head"><div><h2>Dönemsel talep</h2><p>Aktif veri setindeki değişim</p></div></div><div className="demand-bars">{rows.map((row,i) => <div key={i}><span style={{height:`${Math.max(15,row.demand / Math.max(...rows.map(x=>x.demand))*100)}%`}}/><b>{row.demand}</b><small>{i+1}</small></div>)}</div></section>}</>
-}
-
-function SettingsView({ rows, setRows }) {
-  const [setup, setSetup] = useState(String(rows[0]?.setup || 500))
-  const [notice, setNotice] = useState('')
-  const apply = () => { const value = Number(setup); if (Number.isFinite(value) && value >= 0) { setRows(rows.map(row => ({...row, setup:value}))); setNotice('Varsayılan hazırlık maliyeti tüm dönemlere uygulandı.') } }
-  return <><SectionIntro title="Ayarlar" text="Çalışma alanının planlama varsayımlarını yönetin." action={null}/><section className="panel settings-panel"><div className="setting-row"><span className="summary-icon"><SlidersHorizontal size={19}/></span><label>Varsayılan hazırlık maliyeti<small>Uygulandığında tüm dönemlerin hazırlık maliyetini günceller.</small><input type="number" min="0" value={setup} onChange={e => setSetup(e.target.value)} /></label><button className="run-button" onClick={apply}>Uygula</button></div><div className="setting-row"><span className="summary-icon"><CircleHelp size={19}/></span><div><b>Hesaplama notu</b><small>Wagner–Whitin küresel optimumu, diğer yöntemler sezgisel sonuçları gösterir.</small></div></div>{notice && <div className="setting-notice"><CheckCircle2 size={16}/>{notice}</div>}</section></>
-}
-
-function HelpDialog({ onClose }) { return <div className="modal-backdrop" role="presentation" onMouseDown={onClose}><section className="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title" onMouseDown={e => e.stopPropagation()}><button className="dialog-close" onClick={onClose}>×</button><h2 id="help-title">Planlama nasıl çalışır?</h2><p>Veri setine dönemsel talep, hazırlık ve stok maliyetlerini girin. “Planı çalıştır” en düşük maliyetli yöntemi seçer; karşılaştırma listesinden başka bir yöntemi inceleyebilirsiniz.</p><button className="run-button" onClick={onClose}>Anladım</button></section></div> }
-
 function App() {
-  const [rows, setRows] = useState(() => loadLocal(storageKeys.rows, initialRows))
-  const [selected, setSelected] = useState('ww')
-  const [activePeriod, setActivePeriod] = useState(0)
-  const [activeView, setActiveView] = useState('planning')
-  const [savedScenarios, setSavedScenarios] = useState(() => loadLocal(storageKeys.scenarios, []))
-  const [product, setProduct] = useState(() => loadLocal(storageKeys.product, 'Standart ürün'))
-  const [showHelp, setShowHelp] = useState(false)
-  const [runNotice, setRunNotice] = useState('')
-  const [saveNotice, setSaveNotice] = useState('')
-  useEffect(() => { window.localStorage.setItem(storageKeys.rows, JSON.stringify(rows)); setSaveNotice('Aktif veri setiniz tarayıcıda yerel olarak kaydedildi.') }, [rows])
-  useEffect(() => { window.localStorage.setItem(storageKeys.scenarios, JSON.stringify(savedScenarios)) }, [savedScenarios])
-  useEffect(() => { window.localStorage.setItem(storageKeys.product, JSON.stringify(product)) }, [product])
-  const calculations = useMemo(() => methods.map(method => ({ method, plan: solver[method.id](rows) })), [rows])
-  const selectedData = calculations.find(x => x.method.id === selected) || calculations[0]
-  const best = calculations.reduce((a,b) => a.plan.total < b.plan.total ? a : b)
-  const addRow = () => setRows([...rows, { demand: 90, setup: rows.at(-1)?.setup || 500, holding: rows.at(-1)?.holding || 5 }])
-  const removeRow = (index) => setRows(rows.filter((_, i) => i !== index))
-  const changePeriodCount = (value) => {
-    const nextCount = Math.min(24, Math.max(2, Number(value) || 2))
-    setRows(current => {
-      if (nextCount <= current.length) return current.slice(0, nextCount)
-      const template = current.at(-1) || { demand: 90, setup: 500, holding: 5 }
-      return [...current, ...Array.from({ length: nextCount - current.length }, () => ({ ...template, demand: 90 }))]
-    })
-    setActivePeriod(current => Math.min(current, nextCount - 1))
-  }
-  const runPlan = () => { setSelected(best.method.id); setActivePeriod(0); setRunNotice(`Analiz tamamlandı: ${best.method.name}, ${money(best.plan.total)} ile en düşük maliyetli yöntemdir.`) }
-  const planning = <><section className="page-intro"><div><h1>Parti büyüklüğü analizi</h1><p>{product} için farklı parti büyüklüğü yöntemlerini aynı veri setiyle karşılaştırın ve üretim planını dönem dönem inceleyin.</p></div><div className="intro-actions"><label>Dönem sayısı<select aria-label="Planlama dönem sayısı" className="select-like" value={rows.length} onChange={e => changePeriodCount(e.target.value)}>{Array.from({length:23},(_,i) => i + 2).map(count => <option key={count} value={count}>{count} dönem</option>)}</select></label><button className="run-button" onClick={runPlan}><Play size={16} fill="currentColor"/> Planı çalıştır</button></div></section>{runNotice && <div className="run-notice" role="status"><CheckCircle2 size={17}/><span>{runNotice}</span><button aria-label="Çalıştırma bildirimini kapat" onClick={() => setRunNotice('')}>×</button></div>}<div className="workspace"><DataTable rows={rows} onChange={setRows} onAdd={addRow} onRemove={removeRow}/><Comparison calculations={calculations} selected={selected} onSelect={setSelected}/><PlanTimeline rows={rows} plan={selectedData.plan} method={selectedData.method} activePeriod={activePeriod}/><div className="period-stepper"><button onClick={() => setActivePeriod(Math.max(0, activePeriod - 1))} disabled={!activePeriod}>Önceki dönem</button><input type="range" min="0" max={rows.length - 1} value={activePeriod} onChange={(e) => setActivePeriod(Number(e.target.value))}/><button onClick={() => setActivePeriod(Math.min(rows.length - 1, activePeriod + 1))} disabled={activePeriod === rows.length - 1}>Sonraki dönem</button></div><CostChart calculations={calculations} selected={selected}/><Summary plan={selectedData.plan} method={selectedData.method}/></div></>
-  const saveScenario = (name) => { setSavedScenarios([...savedScenarios, {name: name || 'İsimsiz senaryo', rows: rows.map(row => ({...row}))}]); setSaveNotice(`„${name || 'İsimsiz senaryo'}“ tarayıcıda yerel olarak kaydedildi.`) }
-  const loadScenario = (nextRows) => { setRows(nextRows); setSaveNotice('Kayıtlı senaryo yüklendi ve aktif veri seti olarak tarayıcıya kaydedildi.') }
-  const content = { home: <HomeView best={best} rows={rows} onNavigate={setActiveView}/>, planning, data: <DataView rows={rows} setRows={setRows} onPeriodCount={changePeriodCount} saved={savedScenarios} onSave={saveScenario} onLoad={loadScenario} savedMessage={saveNotice}/>, products: <ProductsView product={product} setProduct={setProduct}/>, reports: <ReportsView calculations={calculations} rows={rows}/>, settings: <SettingsView rows={rows} setRows={setRows}/> }
-  const labels = {home:'Çalışma alanı', planning:'Parti büyüklüğü', data:'Veri yönetimi', products:'Ürünler', reports:'Raporlar', settings:'Ayarlar'}
-  return <div className="app-shell"><Sidebar active={activeView} onChange={setActiveView}/><main><header className="topbar"><div className="crumb">Çalışma alanı <span>/</span> {labels[activeView]}</div><div className="top-actions"><span className="status"><i/> Tarayıcıda yerel olarak kaydedildi</span><IconButton label="Yardım" onClick={() => setShowHelp(true)}><CircleHelp size={19}/></IconButton></div></header><div className="content">{content[activeView]}</div></main>{showHelp && <HelpDialog onClose={() => setShowHelp(false)}/>}</div>
+  const [store,setStore]=useState(loadStore); const [active,setActive]=useState(route); const [selected,setSelected]=useState('ww'); const [experiment,setExperiment]=useState(null); const [help,setHelp]=useState(false); const [storageError,setStorageError]=useState('')
+  const [scenarios,setScenarios]=useState(()=>{const saved=loadLocal('parti-planlama.scenarios.v1',[]);return Array.isArray(saved)?saved.filter(s=>{try{normalizeRows(s.rows);return true}catch{return false}}):[]})
+  const product=store.products.find(p=>p.id===store.activeId)??store.products[0]; const workspace=product.workspace
+  const setWorkspace=next=>setStore(current=>({...current,products:current.products.map(p=>p.id===current.activeId?{...p,workspace:next}:p)}))
+  useEffect(()=>{const changed=()=>setActive(route());window.addEventListener('hashchange',changed);return()=>window.removeEventListener('hashchange',changed)},[])
+  useEffect(()=>{try{for(const p of store.products){normalizeRows(p.workspace.rows);if(!Number.isFinite(p.workspace.unitCost)||p.workspace.unitCost<0||p.workspace.unitCost>1e9)return}localStorage.setItem('parti-tez.workspace.v2',JSON.stringify(store));setStorageError('')}catch(e){if(e.name==='QuotaExceededError')setStorageError('Tarayıcı kayıt alanı dolu. JSON yedeği indirin.')}},[store])
+  useEffect(()=>{try{localStorage.setItem('parti-planlama.scenarios.v1',JSON.stringify(scenarios))}catch{setStorageError('Senaryolar tarayıcıya kaydedilemedi; JSON yedeği indirin.')}},[scenarios])
+  const pages={home:<HomeView workspace={workspace} experiment={experiment}/>,planning:<PlanningView workspace={workspace} setWorkspace={setWorkspace} product={product.name} selected={selected} setSelected={setSelected}/>,data:<DataManagement workspace={workspace} setWorkspace={setWorkspace} product={product.name} scenarios={scenarios} setScenarios={setScenarios}/>,products:<Products store={store} setStore={setStore}/>,reports:<Reports workspace={workspace} experiment={experiment}/>,guide:<ThesisGuide/>,settings:<SettingsView key={product.id} workspace={workspace} setWorkspace={setWorkspace}/>}
+  return <div className="app-shell"><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a><Navigation active={active}/><main id="main-content" tabIndex="-1"><header className="topbar"><div className="crumb">Tez çalışma alanı <span>/</span>{nav.find(n=>n[1]===active)?.[2]}</div><div className="top-actions"><span className="status"><i/>Yerel çalışma alanı</span><button className="icon-button" aria-label="Yardım" onClick={()=>setHelp(true)}><CircleHelp size={19}/></button></div></header><div className="content">{storageError&&<p className="validation-notice" role="alert">{storageError}</p>}{active!=='experiments'&&pages[active]}<div hidden={active!=='experiments'}><ExperimentView onResult={setExperiment} onInspect={(rows,allowBacklog,method,unitCost)=>{setWorkspace({rows,allowBacklog,unitCost});setSelected(method);location.hash='planning'}}/></div></div></main>{help&&<Help close={()=>setHelp(false)}/>}</div>
 }
-
-createRoot(document.getElementById('root')).render(<App />)
+class Boundary extends React.Component { constructor(props){super(props);this.state={error:false}} static getDerivedStateFromError(){return{error:true}} render(){return this.state.error?<main className="guide-section"><h1>Çalışma alanı gösterilemedi</h1><p>Sayfayı yenileyin. Kalıcı veriler otomatik silinmez; geçersiz bir kayıt varsa tarayıcı geliştirici konsolundaki hatayı inceleyin.</p><button onClick={()=>location.reload()}>Sayfayı yenile</button></main>:this.props.children} }
+createRoot(document.getElementById('root')).render(<Boundary><App/></Boundary>)

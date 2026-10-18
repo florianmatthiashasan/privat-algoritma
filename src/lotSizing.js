@@ -1,137 +1,197 @@
-/**
- * Deterministik, kapasitesiz parti büyüklüğü modelleri.
- * holding[t], t döneminin sonunda elde tutulan birim başına stok maliyetidir.
+/** Deterministic, single item, uncapacitated. Zero initial/final net stock.
+ * End-of-period holding/backlog charges; no variable production cost or lost sales.
  */
-
-const lotDemand = (rows, start, end) => rows.slice(start, end + 1).reduce((sum, row) => sum + row.demand, 0)
-
-export function holdingCost(rows, start, end) {
-  let carriedUnitCost = 0
-  let total = 0
-
-  for (let period = start + 1; period <= end; period += 1) {
-    carriedUnitCost += rows[period - 1].holding
-    total += rows[period].demand * carriedUnitCost
+export function validateRows(rows, { allowBacklog = false } = {}) {
+  if (!Array.isArray(rows) || !rows.length || rows.length > 120) throw new Error('Dönem sayısı 1–120 olmalıdır.')
+  for (const [i, row] of rows.entries()) {
+    for (const field of ['demand', 'setup', 'holding', ...(allowBacklog ? ['backlog'] : [])]) {
+      if (!Number.isFinite(row?.[field]) || row[field] < 0 || row[field] > 1e9) throw new Error(`${i + 1}. dönem: ${field} sonlu, 0–1.000.000.000 arasında olmalıdır.`)
+    }
   }
-
-  return total
 }
 
-export function lotsToPlan(rows, lots) {
-  const usefulLots = lots.filter(([start, end]) => lotDemand(rows, start, end) > 0)
-  const production = Array(rows.length).fill(0)
-  usefulLots.forEach(([start, end]) => { production[start] = lotDemand(rows, start, end) })
-
-  let inventory = 0
-  const stock = rows.map((row, index) => {
-    inventory += production[index] - row.demand
-    return inventory
+export function planFromProduction(rows, production, options = {}) {
+  validateRows(rows, options)
+  if (production.length !== rows.length || production.some(x => !Number.isFinite(x) || x < 0)) throw new Error('Geçersiz üretim planı.')
+  const unitCost = options.unitCost ?? 0
+  if (!Number.isFinite(unitCost) || unitCost < 0 || unitCost > 1e9) throw new Error('Birim üretim maliyeti 0–1.000.000.000 arasında olmalıdır.')
+  let net = 0; let setupCost = 0; let stockCost = 0; let backlogCost = 0
+  const balanceTolerance = 64 * Number.EPSILON * Math.max(1, rows.reduce((sum, row) => sum + row.demand, 0))
+  const stock = rows.map((row, t) => {
+    net += production[t] - row.demand
+    if (!options.allowBacklog && net < -balanceTolerance) throw new Error('Yok satmasız planda negatif stok oluştu.')
+    if (production[t] > 0) setupCost += row.setup
+    stockCost += Math.max(0, net) * row.holding
+    backlogCost += Math.max(0, -net) * (row.backlog ?? 0)
+    return net
   })
-
-  const setupCost = usefulLots.reduce((sum, [start]) => sum + rows[start].setup, 0)
-  const stockCost = usefulLots.reduce((sum, [start, end]) => sum + holdingCost(rows, start, end), 0)
-  return { production, stock, lots: usefulLots, setupCost, stockCost, total: setupCost + stockCost }
+  if (Math.abs(net) > balanceTolerance) throw new Error('Ufuk sonunda tüm talep karşılanmalı ve net stok sıfır olmalıdır.')
+  return { production, stock, inventory: stock.map(x => Math.max(0, x)), backlog: stock.map(x => Math.max(0, -x)), maxBacklog: Math.max(0, ...stock.map(x => -x)), backlogUnitPeriods: stock.reduce((sum, x) => sum + Math.max(0, -x), 0), productionCost: unitCost * production.reduce((a, b) => a + b, 0), grandTotal: setupCost + stockCost + backlogCost + unitCost * production.reduce((a, b) => a + b, 0), lots: production.flatMap((q, t) => q > 0 ? [[t, t]] : []), setupCost, stockCost, backlogCost, total: setupCost + stockCost + backlogCost }
 }
-
-export function l4l(rows) {
-  return lotsToPlan(rows, rows.flatMap((row, index) => row.demand > 0 ? [[index, index]] : []))
+const quantity = (rows, start, end) => rows.slice(start, end + 1).reduce((s, r) => s + r.demand, 0)
+export function holdingCost(rows, start, end) {
+  let rate = 0; let cost = 0
+  for (let t = start + 1; t <= end; t++) { rate += rows[t - 1].holding; cost += rows[t].demand * rate }
+  return cost
 }
-
-export function silverMeal(rows) {
-  const lots = []; let start = 0
+export function lotsToPlan(rows, lots, options = {}) {
+  const production = Array(rows.length).fill(0)
+  for (const [start, end] of lots) production[start] += quantity(rows, start, end)
+  return { ...planFromProduction(rows, production, options), lots: lots.filter(([s, e]) => quantity(rows, s, e) > 0) }
+}
+export function l4l(rows, options = {}) {
+  const plan = planFromProduction(rows, rows.map(r => r.demand), options)
+  return options.trace ? { ...plan, trace: rows.map((r, t) => ({ period: t, explanation: 'Lot-for-Lot gelecekteki talepleri birleştirmez; yalnız bu dönemin talebini üretir.', candidates: [{ start: t, end: t, period: t, cost: r.demand > 0 ? r.setup : 0, score: r.demand, chosen: true }] })) } : plan
+}
+function sequential(rows, criterion, options = {}, kind = 'silver') {
+  validateRows(rows)
+  const lots = []; const trace = []; let start = 0
   while (start < rows.length) {
-    if (rows[start].demand === 0) { start += 1; continue }
-
-    let end = start; let previousAverage = rows[start].setup
+    if (rows[start].demand === 0) { start++; continue }
+    let end = start; let units = rows[start].demand; let carry = 0; let cost = 0
+    let previous = criterion(rows[start].setup, cost, units, 1)
+    const candidates = [{ start, end, period: start, cost: rows[start].setup, score: previous, holding: 0, accepted: true }]
     while (end + 1 < rows.length) {
-      const nextEnd = end + 1
-      const average = (rows[start].setup + holdingCost(rows, start, nextEnd)) / (nextEnd - start + 1)
-      if (average > previousAverage) break
-      previousAverage = average; end = nextEnd
+      carry += rows[end].holding
+      const next = end + 1; const nextCost = cost + rows[next].demand * carry
+      const score = criterion(rows[start].setup, nextCost, units + rows[next].demand, next - start + 1)
+      const accepted = kind === 'ltc' ? nextCost <= rows[start].setup + 1e-10 : score <= previous + 1e-10
+      if (options.trace) candidates.push({ start, end: next, period: start, cost: rows[start].setup + nextCost, score, holding: nextCost, accepted })
+      if (!accepted) break
+      previous = score; units += rows[next].demand; cost = nextCost; end = next
     }
+    if (options.trace) trace.push({ period: start, explanation: kind === 'silver' ? 'Ortalama dönem maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'luc' ? 'Ortalama birim maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'ltc' ? 'Stok maliyeti hazırlık maliyetini aşan ilk aday dışarıda bırakılır (PDF s. 382–383).' : 'Stok maliyeti hazırlığa en yakın olan aday seçilir; eşitlikte daha uzun parti alınır (PDF s. 384–385).', candidates: candidates.map(c => ({ ...c, chosen: c.end === end })) })
     lots.push([start, end]); start = end + 1
   }
-  return lotsToPlan(rows, lots)
+  const plan = lotsToPlan(rows, lots, options)
+  return options.trace ? { ...plan, trace } : plan
 }
+export const silverMeal = (rows, options = {}) => sequential(rows, (k, h, q, n) => (k + h) / n, options, 'silver')
+export const leastUnitCost = (rows, options = {}) => sequential(rows, (k, h, q) => (k + h) / q, options, 'luc')
+export const ppb = (rows, options = {}) => sequential(rows, (k, h) => Math.abs(k - h), options, 'ppb')
+export const leastTotalCost = (rows, options = {}) => sequential(rows, (k, h) => h, options, 'ltc')
 
-export function leastUnitCost(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    if (rows[start].demand === 0) { start += 1; continue }
-
-    let end = start; let quantity = rows[start].demand
-    let previousUnitCost = rows[start].setup / quantity
-    while (end + 1 < rows.length) {
-      const nextEnd = end + 1
-      const nextQuantity = quantity + rows[nextEnd].demand
-      const unitCost = (rows[start].setup + holdingCost(rows, start, nextEnd)) / nextQuantity
-      if (unitCost > previousUnitCost) break
-      previousUnitCost = unitCost; quantity = nextQuantity; end = nextEnd
+function context(rows, options = {}) {
+  validateRows(rows, options)
+  const n = rows.length; const demand = [0]; const h = [0]; const b = [0]
+  for (const row of rows) { demand.push(demand.at(-1) + row.demand); h.push(h.at(-1) + row.holding); b.push(b.at(-1) + (row.backlog ?? 0)) }
+  const transport = Array.from({ length: n }, (_, p) => rows.map((_, t) => p <= t ? h[t] - h[p] : options.allowBacklog ? b[p] - b[t] : Infinity))
+  const prefix = transport.map(costs => {
+    const result = [0]
+    // Forbidden assignments are excluded by block(); avoid Infinity - Infinity.
+    for (let t = 0; t < n; t++) result.push(result.at(-1) + (Number.isFinite(costs[t]) ? costs[t] * rows[t].demand : 0))
+    return result
+  })
+  const cache = Array.from({ length: n }, () => [])
+  const block = (start, end) => {
+    if (cache[start][end]) return cache[start][end]
+    if (demand[end + 1] === demand[start]) return { start, end, period: start, cost: 0 }
+    let best = { start, end, period: start, cost: Infinity }
+    const last = options.allowBacklog ? end : start
+    for (let p = start; p <= last; p++) {
+      const cost = rows[p].setup + prefix[p][end + 1] - prefix[p][start]
+      if (cost < best.cost) best = { start, end, period: p, cost }
     }
-    lots.push([start, end]); start = end + 1
+    cache[start][end] = best
+    return best
   }
-  return lotsToPlan(rows, lots)
+  const events = []
+  const toPlan = blocks => {
+    const production = Array(n).fill(0)
+    for (const { start, end, period } of blocks) production[period] += demand[end + 1] - demand[start]
+    return { ...planFromProduction(rows, production, options), blocks, ...(options.trace ? { trace: [...events] } : {}) }
+  }
+  return { n, demand, transport, block, toPlan, events, tracing: options.trace }
 }
-
-export function ppb(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    if (rows[start].demand === 0) { start += 1; continue }
-
-    let end = start
-    while (end + 1 < rows.length) {
-      const currentDifference = Math.abs(rows[start].setup - holdingCost(rows, start, end))
-      const nextDifference = Math.abs(rows[start].setup - holdingCost(rows, start, end + 1))
-      if (nextDifference > currentDifference) break
-      end += 1
+// Interval shortest path. Backlog mode minimizes each interval over its
+// production period (Zangwill recurrence, supplied PDF pp. 258–260).
+function intervalDP(rows, options, window = Infinity) {
+  const ctx = context(rows, options); const dp = Array(ctx.n + 1).fill(Infinity); const previous = Array(ctx.n + 1)
+  const trace = []
+  dp[0] = 0
+  for (let end = 0; end < ctx.n; end++) {
+    const candidates = []
+    for (let start = Math.max(0, end - window + 1); start <= end; start++) {
+      const block = ctx.block(start, end); const candidate = dp[start] + block.cost
+      if (options.trace) candidates.push({ ...block, intervalCost: block.cost, prefixCost: dp[start], cost: candidate, score: candidate })
+      if (candidate < dp[end + 1]) { dp[end + 1] = candidate; previous[end + 1] = block }
     }
-    lots.push([start, end]); start = end + 1
+    if (options.trace) trace.push({ period: end, explanation: 'Bu değerlendirme ilk ' + (end + 1) + ' dönemin alt problemini çözer; nihai üretim planı bütün ufuk hesaplandıktan sonra geriye izlenir. ' + (options.allowBacklog ? 'Her aralıkta gecikme ve stok maliyetiyle en iyi üretim dönemi seçilir.' : 'Her aday, son partinin başlangıç dönemini temsil eder.'), candidates: candidates.map(c => ({ ...c, chosen: c.start === previous[end + 1].start })) })
   }
-  return lotsToPlan(rows, lots)
+  const blocks = []; let end = ctx.n
+  while (end > 0) { const block = previous[end]; blocks.unshift(block); end = block.start }
+  const plan = ctx.toPlan(blocks)
+  return options.trace ? { ...plan, trace } : plan
 }
-
-export function leastTotalCost(rows) {
-  const lots = []; let start = 0
-  while (start < rows.length) {
-    if (rows[start].demand === 0) { start += 1; continue }
-
-    let end = start; let bestDifference = rows[start].setup
-    for (let nextEnd = start + 1; nextEnd < rows.length; nextEnd += 1) {
-      const difference = Math.abs(rows[start].setup - holdingCost(rows, start, nextEnd))
-      if (difference > bestDifference) break
-      bestDifference = difference; end = nextEnd
+export const wagnerWhitin = (rows, options = {}) => intervalDP(rows, options)
+export const windowSearch = (rows, options = {}) => intervalDP(rows, options, 6)
+function mergeBlocks(ctx) {
+  const blocks = Array.from({ length: ctx.n }, (_, t) => ctx.block(t, t))
+  while (blocks.length > 1) {
+    let saving = 1e-9; let index = -1; let merged
+    const candidates = []
+    for (let i = 0; i < blocks.length - 1; i++) {
+      const candidate = ctx.block(blocks[i].start, blocks[i + 1].end)
+      const delta = blocks[i].cost + blocks[i + 1].cost - candidate.cost
+      if (ctx.tracing) candidates.push({ ...candidate, score: delta, cost: candidate.cost, index: i })
+      if (delta > saving) { saving = delta; index = i; merged = candidate }
     }
-    lots.push([start, end]); start = end + 1
+    if (ctx.tracing) ctx.events.push({ period: index < 0 ? 0 : merged.period, explanation: index < 0 ? 'Pozitif tasarruf kalmadı; birleştirme durdu.' : 'Komşu partiler arasında en büyük pozitif tasarruf seçildi. Skor tasarruftur; büyük değer daha iyidir.', candidates: candidates.map(c => ({ ...c, chosen: c.index === index })) })
+    if (index < 0) break
+    blocks.splice(index, 2, merged)
   }
-  return lotsToPlan(rows, lots)
+  return blocks
 }
-
-export function wagnerWhitin(rows) {
-  const periods = rows.length
-  const costToGo = Array(periods + 1).fill(Infinity)
-  const choice = Array(periods).fill(null)
-  costToGo[periods] = 0
-
-  for (let start = periods - 1; start >= 0; start -= 1) {
-    if (rows[start].demand === 0) costToGo[start] = costToGo[start + 1]
-
-    for (let end = start; end < periods; end += 1) {
-      if (lotDemand(rows, start, end) === 0) continue
-      const candidate = rows[start].setup + holdingCost(rows, start, end) + costToGo[end + 1]
-      if (candidate < costToGo[start]) {
-        costToGo[start] = candidate
-        choice[start] = end
-      }
+export function savingsMerge(rows, options = {}) { const ctx = context(rows, options); return ctx.toPlan(mergeBlocks(ctx)) }
+/** Bounded add/drop/adjacent-shift search. No exact reference is used. */
+export function localSearch(rows, options = {}) {
+  const ctx = context(rows, options)
+  const evaluate = periods => {
+    const production = Array(ctx.n).fill(0)
+    for (let t = 0; t < ctx.n; t++) {
+      if (rows[t].demand === 0) continue
+      let selected = -1; let cost = Infinity
+      for (const p of periods) if (ctx.transport[p][t] < cost) { selected = p; cost = ctx.transport[p][t] }
+      if (selected < 0) return null
+      production[selected] += rows[t].demand
     }
+    return planFromProduction(rows, production, options)
   }
-
-  const lots = []; let start = 0
-  while (start < periods) {
-    if (choice[start] === null) { start += 1; continue }
-    lots.push([start, choice[start]])
-    start = choice[start] + 1
+  let best = ctx.toPlan(mergeBlocks(ctx)); let moves = 0
+  for (; moves < 8; moves++) {
+    const active = best.production.flatMap((q, p) => q > 0 ? [p] : [])
+    let improved = best
+    const candidates = []; let winner = -1
+    const consider = periods => { const plan = evaluate(periods); if (ctx.tracing && plan) candidates.push({ period: periods[0] ?? 0, start: 0, end: ctx.n - 1, score: plan.total, cost: plan.total, periods: [...periods].sort((a, b) => a - b) }); if (plan && plan.total < improved.total - 1e-8) { improved = plan; winner = candidates.length - 1 } }
+    for (let p = 0; p < ctx.n; p++) if (!active.includes(p)) consider([...active, p])
+    for (const p of active) {
+      const rest = active.filter(x => x !== p); consider(rest)
+      if (p > 0) consider([...new Set([...rest, p - 1])])
+      if (p + 1 < ctx.n) consider([...new Set([...rest, p + 1])])
+    }
+    if (ctx.tracing) ctx.events.push({ period: 0, explanation: 'Yerel hamle ' + (moves + 1) + ': üretim dönemi ekleme, silme ve komşuya kaydırma adayları karşılaştırılır. Küçük maliyet iyidir; yalnız iyileştiren hamle kabul edilir.', candidates: candidates.map((c, i) => ({ ...c, chosen: i === winner })) })
+    if (improved === best) break
+    best = improved
   }
-  return lotsToPlan(rows, lots)
+  return { ...best, moves, ...(options.trace ? { trace: ctx.events } : {}) }
 }
+export const methods = [
+  { id: 'l4l', name: 'Lot-for-Lot', short: 'L4L', description: 'Her talebi kendi döneminde karşılayan temel plan.' },
+  { id: 'silver', name: 'Silver-Meal', short: 'SM', description: 'İlk artışa kadar dönem başına maliyeti azaltır.' },
+  { id: 'luc', name: 'Least Unit Cost', short: 'LUC', description: 'İlk artışa kadar birim başına maliyeti azaltır.' },
+  { id: 'ww', name: 'Kesin dinamik programlama', short: 'OPT', description: 'Yok satmasız Wagner–Whitin; yok satmalı aralık DP.' },
+  { id: 'ppb', name: 'Part-Period Balancing', short: 'PPB', description: 'Stok maliyetini hazırlığa en yakın yapan partiyi seçer (PDF s. 384).'  },
+  { id: 'ltc', name: 'Least Total Cost', short: 'LTC', description: 'Stok maliyeti hazırlığı aşmadan önceki partiyi seçer (PDF s. 382).'  },
+  { id: 'merge', name: 'Tasarruflu birleştirme', short: 'TB', description: 'En çok maliyet azaltan komşu partileri birleştirir.', extended: true },
+  { id: 'local', name: 'Ekle–sil–kaydır', short: 'ESK', description: 'Birleştirme planını en fazla 8 yerel hamleyle iyileştirir.', extended: true },
+  { id: 'window', name: 'Sınırlı aralık araması', short: 'SA6', description: 'En fazla 6 dönemlik partiler arasında en ucuz planı arar.', extended: true },
+]
+export const solver = { l4l, silver: silverMeal, luc: leastUnitCost, ww: wagnerWhitin, ppb, ltc: leastTotalCost, merge: savingsMerge, local: localSearch, window: windowSearch }
 
-export const solver = { l4l, silver: silverMeal, luc: leastUnitCost, ww: wagnerWhitin, ppb, ltc: leastTotalCost }
+export const MODEL_VERSION = 'thesis-v2.0.0'
+export const referenceName = allowBacklog => allowBacklog ? 'Zangwill aralık DP' : 'Wagner–Whitin'
+export function methodRole(id, allowBacklog) {
+  if (id === 'ww') return { label: 'Kesin referans', kind: 'exact' }
+  if (allowBacklog && ['l4l', 'silver', 'luc', 'ppb', 'ltc'].includes(id)) return { label: 'Yok satmasız temel plan', kind: 'baseline' }
+  return { label: 'Sezgisel', kind: 'heuristic' }
+}

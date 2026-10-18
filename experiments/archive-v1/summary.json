@@ -1,0 +1,359 @@
+{
+  "config": {
+    "count": 300,
+    "seed": 20261018,
+    "repetitions": 5
+  },
+  "environment": {
+    "node": "v25.9.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M2",
+    "elapsedMs": 37903.343458999996,
+    "generatedAt": "2026-10-18T17:36:43.897Z"
+  },
+  "summary": [
+    {
+      "mode": "noBacklog",
+      "method": "l4l",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 78.24389173914227,
+      "medianGap": 28.336851977608248,
+      "p95Gap": 206.9227720481233,
+      "maxGap": 809.0091519864571,
+      "sdGap": 118.41963850129554,
+      "meanGapCI": [
+        65.3028745674069,
+        90.51261190455313
+      ],
+      "optimalRate": 15.666666666666666,
+      "medianMs": 0.0012913417968745122,
+      "p95Ms": 0.004583112500000652
+    },
+    {
+      "mode": "noBacklog",
+      "method": "silver",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 10.613154737532637,
+      "medianGap": 0.5250149791077222,
+      "p95Gap": 69.39597657309395,
+      "maxGap": 262.3999487737722,
+      "sdGap": 31.4375641882909,
+      "meanGapCI": [
+        7.8617642324700485,
+        13.532344089154208
+      ],
+      "optimalRate": 43.666666666666664,
+      "medianMs": 0.002700355468753912,
+      "p95Ms": 0.00997435117187493
+    },
+    {
+      "mode": "noBacklog",
+      "method": "luc",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 21.041799741813513,
+      "medianGap": 6.395012284082222,
+      "p95Gap": 99.13600920238021,
+      "maxGap": 231.72824486136903,
+      "sdGap": 35.68625448511085,
+      "meanGapCI": [
+        17.70908651632476,
+        24.304042400959197
+      ],
+      "optimalRate": 23.333333333333332,
+      "medianMs": 0.002717609375004315,
+      "p95Ms": 0.009940964453113566
+    },
+    {
+      "mode": "noBacklog",
+      "method": "ww",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 0,
+      "medianGap": 0,
+      "p95Gap": 0,
+      "maxGap": 0,
+      "sdGap": 0,
+      "meanGapCI": [
+        0,
+        0
+      ],
+      "optimalRate": 100,
+      "medianMs": 0.007317464843751509,
+      "p95Ms": 0.07104400937500373
+    },
+    {
+      "mode": "noBacklog",
+      "method": "ppb",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 17.722413963015324,
+      "medianGap": 8.997628873984667,
+      "p95Gap": 65.33908380920748,
+      "maxGap": 199.13660609348162,
+      "sdGap": 27.68884648008226,
+      "meanGapCI": [
+        15.698929612814435,
+        19.809799425847917
+      ],
+      "optimalRate": 12.333333333333334,
+      "medianMs": 0.002628826171878984,
+      "p95Ms": 0.009593489453121152
+    },
+    {
+      "mode": "noBacklog",
+      "method": "ltc",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 17.722413963015324,
+      "medianGap": 8.997628873984667,
+      "p95Gap": 65.33908380920748,
+      "maxGap": 199.13660609348162,
+      "sdGap": 27.68884648008226,
+      "meanGapCI": [
+        15.698929612814435,
+        19.809799425847917
+      ],
+      "optimalRate": 12.333333333333334,
+      "medianMs": 0.0026874160156182825,
+      "p95Ms": 0.009623263671867477
+    },
+    {
+      "mode": "noBacklog",
+      "method": "merge",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 1.5049535287939662,
+      "medianGap": 0,
+      "p95Gap": 6.070389291387466,
+      "maxGap": 43.73213556553694,
+      "sdGap": 5.27086946773029,
+      "meanGapCI": [
+        1.0073943252475692,
+        2.07827225076116
+      ],
+      "optimalRate": 68.33333333333333,
+      "medianMs": 0.007632568359374758,
+      "p95Ms": 0.07228565624985776
+    },
+    {
+      "mode": "noBacklog",
+      "method": "local",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 0.11763507678908527,
+      "medianGap": 0,
+      "p95Gap": 0.9379041804369641,
+      "maxGap": 4.175346623439327,
+      "sdGap": 0.40569921332050224,
+      "meanGapCI": [
+        0.07715345298864687,
+        0.16678514014719642
+      ],
+      "optimalRate": 86,
+      "medianMs": 0.06261198437499615,
+      "p95Ms": 1.558026799996151
+    },
+    {
+      "mode": "noBacklog",
+      "method": "window",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 0.17945830728251372,
+      "medianGap": 0,
+      "p95Gap": 1.107482398788854,
+      "maxGap": 8.793606926128163,
+      "sdGap": 0.8536745024826412,
+      "meanGapCI": [
+        0.09745018210174577,
+        0.27608026997397367
+      ],
+      "optimalRate": 92.33333333333333,
+      "medianMs": 0.00709782031249917,
+      "p95Ms": 0.0609063796874878
+    },
+    {
+      "mode": "backlog",
+      "method": "l4l",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 151.986340758337,
+      "medianGap": 69.73515906552252,
+      "p95Gap": 603.4473337543891,
+      "maxGap": 1152.2383972022667,
+      "sdGap": 196.736120359438,
+      "meanGapCI": [
+        131.3969101914274,
+        171.94832220795524
+      ],
+      "optimalRate": 9.666666666666666,
+      "medianMs": 0.0012980957031234475,
+      "p95Ms": 0.00453878457031287
+    },
+    {
+      "mode": "backlog",
+      "method": "silver",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 51.60113531184098,
+      "medianGap": 19.115482183792047,
+      "p95Gap": 185.3168599332861,
+      "maxGap": 552.8978026839699,
+      "sdGap": 75.60153296238279,
+      "meanGapCI": [
+        44.335930728428146,
+        59.47819716442065
+      ],
+      "optimalRate": 19.333333333333332,
+      "medianMs": 0.002712322265622902,
+      "p95Ms": 0.009885967578142642
+    },
+    {
+      "mode": "backlog",
+      "method": "luc",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 64.64131838146159,
+      "medianGap": 36.87406308544823,
+      "p95Gap": 195.7956559343008,
+      "maxGap": 546.282680599153,
+      "sdGap": 76.35562906568295,
+      "meanGapCI": [
+        57.069762034575795,
+        72.17008603616442
+      ],
+      "optimalRate": 13,
+      "medianMs": 0.002719970703125796,
+      "p95Ms": 0.00997861835937357
+    },
+    {
+      "mode": "backlog",
+      "method": "ww",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 0,
+      "medianGap": 0,
+      "p95Gap": 0,
+      "maxGap": 0,
+      "sdGap": 0,
+      "meanGapCI": [
+        0,
+        0
+      ],
+      "optimalRate": 100,
+      "medianMs": 0.00904003906249784,
+      "p95Ms": 0.13055438749998985
+    },
+    {
+      "mode": "backlog",
+      "method": "ppb",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 61.15756172371931,
+      "medianGap": 33.56345982577312,
+      "p95Gap": 182.3785903508052,
+      "maxGap": 567.5964354182905,
+      "sdGap": 75.2655424655407,
+      "meanGapCI": [
+        53.92780290742279,
+        68.5159788328313
+      ],
+      "optimalRate": 6.666666666666667,
+      "medianMs": 0.0026770019531241473,
+      "p95Ms": 0.009686553515625284
+    },
+    {
+      "mode": "backlog",
+      "method": "ltc",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 61.15756172371931,
+      "medianGap": 33.56345982577312,
+      "p95Gap": 182.3785903508052,
+      "maxGap": 567.5964354182905,
+      "sdGap": 75.2655424655407,
+      "meanGapCI": [
+        53.92780290742279,
+        68.5159788328313
+      ],
+      "optimalRate": 6.666666666666667,
+      "medianMs": 0.002660236328118515,
+      "p95Ms": 0.009639485546876969
+    },
+    {
+      "mode": "backlog",
+      "method": "merge",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 2.7852761987983605,
+      "medianGap": 0,
+      "p95Gap": 12.28830524689977,
+      "maxGap": 94.12878787878788,
+      "sdGap": 9.902844661991844,
+      "meanGapCI": [
+        1.91389796796895,
+        3.814007858254893
+      ],
+      "optimalRate": 55.666666666666664,
+      "medianMs": 0.00872103125001189,
+      "p95Ms": 0.07846286874978432
+    },
+    {
+      "mode": "backlog",
+      "method": "local",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 0.18064136325740085,
+      "medianGap": 0,
+      "p95Gap": 1.0371893051323329,
+      "maxGap": 5.145715873898194,
+      "sdGap": 0.5995669193206549,
+      "meanGapCI": [
+        0.11836490012291268,
+        0.24987966928779445
+      ],
+      "optimalRate": 81,
+      "medianMs": 0.09176431250001471,
+      "p95Ms": 2.1091663500015794
+    },
+    {
+      "mode": "backlog",
+      "method": "window",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanGap": 3.3279119655856197,
+      "medianGap": 0,
+      "p95Gap": 33.777243060230056,
+      "maxGap": 74.0293654231245,
+      "sdGap": 10.350524378051087,
+      "meanGapCI": [
+        2.2102774728134125,
+        4.4194880587919565
+      ],
+      "optimalRate": 77,
+      "medianMs": 0.008162597656252046,
+      "p95Ms": 0.06128602812526651
+    }
+  ]
+}

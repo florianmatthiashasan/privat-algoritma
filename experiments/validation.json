@@ -1,0 +1,6012 @@
+{
+  "scipy": "1.18.1",
+  "formulation": "Independent facility-location MILP; binary setup, continuous demand allocation",
+  "inputSHA256": "15fed892c2585742d6776b3ec2015e6800791f4c9dd0cb719e66b5a5dd945549",
+  "modelVersion": "thesis-v2.0.0",
+  "designVersion": "balanced-factorial-v2",
+  "statisticalChecks": 18,
+  "total": 600,
+  "certified": 600,
+  "records": [
+    {
+      "problemId": "P0001",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0001",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 310.75,
+      "reference": 310.75,
+      "dualBound": 310.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0002",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 721.0,
+      "reference": 721,
+      "dualBound": 721.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0002",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 701.0,
+      "reference": 701,
+      "dualBound": 701.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0003",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1246.0,
+      "reference": 1246,
+      "dualBound": 1246.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0003",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1246.0,
+      "reference": 1246,
+      "dualBound": 1246.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0004",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1856.0,
+      "reference": 1856,
+      "dualBound": 1856.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0004",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 991.0,
+      "reference": 991,
+      "dualBound": 991.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0005",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2805.0,
+      "reference": 2805,
+      "dualBound": 2805.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0005",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2391.0,
+      "reference": 2391,
+      "dualBound": 2391.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0006",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 361.0,
+      "reference": 361,
+      "dualBound": 361.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0006",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 361.0,
+      "reference": 361,
+      "dualBound": 361.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0007",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 625.0,
+      "reference": 625,
+      "dualBound": 625.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0007",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 462.5,
+      "reference": 462.5,
+      "dualBound": 462.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0008",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1080.0,
+      "reference": 1080,
+      "dualBound": 1080.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0008",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1046.0,
+      "reference": 1046,
+      "dualBound": 1046.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0009",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1303.0,
+      "reference": 1303,
+      "dualBound": 1303.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0009",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1303.0,
+      "reference": 1303,
+      "dualBound": 1303.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0010",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2636.0,
+      "reference": 2636,
+      "dualBound": 2636.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0010",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1499.5,
+      "reference": 1499.5,
+      "dualBound": 1499.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0011",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0011",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0012",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2293.0,
+      "reference": 2293,
+      "dualBound": 2293.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0012",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2293.0,
+      "reference": 2293,
+      "dualBound": 2293.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0013",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3654.0,
+      "reference": 3654,
+      "dualBound": 3654.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0013",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2107.5,
+      "reference": 2107.5,
+      "dualBound": 2107.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0014",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5568.0,
+      "reference": 5568,
+      "dualBound": 5568.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0014",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4764.0,
+      "reference": 4764,
+      "dualBound": 4764.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0015",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8441.0,
+      "reference": 8441,
+      "dualBound": 8441.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0015",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8441.0,
+      "reference": 8441,
+      "dualBound": 8441.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0016",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1051.0,
+      "reference": 1051,
+      "dualBound": 1051.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0016",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 746.5,
+      "reference": 746.5,
+      "dualBound": 746.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0017",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1918.0,
+      "reference": 1918,
+      "dualBound": 1918.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0017",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1740.0,
+      "reference": 1740,
+      "dualBound": 1740.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0018",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2826.0,
+      "reference": 2826,
+      "dualBound": 2826.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0018",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2738.0,
+      "reference": 2738,
+      "dualBound": 2738.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0019",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4820.0,
+      "reference": 4820,
+      "dualBound": 4820.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0019",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2723.0,
+      "reference": 2723,
+      "dualBound": 2723.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0020",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7498.0,
+      "reference": 7498,
+      "dualBound": 7498.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0020",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5778.0,
+      "reference": 5778,
+      "dualBound": 5778.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0021",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0021",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0022",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4414.0,
+      "reference": 4414,
+      "dualBound": 4414.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0022",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2652.75,
+      "reference": 2652.75,
+      "dualBound": 2652.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0023",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7271.0,
+      "reference": 7271,
+      "dualBound": 7271.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0023",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6417.0,
+      "reference": 6417,
+      "dualBound": 6417.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0024",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10943.0,
+      "reference": 10943,
+      "dualBound": 10943.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0024",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 10943.0,
+      "reference": 10943,
+      "dualBound": 10943.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0025",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16525.0,
+      "reference": 16525,
+      "dualBound": 16525.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0025",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8405.25,
+      "reference": 8405.25,
+      "dualBound": 8405.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0026",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2192.0,
+      "reference": 2192,
+      "dualBound": 2192.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0026",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2136.0,
+      "reference": 2136,
+      "dualBound": 2136.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0027",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3418.0,
+      "reference": 3418,
+      "dualBound": 3418.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0027",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3418.0,
+      "reference": 3418,
+      "dualBound": 3418.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0028",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5613.0,
+      "reference": 5613,
+      "dualBound": 5613.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0028",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3387.75,
+      "reference": 3387.75,
+      "dualBound": 3387.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0029",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9847.0,
+      "reference": 9847,
+      "dualBound": 9847.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0029",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8554.0,
+      "reference": 8554,
+      "dualBound": 8554.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0030",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 12539.0,
+      "reference": 12539,
+      "dualBound": 12539.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0030",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 12025.0,
+      "reference": 12025,
+      "dualBound": 12025.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0031",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0031",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0032",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 750.0,
+      "reference": 750,
+      "dualBound": 750.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0032",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 750.0,
+      "reference": 750,
+      "dualBound": 750.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0033",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1248.0,
+      "reference": 1248,
+      "dualBound": 1248.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0033",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 722.0,
+      "reference": 722,
+      "dualBound": 722.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0034",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1929.0,
+      "reference": 1929,
+      "dualBound": 1929.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0034",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1580.0,
+      "reference": 1580,
+      "dualBound": 1580.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0035",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2741.0,
+      "reference": 2741,
+      "dualBound": 2741.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0035",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2741.0,
+      "reference": 2741,
+      "dualBound": 2741.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0036",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 273.0,
+      "reference": 273,
+      "dualBound": 273.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0036",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 167.0,
+      "reference": 167,
+      "dualBound": 167.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0037",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 656.0,
+      "reference": 656,
+      "dualBound": 656.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0037",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 616.0,
+      "reference": 616,
+      "dualBound": 616.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0038",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1095.0,
+      "reference": 1095,
+      "dualBound": 1095.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0038",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1095.0,
+      "reference": 1095,
+      "dualBound": 1095.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0039",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1947.0,
+      "reference": 1947,
+      "dualBound": 1947.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0039",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 984.5,
+      "reference": 984.5,
+      "dualBound": 984.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0040",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2420.0,
+      "reference": 2420,
+      "dualBound": 2420.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0040",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1981.0,
+      "reference": 1981,
+      "dualBound": 1981.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0041",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0041",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0042",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2218.0,
+      "reference": 2218,
+      "dualBound": 2218.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0042",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1355.5,
+      "reference": 1355.5,
+      "dualBound": 1355.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0043",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3608.0,
+      "reference": 3608,
+      "dualBound": 3608.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0043",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3208.0,
+      "reference": 3208,
+      "dualBound": 3208.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0044",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5492.0,
+      "reference": 5492,
+      "dualBound": 5492.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0044",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5492.0,
+      "reference": 5492,
+      "dualBound": 5492.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0045",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8354.0,
+      "reference": 8354,
+      "dualBound": 8354.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0045",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4266.0,
+      "reference": 4266,
+      "dualBound": 4266.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0046",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1069.0,
+      "reference": 1069,
+      "dualBound": 1069.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0046",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1006.0,
+      "reference": 1006,
+      "dualBound": 1006.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0047",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1739.0,
+      "reference": 1739,
+      "dualBound": 1739.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0047",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1739.0,
+      "reference": 1739,
+      "dualBound": 1739.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0048",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2838.0,
+      "reference": 2838,
+      "dualBound": 2838.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0048",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1566.75,
+      "reference": 1566.75,
+      "dualBound": 1566.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0049",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4355.0,
+      "reference": 4355,
+      "dualBound": 4355.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0049",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3705.0,
+      "reference": 3705,
+      "dualBound": 3705.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0050",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8303.0,
+      "reference": 8303,
+      "dualBound": 8303.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0050",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8303.0,
+      "reference": 8303,
+      "dualBound": 8303.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0051",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0051",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1745.25,
+      "reference": 1745.25,
+      "dualBound": 1745.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0052",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4455.0,
+      "reference": 4455,
+      "dualBound": 4455.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0052",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4378.0,
+      "reference": 4378,
+      "dualBound": 4378.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0053",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7108.0,
+      "reference": 7108,
+      "dualBound": 7108.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0053",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7108.0,
+      "reference": 7108,
+      "dualBound": 7108.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0054",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 11139.0,
+      "reference": 11139,
+      "dualBound": 11139.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0054",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5972.75,
+      "reference": 5972.75,
+      "dualBound": 5972.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0055",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16135.0,
+      "reference": 16135,
+      "dualBound": 16135.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0055",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 12967.0,
+      "reference": 12967,
+      "dualBound": 12967.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0056",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1895.0,
+      "reference": 1895,
+      "dualBound": 1895.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0056",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1873.0,
+      "reference": 1873,
+      "dualBound": 1873.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0057",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3308.0,
+      "reference": 3308,
+      "dualBound": 3308.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0057",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2197.0,
+      "reference": 2197,
+      "dualBound": 2197.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0058",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5920.0,
+      "reference": 5920,
+      "dualBound": 5920.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0058",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5173.0,
+      "reference": 5173,
+      "dualBound": 5173.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0059",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9660.0,
+      "reference": 9660,
+      "dualBound": 9660.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0059",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 9476.0,
+      "reference": 9476,
+      "dualBound": 9476.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0060",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13773.0,
+      "reference": 13773,
+      "dualBound": 13773.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0060",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7677.5,
+      "reference": 7677.5,
+      "dualBound": 7677.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0061",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0061",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0062",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 768.0,
+      "reference": 768,
+      "dualBound": 768.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0062",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 478.25,
+      "reference": 478.25,
+      "dualBound": 478.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0063",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1225.0,
+      "reference": 1225,
+      "dualBound": 1225.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0063",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1133.0,
+      "reference": 1133,
+      "dualBound": 1133.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0064",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1792.0,
+      "reference": 1792,
+      "dualBound": 1792.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0064",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1792.0,
+      "reference": 1792,
+      "dualBound": 1792.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0065",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2776.0,
+      "reference": 2776,
+      "dualBound": 2776.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0065",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1455.75,
+      "reference": 1455.75,
+      "dualBound": 1455.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0066",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 279.0,
+      "reference": 279,
+      "dualBound": 279.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0066",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 235.0,
+      "reference": 235,
+      "dualBound": 235.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0067",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 530.0,
+      "reference": 530,
+      "dualBound": 530.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0067",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 530.0,
+      "reference": 530,
+      "dualBound": 530.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0068",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 983.0,
+      "reference": 983,
+      "dualBound": 983.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0068",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 589.25,
+      "reference": 589.25,
+      "dualBound": 589.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0069",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1807.0,
+      "reference": 1807,
+      "dualBound": 1807.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0069",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1525.0,
+      "reference": 1525,
+      "dualBound": 1525.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0070",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2309.0,
+      "reference": 2309,
+      "dualBound": 2309.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0070",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2309.0,
+      "reference": 2309,
+      "dualBound": 2309.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0071",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0071",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 907.0,
+      "reference": 907,
+      "dualBound": 907.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0072",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2229.0,
+      "reference": 2229,
+      "dualBound": 2229.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0072",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2188.0,
+      "reference": 2188,
+      "dualBound": 2188.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0073",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3479.0,
+      "reference": 3479,
+      "dualBound": 3479.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0073",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3479.0,
+      "reference": 3479,
+      "dualBound": 3479.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0074",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5691.0,
+      "reference": 5691,
+      "dualBound": 5691.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0074",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3090.0,
+      "reference": 3090,
+      "dualBound": 3090.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0075",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8531.0,
+      "reference": 8531,
+      "dualBound": 8531.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0075",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6784.0,
+      "reference": 6784,
+      "dualBound": 6784.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0076",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 930.0,
+      "reference": 930,
+      "dualBound": 930.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0076",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 930.0,
+      "reference": 930,
+      "dualBound": 930.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0077",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1727.0,
+      "reference": 1727,
+      "dualBound": 1727.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0077",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1161.75,
+      "reference": 1161.75,
+      "dualBound": 1161.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0078",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3050.0,
+      "reference": 3050,
+      "dualBound": 3050.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0078",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2765.0,
+      "reference": 2765,
+      "dualBound": 2765.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0079",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5126.0,
+      "reference": 5126,
+      "dualBound": 5126.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0079",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5009.0,
+      "reference": 5009,
+      "dualBound": 5009.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0080",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7515.0,
+      "reference": 7515,
+      "dualBound": 7515.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0080",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4001.5,
+      "reference": 4001.5,
+      "dualBound": 4001.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0081",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0081",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0082",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4553.0,
+      "reference": 4553,
+      "dualBound": 4553.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0082",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4553.0,
+      "reference": 4553,
+      "dualBound": 4553.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0083",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7185.0,
+      "reference": 7185,
+      "dualBound": 7185.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0083",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4157.25,
+      "reference": 4157.25,
+      "dualBound": 4157.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0084",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 11029.0,
+      "reference": 11029,
+      "dualBound": 11029.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0084",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 9160.0,
+      "reference": 9160,
+      "dualBound": 9160.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0085",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16360.0,
+      "reference": 16360,
+      "dualBound": 16360.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0085",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 16360.0,
+      "reference": 16360,
+      "dualBound": 16360.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0086",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1709.0,
+      "reference": 1709,
+      "dualBound": 1709.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0086",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1247.5,
+      "reference": 1247.5,
+      "dualBound": 1247.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0087",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3464.0,
+      "reference": 3464,
+      "dualBound": 3464.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0087",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3185.0,
+      "reference": 3185,
+      "dualBound": 3185.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0088",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5590.0,
+      "reference": 5590,
+      "dualBound": 5590.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0088",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5459.0,
+      "reference": 5459,
+      "dualBound": 5459.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0089",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8556.0,
+      "reference": 8556,
+      "dualBound": 8556.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0089",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4680.5,
+      "reference": 4680.5,
+      "dualBound": 4680.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0090",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 14542.0,
+      "reference": 14542,
+      "dualBound": 14542.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0090",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 12018.0,
+      "reference": 12018,
+      "dualBound": 12018.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0091",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0091",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 309.25,
+      "reference": 309.25,
+      "dualBound": 309.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0092",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 757.0,
+      "reference": 757,
+      "dualBound": 757.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0092",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 733.0,
+      "reference": 733,
+      "dualBound": 733.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0093",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1147.0,
+      "reference": 1147,
+      "dualBound": 1147.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0093",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1147.0,
+      "reference": 1147,
+      "dualBound": 1147.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0094",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1880.0,
+      "reference": 1880,
+      "dualBound": 1880.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0094",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1045.25,
+      "reference": 1045.25,
+      "dualBound": 1045.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0095",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2877.0,
+      "reference": 2877,
+      "dualBound": 2877.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0095",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2309.0,
+      "reference": 2309,
+      "dualBound": 2309.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0096",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 292.0,
+      "reference": 292,
+      "dualBound": 292.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0096",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 292.0,
+      "reference": 292,
+      "dualBound": 292.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0097",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 644.0,
+      "reference": 644,
+      "dualBound": 644.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0097",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 453.5,
+      "reference": 453.5,
+      "dualBound": 453.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0098",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 653.0,
+      "reference": 653,
+      "dualBound": 653.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0098",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 523.0,
+      "reference": 523,
+      "dualBound": 523.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0099",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1679.0,
+      "reference": 1679,
+      "dualBound": 1679.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0099",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1463.0,
+      "reference": 1463,
+      "dualBound": 1463.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0100",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2361.0,
+      "reference": 2361,
+      "dualBound": 2361.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0100",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1199.75,
+      "reference": 1199.75,
+      "dualBound": 1199.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0101",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0101",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0102",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2292.0,
+      "reference": 2292,
+      "dualBound": 2292.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0102",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2292.0,
+      "reference": 2292,
+      "dualBound": 2292.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0103",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3556.0,
+      "reference": 3556,
+      "dualBound": 3556.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0103",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2126.75,
+      "reference": 2126.75,
+      "dualBound": 2126.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0104",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5579.0,
+      "reference": 5579,
+      "dualBound": 5579.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0104",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4595.0,
+      "reference": 4595,
+      "dualBound": 4595.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0105",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8538.0,
+      "reference": 8538,
+      "dualBound": 8538.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0105",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8538.0,
+      "reference": 8538,
+      "dualBound": 8538.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0106",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1042.0,
+      "reference": 1042,
+      "dualBound": 1042.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0106",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 769.75,
+      "reference": 769.75,
+      "dualBound": 769.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0107",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1513.0,
+      "reference": 1513,
+      "dualBound": 1513.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0107",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1368.0,
+      "reference": 1368,
+      "dualBound": 1368.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0108",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2869.0,
+      "reference": 2869,
+      "dualBound": 2869.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0108",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2869.0,
+      "reference": 2869,
+      "dualBound": 2869.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0109",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4652.0,
+      "reference": 4652,
+      "dualBound": 4652.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0109",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2716.25,
+      "reference": 2716.25,
+      "dualBound": 2716.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0110",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7737.0,
+      "reference": 7737,
+      "dualBound": 7737.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0110",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6372.0,
+      "reference": 6372,
+      "dualBound": 6372.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0111",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0111",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0112",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4523.0,
+      "reference": 4523,
+      "dualBound": 4523.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0112",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2745.75,
+      "reference": 2745.75,
+      "dualBound": 2745.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0113",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7125.0,
+      "reference": 7125,
+      "dualBound": 7125.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0113",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6363.0,
+      "reference": 6363,
+      "dualBound": 6363.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0114",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10959.0,
+      "reference": 10959,
+      "dualBound": 10959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0114",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 10959.0,
+      "reference": 10959,
+      "dualBound": 10959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0115",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16409.0,
+      "reference": 16409,
+      "dualBound": 16409.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0115",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8380.75,
+      "reference": 8380.75,
+      "dualBound": 8380.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0116",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2076.0,
+      "reference": 2076,
+      "dualBound": 2076.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0116",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2033.0,
+      "reference": 2033,
+      "dualBound": 2033.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0117",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3332.0,
+      "reference": 3332,
+      "dualBound": 3332.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0117",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3244.0,
+      "reference": 3244,
+      "dualBound": 3244.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0118",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5262.0,
+      "reference": 5262,
+      "dualBound": 5262.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0118",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3036.25,
+      "reference": 3036.25,
+      "dualBound": 3036.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0119",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9507.0,
+      "reference": 9507,
+      "dualBound": 9507.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0119",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8021.0,
+      "reference": 8021,
+      "dualBound": 8021.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0120",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 12068.0,
+      "reference": 12068,
+      "dualBound": 12068.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0120",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 11784.0,
+      "reference": 11784,
+      "dualBound": 11784.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0121",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0121",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0122",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 781.0,
+      "reference": 781,
+      "dualBound": 781.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0122",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 781.0,
+      "reference": 781,
+      "dualBound": 781.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0123",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1185.0,
+      "reference": 1185,
+      "dualBound": 1185.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0123",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 692.5,
+      "reference": 692.5,
+      "dualBound": 692.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0124",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1841.0,
+      "reference": 1841,
+      "dualBound": 1841.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0124",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1519.0,
+      "reference": 1519,
+      "dualBound": 1519.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0125",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2866.0,
+      "reference": 2866,
+      "dualBound": 2866.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0125",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2802.0,
+      "reference": 2802,
+      "dualBound": 2802.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0126",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 314.0,
+      "reference": 314,
+      "dualBound": 314.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0126",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 249.25,
+      "reference": 249.25,
+      "dualBound": 249.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0127",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 586.0,
+      "reference": 586,
+      "dualBound": 586.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0127",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 450.0,
+      "reference": 450,
+      "dualBound": 450.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0128",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1114.0,
+      "reference": 1114,
+      "dualBound": 1114.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0128",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1114.0,
+      "reference": 1114,
+      "dualBound": 1114.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0129",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1540.0,
+      "reference": 1540,
+      "dualBound": 1540.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0129",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 820.0,
+      "reference": 820,
+      "dualBound": 820.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0130",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2584.0,
+      "reference": 2584,
+      "dualBound": 2584.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0130",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1948.0,
+      "reference": 1948,
+      "dualBound": 1948.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0131",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0131",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0132",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2344.0,
+      "reference": 2344,
+      "dualBound": 2344.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0132",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1436.75,
+      "reference": 1436.75,
+      "dualBound": 1436.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0133",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3596.0,
+      "reference": 3596,
+      "dualBound": 3596.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0133",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3243.0,
+      "reference": 3243,
+      "dualBound": 3243.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0134",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5444.0,
+      "reference": 5444,
+      "dualBound": 5444.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0134",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5444.0,
+      "reference": 5444,
+      "dualBound": 5444.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0135",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8347.0,
+      "reference": 8347,
+      "dualBound": 8347.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0135",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4320.75,
+      "reference": 4320.75,
+      "dualBound": 4320.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0136",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1064.0,
+      "reference": 1064,
+      "dualBound": 1064.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0136",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1059.0,
+      "reference": 1059,
+      "dualBound": 1059.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0137",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1749.0,
+      "reference": 1749,
+      "dualBound": 1749.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0137",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1749.0,
+      "reference": 1749,
+      "dualBound": 1749.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0138",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2641.0,
+      "reference": 2641,
+      "dualBound": 2641.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0138",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1565.5,
+      "reference": 1565.5,
+      "dualBound": 1565.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0139",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4510.0,
+      "reference": 4510,
+      "dualBound": 4510.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0139",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3854.0,
+      "reference": 3854,
+      "dualBound": 3854.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0140",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7312.0,
+      "reference": 7312,
+      "dualBound": 7312.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0140",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6968.0,
+      "reference": 6968,
+      "dualBound": 6968.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0141",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0141",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1789.25,
+      "reference": 1789.25,
+      "dualBound": 1789.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0142",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4577.0,
+      "reference": 4577,
+      "dualBound": 4577.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0142",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4543.0,
+      "reference": 4543,
+      "dualBound": 4543.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0143",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7113.0,
+      "reference": 7113,
+      "dualBound": 7113.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0143",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7113.0,
+      "reference": 7113,
+      "dualBound": 7113.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0144",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 11114.0,
+      "reference": 11114,
+      "dualBound": 11114.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0144",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5920.75,
+      "reference": 5920.75,
+      "dualBound": 5920.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0145",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16499.0,
+      "reference": 16499,
+      "dualBound": 16499.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0145",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 13216.0,
+      "reference": 13216,
+      "dualBound": 13216.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0146",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1959.0,
+      "reference": 1959,
+      "dualBound": 1959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0146",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1959.0,
+      "reference": 1959,
+      "dualBound": 1959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0147",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3352.0,
+      "reference": 3352,
+      "dualBound": 3352.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0147",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2134.25,
+      "reference": 2134.25,
+      "dualBound": 2134.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0148",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6061.0,
+      "reference": 6061,
+      "dualBound": 6061.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0148",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5449.0,
+      "reference": 5449,
+      "dualBound": 5449.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0149",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8446.0,
+      "reference": 8446,
+      "dualBound": 8446.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0149",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8434.0,
+      "reference": 8434,
+      "dualBound": 8434.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0150",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13251.0,
+      "reference": 13251,
+      "dualBound": 13251.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0150",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7517.75,
+      "reference": 7517.75,
+      "dualBound": 7517.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0151",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0151",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0152",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 788.0,
+      "reference": 788,
+      "dualBound": 788.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0152",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 479.0,
+      "reference": 479,
+      "dualBound": 479.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0153",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1214.0,
+      "reference": 1214,
+      "dualBound": 1214.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0153",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1096.0,
+      "reference": 1096,
+      "dualBound": 1096.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0154",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1871.0,
+      "reference": 1871,
+      "dualBound": 1871.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0154",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1871.0,
+      "reference": 1871,
+      "dualBound": 1871.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0155",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2757.0,
+      "reference": 2757,
+      "dualBound": 2757.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0155",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1416.5,
+      "reference": 1416.5,
+      "dualBound": 1416.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0156",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 378.0,
+      "reference": 378,
+      "dualBound": 378.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0156",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 358.0,
+      "reference": 358,
+      "dualBound": 358.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0157",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 615.0,
+      "reference": 615,
+      "dualBound": 615.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0157",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 615.0,
+      "reference": 615,
+      "dualBound": 615.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0158",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 715.0,
+      "reference": 715,
+      "dualBound": 715.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0158",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 439.0,
+      "reference": 439,
+      "dualBound": 439.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0159",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1718.0,
+      "reference": 1718,
+      "dualBound": 1718.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0159",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1260.0,
+      "reference": 1260,
+      "dualBound": 1260.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0160",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2459.0,
+      "reference": 2459,
+      "dualBound": 2459.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0160",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2335.0,
+      "reference": 2335,
+      "dualBound": 2335.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0161",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0161",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 882.25,
+      "reference": 882.25,
+      "dualBound": 882.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0162",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2352.0,
+      "reference": 2352,
+      "dualBound": 2352.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0162",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2339.0,
+      "reference": 2339,
+      "dualBound": 2339.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0163",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3534.0,
+      "reference": 3534,
+      "dualBound": 3534.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0163",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3534.0,
+      "reference": 3534,
+      "dualBound": 3534.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0164",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5539.0,
+      "reference": 5539,
+      "dualBound": 5539.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0164",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2996.0,
+      "reference": 2996,
+      "dualBound": 2996.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0165",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8468.0,
+      "reference": 8468,
+      "dualBound": 8468.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0165",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6833.0,
+      "reference": 6833,
+      "dualBound": 6833.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0166",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1059.0,
+      "reference": 1059,
+      "dualBound": 1059.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0166",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1059.0,
+      "reference": 1059,
+      "dualBound": 1059.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0167",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1693.0,
+      "reference": 1693,
+      "dualBound": 1693.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0167",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1131.5,
+      "reference": 1131.5,
+      "dualBound": 1131.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0168",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2706.0,
+      "reference": 2706,
+      "dualBound": 2706.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0168",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2285.0,
+      "reference": 2285,
+      "dualBound": 2285.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0169",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4804.0,
+      "reference": 4804,
+      "dualBound": 4804.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0169",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4747.0,
+      "reference": 4747,
+      "dualBound": 4747.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0170",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6425.0,
+      "reference": 6425,
+      "dualBound": 6425.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0170",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3916.25,
+      "reference": 3916.25,
+      "dualBound": 3916.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0171",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0171",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0172",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4452.0,
+      "reference": 4452,
+      "dualBound": 4452.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0172",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4452.0,
+      "reference": 4452,
+      "dualBound": 4452.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0173",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6996.0,
+      "reference": 6996,
+      "dualBound": 6996.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0173",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4083.5,
+      "reference": 4083.5,
+      "dualBound": 4083.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0174",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10969.0,
+      "reference": 10969,
+      "dualBound": 10969.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0174",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 9183.0,
+      "reference": 9183,
+      "dualBound": 9183.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0175",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16536.0,
+      "reference": 16536,
+      "dualBound": 16536.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0175",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 16507.0,
+      "reference": 16507,
+      "dualBound": 16507.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0176",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1930.0,
+      "reference": 1930,
+      "dualBound": 1930.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0176",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1314.25,
+      "reference": 1314.25,
+      "dualBound": 1314.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0177",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3196.0,
+      "reference": 3196,
+      "dualBound": 3196.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0177",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2955.0,
+      "reference": 2955,
+      "dualBound": 2955.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0178",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5802.0,
+      "reference": 5802,
+      "dualBound": 5802.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0178",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5738.0,
+      "reference": 5738,
+      "dualBound": 5738.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0179",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8560.0,
+      "reference": 8560,
+      "dualBound": 8560.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0179",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4671.5,
+      "reference": 4671.5,
+      "dualBound": 4671.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0180",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13551.0,
+      "reference": 13551,
+      "dualBound": 13551.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0180",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 10784.0,
+      "reference": 10784,
+      "dualBound": 10784.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0181",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0181",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 302.5,
+      "reference": 302.5,
+      "dualBound": 302.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0182",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 785.0,
+      "reference": 785,
+      "dualBound": 785.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0182",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 778.0,
+      "reference": 778,
+      "dualBound": 778.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0183",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1178.0,
+      "reference": 1178,
+      "dualBound": 1178.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0183",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1178.0,
+      "reference": 1178,
+      "dualBound": 1178.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0184",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1859.0,
+      "reference": 1859,
+      "dualBound": 1859.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0184",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 941.5,
+      "reference": 941.5,
+      "dualBound": 941.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0185",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2993.0,
+      "reference": 2993,
+      "dualBound": 2993.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0185",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2519.0,
+      "reference": 2519,
+      "dualBound": 2519.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0186",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 341.0,
+      "reference": 341,
+      "dualBound": 341.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0186",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 341.0,
+      "reference": 341,
+      "dualBound": 341.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0187",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 555.0,
+      "reference": 555,
+      "dualBound": 555.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0187",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 335.0,
+      "reference": 335,
+      "dualBound": 335.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0188",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1025.0,
+      "reference": 1025,
+      "dualBound": 1025.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0188",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 846.0,
+      "reference": 846,
+      "dualBound": 846.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0189",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1552.0,
+      "reference": 1552,
+      "dualBound": 1552.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0189",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1357.0,
+      "reference": 1357,
+      "dualBound": 1357.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0190",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2490.0,
+      "reference": 2490,
+      "dualBound": 2490.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0190",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1378.5,
+      "reference": 1378.5,
+      "dualBound": 1378.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0191",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0191",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0192",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2277.0,
+      "reference": 2277,
+      "dualBound": 2277.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0192",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2277.0,
+      "reference": 2277,
+      "dualBound": 2277.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0193",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3579.0,
+      "reference": 3579,
+      "dualBound": 3579.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0193",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2063.75,
+      "reference": 2063.75,
+      "dualBound": 2063.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0194",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5561.0,
+      "reference": 5561,
+      "dualBound": 5561.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0194",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4700.0,
+      "reference": 4700,
+      "dualBound": 4700.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0195",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8146.0,
+      "reference": 8146,
+      "dualBound": 8146.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0195",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8124.0,
+      "reference": 8124,
+      "dualBound": 8124.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0196",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 980.0,
+      "reference": 980,
+      "dualBound": 980.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0196",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 728.25,
+      "reference": 728.25,
+      "dualBound": 728.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0197",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1915.0,
+      "reference": 1915,
+      "dualBound": 1915.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0197",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1810.0,
+      "reference": 1810,
+      "dualBound": 1810.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0198",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2844.0,
+      "reference": 2844,
+      "dualBound": 2844.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0198",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2844.0,
+      "reference": 2844,
+      "dualBound": 2844.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0199",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4451.0,
+      "reference": 4451,
+      "dualBound": 4451.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0199",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2658.0,
+      "reference": 2658,
+      "dualBound": 2658.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0200",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5587.0,
+      "reference": 5587,
+      "dualBound": 5587.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0200",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4201.0,
+      "reference": 4201,
+      "dualBound": 4201.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0201",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0201",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0202",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4371.0,
+      "reference": 4371,
+      "dualBound": 4371.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0202",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2703.0,
+      "reference": 2703,
+      "dualBound": 2703.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0203",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7184.0,
+      "reference": 7184,
+      "dualBound": 7184.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0203",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6324.0,
+      "reference": 6324,
+      "dualBound": 6324.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0204",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10778.0,
+      "reference": 10778,
+      "dualBound": 10778.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0204",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 10778.0,
+      "reference": 10778,
+      "dualBound": 10778.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0205",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16481.0,
+      "reference": 16481,
+      "dualBound": 16481.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0205",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8473.75,
+      "reference": 8473.75,
+      "dualBound": 8473.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0206",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2073.0,
+      "reference": 2073,
+      "dualBound": 2073.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0206",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2031.0,
+      "reference": 2031,
+      "dualBound": 2031.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0207",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3364.0,
+      "reference": 3364,
+      "dualBound": 3364.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0207",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3364.0,
+      "reference": 3364,
+      "dualBound": 3364.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0208",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5628.0,
+      "reference": 5628,
+      "dualBound": 5628.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0208",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3544.75,
+      "reference": 3544.75,
+      "dualBound": 3544.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0209",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8806.0,
+      "reference": 8806,
+      "dualBound": 8806.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0209",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7451.0,
+      "reference": 7451,
+      "dualBound": 7451.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0210",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13366.0,
+      "reference": 13366,
+      "dualBound": 13366.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0210",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 13177.0,
+      "reference": 13177,
+      "dualBound": 13177.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0211",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0211",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0212",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 741.0,
+      "reference": 741,
+      "dualBound": 741.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0212",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 741.0,
+      "reference": 741,
+      "dualBound": 741.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0213",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1194.0,
+      "reference": 1194,
+      "dualBound": 1194.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0213",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 702.5,
+      "reference": 702.5,
+      "dualBound": 702.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0214",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1857.0,
+      "reference": 1857,
+      "dualBound": 1857.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0214",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1516.0,
+      "reference": 1516,
+      "dualBound": 1516.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0215",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2754.0,
+      "reference": 2754,
+      "dualBound": 2754.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0215",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2754.0,
+      "reference": 2754,
+      "dualBound": 2754.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0216",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 350.0,
+      "reference": 350,
+      "dualBound": 350.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0216",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 249.25,
+      "reference": 249.25,
+      "dualBound": 249.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0217",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 616.0,
+      "reference": 616,
+      "dualBound": 616.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0217",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 582.0,
+      "reference": 582,
+      "dualBound": 582.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0218",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 931.0,
+      "reference": 931,
+      "dualBound": 931.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0218",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 931.0,
+      "reference": 931,
+      "dualBound": 931.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0219",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1354.0,
+      "reference": 1354,
+      "dualBound": 1354.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0219",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 753.5,
+      "reference": 753.5,
+      "dualBound": 753.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0220",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2113.0,
+      "reference": 2113,
+      "dualBound": 2113.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0220",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1485.0,
+      "reference": 1485,
+      "dualBound": 1485.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0221",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0221",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0222",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2287.0,
+      "reference": 2287,
+      "dualBound": 2287.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0222",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1393.5,
+      "reference": 1393.5,
+      "dualBound": 1393.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0223",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3607.0,
+      "reference": 3607,
+      "dualBound": 3607.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0223",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3224.0,
+      "reference": 3224,
+      "dualBound": 3224.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0224",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5648.0,
+      "reference": 5648,
+      "dualBound": 5648.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0224",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5648.0,
+      "reference": 5648,
+      "dualBound": 5648.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0225",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8347.0,
+      "reference": 8347,
+      "dualBound": 8347.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0225",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4191.0,
+      "reference": 4191,
+      "dualBound": 4191.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0226",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1029.0,
+      "reference": 1029,
+      "dualBound": 1029.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0226",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1029.0,
+      "reference": 1029,
+      "dualBound": 1029.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0227",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1566.0,
+      "reference": 1566,
+      "dualBound": 1566.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0227",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1566.0,
+      "reference": 1566,
+      "dualBound": 1566.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0228",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3171.0,
+      "reference": 3171,
+      "dualBound": 3171.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0228",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1899.0,
+      "reference": 1899,
+      "dualBound": 1899.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0229",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4834.0,
+      "reference": 4834,
+      "dualBound": 4834.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0229",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4275.0,
+      "reference": 4275,
+      "dualBound": 4275.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0230",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6940.0,
+      "reference": 6940,
+      "dualBound": 6940.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0230",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6862.0,
+      "reference": 6862,
+      "dualBound": 6862.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0231",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0231",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1732.0,
+      "reference": 1732,
+      "dualBound": 1732.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0232",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4467.0,
+      "reference": 4467,
+      "dualBound": 4467.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0232",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4413.0,
+      "reference": 4413,
+      "dualBound": 4413.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0233",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7077.0,
+      "reference": 7077,
+      "dualBound": 7077.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0233",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7077.0,
+      "reference": 7077,
+      "dualBound": 7077.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0234",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10722.0,
+      "reference": 10722,
+      "dualBound": 10722.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0234",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5745.0,
+      "reference": 5745,
+      "dualBound": 5745.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0235",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16730.0,
+      "reference": 16730,
+      "dualBound": 16730.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0235",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 13298.0,
+      "reference": 13298,
+      "dualBound": 13298.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0236",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1870.0,
+      "reference": 1870,
+      "dualBound": 1870.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0236",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1870.0,
+      "reference": 1870,
+      "dualBound": 1870.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0237",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3519.0,
+      "reference": 3519,
+      "dualBound": 3519.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0237",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2381.0,
+      "reference": 2381,
+      "dualBound": 2381.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0238",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6012.0,
+      "reference": 6012,
+      "dualBound": 6012.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0238",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5505.0,
+      "reference": 5505,
+      "dualBound": 5505.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0239",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9968.0,
+      "reference": 9968,
+      "dualBound": 9968.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0239",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 9968.0,
+      "reference": 9968,
+      "dualBound": 9968.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0240",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13842.0,
+      "reference": 13842,
+      "dualBound": 13842.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0240",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7462.25,
+      "reference": 7462.25,
+      "dualBound": 7462.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0241",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0241",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0242",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 780.0,
+      "reference": 780,
+      "dualBound": 780.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0242",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 484.75,
+      "reference": 484.75,
+      "dualBound": 484.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0243",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1242.0,
+      "reference": 1242,
+      "dualBound": 1242.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0243",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1119.0,
+      "reference": 1119,
+      "dualBound": 1119.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0244",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1884.0,
+      "reference": 1884,
+      "dualBound": 1884.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0244",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1884.0,
+      "reference": 1884,
+      "dualBound": 1884.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0245",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2781.0,
+      "reference": 2781,
+      "dualBound": 2781.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0245",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1410.75,
+      "reference": 1410.75,
+      "dualBound": 1410.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0246",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 364.0,
+      "reference": 364,
+      "dualBound": 364.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0246",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 364.0,
+      "reference": 364,
+      "dualBound": 364.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0247",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 607.0,
+      "reference": 607,
+      "dualBound": 607.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0247",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 607.0,
+      "reference": 607,
+      "dualBound": 607.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0248",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 858.0,
+      "reference": 858,
+      "dualBound": 858.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0248",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 513.0,
+      "reference": 513,
+      "dualBound": 513.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0249",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1744.0,
+      "reference": 1744,
+      "dualBound": 1744.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0249",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1268.0,
+      "reference": 1268,
+      "dualBound": 1268.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0250",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2742.0,
+      "reference": 2742,
+      "dualBound": 2742.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0250",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2742.0,
+      "reference": 2742,
+      "dualBound": 2742.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0251",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0251",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 891.25,
+      "reference": 891.25,
+      "dualBound": 891.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0252",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2288.0,
+      "reference": 2288,
+      "dualBound": 2288.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0252",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2284.0,
+      "reference": 2284,
+      "dualBound": 2284.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0253",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3677.0,
+      "reference": 3677,
+      "dualBound": 3677.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0253",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3677.0,
+      "reference": 3677,
+      "dualBound": 3677.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0254",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5610.0,
+      "reference": 5610,
+      "dualBound": 5610.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0254",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3063.5,
+      "reference": 3063.5,
+      "dualBound": 3063.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0255",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8382.0,
+      "reference": 8382,
+      "dualBound": 8382.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0255",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6863.0,
+      "reference": 6863,
+      "dualBound": 6863.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0256",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 959.0,
+      "reference": 959,
+      "dualBound": 959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0256",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 959.0,
+      "reference": 959,
+      "dualBound": 959.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0257",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1778.0,
+      "reference": 1778,
+      "dualBound": 1778.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0257",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1195.0,
+      "reference": 1195,
+      "dualBound": 1195.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0258",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2983.0,
+      "reference": 2983,
+      "dualBound": 2983.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0258",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2638.0,
+      "reference": 2638,
+      "dualBound": 2638.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0259",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3997.0,
+      "reference": 3997,
+      "dualBound": 3997.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0259",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3880.0,
+      "reference": 3880,
+      "dualBound": 3880.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0260",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 6039.0,
+      "reference": 6039,
+      "dualBound": 6039.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0260",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3226.25,
+      "reference": 3226.25,
+      "dualBound": 3226.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0261",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0261",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0262",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4459.0,
+      "reference": 4459,
+      "dualBound": 4459.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0262",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4459.0,
+      "reference": 4459,
+      "dualBound": 4459.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0263",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7198.0,
+      "reference": 7198,
+      "dualBound": 7198.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0263",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4122.75,
+      "reference": 4122.75,
+      "dualBound": 4122.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0264",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10737.0,
+      "reference": 10737,
+      "dualBound": 10737.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0264",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 9035.0,
+      "reference": 9035,
+      "dualBound": 9035.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0265",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16546.0,
+      "reference": 16546,
+      "dualBound": 16546.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0265",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 16543.0,
+      "reference": 16543,
+      "dualBound": 16543.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0266",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2063.0,
+      "reference": 2063,
+      "dualBound": 2063.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0266",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1502.0,
+      "reference": 1502,
+      "dualBound": 1502.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0267",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3489.0,
+      "reference": 3489,
+      "dualBound": 3489.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0267",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3360.0,
+      "reference": 3360,
+      "dualBound": 3360.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0268",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5993.0,
+      "reference": 5993,
+      "dualBound": 5993.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0268",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5993.0,
+      "reference": 5993,
+      "dualBound": 5993.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0269",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9705.0,
+      "reference": 9705,
+      "dualBound": 9705.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0269",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5385.5,
+      "reference": 5385.5,
+      "dualBound": 5385.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0270",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 15834.0,
+      "reference": 15834,
+      "dualBound": 15834.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0270",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 12764.0,
+      "reference": 12764,
+      "dualBound": 12764.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0271",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 400.0,
+      "reference": 400,
+      "dualBound": 400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0271",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 308.5,
+      "reference": 308.5,
+      "dualBound": 308.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0272",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 780.0,
+      "reference": 780,
+      "dualBound": 780.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0272",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 762.0,
+      "reference": 762,
+      "dualBound": 762.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0273",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1143.0,
+      "reference": 1143,
+      "dualBound": 1143.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0273",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1143.0,
+      "reference": 1143,
+      "dualBound": 1143.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0274",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1852.0,
+      "reference": 1852,
+      "dualBound": 1852.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0274",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1102.75,
+      "reference": 1102.75,
+      "dualBound": 1102.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0275",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2913.0,
+      "reference": 2913,
+      "dualBound": 2913.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0275",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2453.0,
+      "reference": 2453,
+      "dualBound": 2453.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0276",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 302.0,
+      "reference": 302,
+      "dualBound": 302.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0276",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 302.0,
+      "reference": 302,
+      "dualBound": 302.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0277",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 588.0,
+      "reference": 588,
+      "dualBound": 588.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0277",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 364.75,
+      "reference": 364.75,
+      "dualBound": 364.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0278",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 768.0,
+      "reference": 768,
+      "dualBound": 768.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0278",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 748.0,
+      "reference": 748,
+      "dualBound": 748.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0279",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1522.0,
+      "reference": 1522,
+      "dualBound": 1522.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0279",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1522.0,
+      "reference": 1522,
+      "dualBound": 1522.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0280",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2448.0,
+      "reference": 2448,
+      "dualBound": 2448.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0280",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1401.25,
+      "reference": 1401.25,
+      "dualBound": 1401.25,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0281",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0281",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1200.0,
+      "reference": 1200,
+      "dualBound": 1200.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0282",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2288.0,
+      "reference": 2288,
+      "dualBound": 2288.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0282",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2288.0,
+      "reference": 2288,
+      "dualBound": 2288.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0283",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3634.0,
+      "reference": 3634,
+      "dualBound": 3634.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0283",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2078.0,
+      "reference": 2078,
+      "dualBound": 2078.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0284",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5430.0,
+      "reference": 5430,
+      "dualBound": 5430.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0284",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 4529.0,
+      "reference": 4529,
+      "dualBound": 4529.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0285",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 8517.0,
+      "reference": 8517,
+      "dualBound": 8517.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0285",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8502.0,
+      "reference": 8502,
+      "dualBound": 8502.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0286",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 974.0,
+      "reference": 974,
+      "dualBound": 974.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0286",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 733.0,
+      "reference": 733,
+      "dualBound": 733.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0287",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1919.0,
+      "reference": 1919,
+      "dualBound": 1919.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0287",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1827.0,
+      "reference": 1827,
+      "dualBound": 1827.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0288",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2706.0,
+      "reference": 2706,
+      "dualBound": 2706.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0288",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2565.0,
+      "reference": 2565,
+      "dualBound": 2565.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0289",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4337.0,
+      "reference": 4337,
+      "dualBound": 4337.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0289",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2583.75,
+      "reference": 2583.75,
+      "dualBound": 2583.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0290",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7216.0,
+      "reference": 7216,
+      "dualBound": 7216.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0290",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 5978.0,
+      "reference": 5978,
+      "dualBound": 5978.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0291",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0291",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2400.0,
+      "reference": 2400,
+      "dualBound": 2400.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0292",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 4528.0,
+      "reference": 4528,
+      "dualBound": 4528.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0292",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 2740.75,
+      "reference": 2740.75,
+      "dualBound": 2740.75,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0293",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 7056.0,
+      "reference": 7056,
+      "dualBound": 7056.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0293",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 6341.0,
+      "reference": 6341,
+      "dualBound": 6341.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0294",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 10918.0,
+      "reference": 10918,
+      "dualBound": 10918.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0294",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 10918.0,
+      "reference": 10918,
+      "dualBound": 10918.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0295",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 16524.0,
+      "reference": 16524,
+      "dualBound": 16524.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0295",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 8425.0,
+      "reference": 8425,
+      "dualBound": 8425.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0296",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 1931.0,
+      "reference": 1931,
+      "dualBound": 1931.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0296",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 1906.0,
+      "reference": 1906,
+      "dualBound": 1906.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0297",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 3556.0,
+      "reference": 3556,
+      "dualBound": 3556.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0297",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3556.0,
+      "reference": 3556,
+      "dualBound": 3556.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0298",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 5918.0,
+      "reference": 5918,
+      "dualBound": 5918.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0298",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 3569.5,
+      "reference": 3569.5,
+      "dualBound": 3569.5,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0299",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 9194.0,
+      "reference": 9194,
+      "dualBound": 9194.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0299",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 7398.0,
+      "reference": 7398,
+      "dualBound": 7398.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0300",
+      "mode": "noBacklog",
+      "status": 0,
+      "certified": true,
+      "objective": 13291.0,
+      "reference": 13291,
+      "dualBound": 13291.0,
+      "gap": 0.0
+    },
+    {
+      "problemId": "P0300",
+      "mode": "backlog",
+      "status": 0,
+      "certified": true,
+      "objective": 12857.0,
+      "reference": 12857,
+      "dualBound": 12857.0,
+      "gap": 0.0
+    }
+  ]
+}
