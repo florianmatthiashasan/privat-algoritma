@@ -14,14 +14,15 @@ npm run benchmark
 
 Uygulama `http://127.0.0.1:5173` adresinde açılır. Gezinme URL hash'ine yansır; sayfa yenileme ve tarayıcı geri/ileri işlevleri çalışır. Sunucu veya harici veri tabanı gerekmez. Ürünlerin ayrı problem verileri ve senaryolar localStorage'da; deneyler IndexedDB'de saklanır. Tarayıcı verilerini silmek kayıtları kaldırır; JSON yedeği indirin. Eski aktif problem/senaryo kayıtları uyarlanır; eski deney sürümleri tez sürümüne karıştırılmaz.
 
-## Ekranlar
+## Kullanım akışı
 
-- **Planlama:** 1–120 dönem, talep/hazırlık/stok/gecikme maliyetleri ve dönemler boyunca sabit birim üretim maliyeti. Canlı çözüm; ayrı stok/bekleyen talep sütunları; talep–üretim ve net stok grafikleri; gerçek çözücü izinden adaylar ve seçim gerekçesi. Takvim döneminde gezinmek çözümü değiştirmez. Küçük örnek ve kitap örneği hazırdır. Dönem silme geri alınabilir.
-- **Veri yönetimi:** CSV/JSON içe aktarma, şablon, problem yedeği; senaryo kaydetme, adlandırma, yükleme, onaylı silme. CSV `demand,setup,holding,backlog` veya Türkçe `talep,hazırlık,stok,gecikme` başlıklarını kabul eder. Noktalı virgüllü dosyada ondalık virgül kullanılabilir. CSV'de gecikme sütunu yoksa 10, model yok satmasız, c=0 varsayılır; ekranda açıklanır. JSON model ve c'yi korur.
-- **Ürünler:** Her kayıt bağımsız bir tek ürün problemidir. Ürün değiştirmek kendi verisini/modelini geri getirir. Ortak kapasiteli çok ürün modeli değildir.
-- **Deney laboratuvarı:** Tam tasarım 300 temel problem / 600 model durumu / 5.400 yöntem sonucu. Worker, ilerleme ve durdurma; CV/ufuk/hazırlık oranı filtreleri; maliyet/sapma/süre tabloları, histogram, hız–kalite grafiği; altı önceden tanımlanmış eşleştirilmiş karşılaştırma ve fark/Q–Q grafikleri. Deneyler geçmişe kaydedilir ve yenilemeden sonra açılır. İçe aktarma sürümü, tohumu, dengeyi ve yöntem planını denetler; türetilmiş istatistikleri yeniden hesaplar. İçe aktarılan süreler dosyadaki ölçümlerdir, yeniden ölçülmez.
-- **Raporlar:** Aktif planların JSON çıktısı, son deneyin açıklamalı Markdown raporu, yazdır/PDF kaydet. Bütün grafik ve istatistikler ayrıca laboratuvarda yazdırılabilir.
-- **Model ve yöntemler:** Semboller, formüller, ders sayfaları, varsayımlar, araştırmacı önerileri ve hocayla teyit edilecek konular.
+Üst menü üç çalışma alanından oluşur: **Problem**, **Deneyler**, **Model rehberi**.
+
+- **Problem:** Önce 1–120 dönemin talep ve maliyetlerini girin. “Çözümü incele” adımında yöntem seçimini, maliyeti, talep–üretim ve net stok grafiklerini ve dönem planını görün. “Yöntemleri karşılaştır” adımında dokuz yöntemin optimuma yakınlığını karşılaştırın. Algoritmanın gerçek aday değerlendirmeleri ve maliyet bileşenleri açılır bölümlerdedir. Veriler değiştiğinde bütün yöntemler yeniden hesaplanır. Küçük örnek ve kitap örneği hazırdır; dönem silme geri alınabilir.
+- **Veri ve kayıtlar:** Problem başlığının yanından açılır. CSV/JSON içe aktarma, şablon, problem yedeği, senaryo kaydetme/adlandırma/yükleme ve onaylı silme buradadır. Ürün kayıtları ve toplu maliyet düzenleme aynı sayfada açılır bölümlerdedir. Her ürün bağımsız bir tek ürün problemidir; kendi verisi ve modeli korunur. CSV `demand,setup,holding,backlog` veya Türkçe başlıkları kabul eder. Noktalı virgüllü dosyada ondalık virgül kullanılabilir. CSV'de gecikme sütunu yoksa 10, model yok satmasız, c=0 varsayılır ve açıklanır. JSON model ve c'yi korur.
+- **Deneyler:** Tam tasarım 300 temel problem / 600 model durumu / 5.400 yöntem sonucu. Problem sayısı ve başlat/durdur ilk ekrandadır; tohum, süre tekrarları ve c gelişmiş ayarlardadır. Sonuç özeti yöntem, ortalama sapma, optimuma ulaşma ve süreyi gösterir. Filtreler, ayrıntılı tablo, grafikler, **t testi ve güven aralıkları**, zor örnekler, geçmiş ve dışa aktarma ayrı açılır bölümlerdir. Görünüm filtreleri altı önceden tanımlanmış eşleştirilmiş testi değiştirmez. Worker diğer ekranlara geçerken çalışır. Deneyler geçmişe kaydedilir ve yenilemeden sonra açılır; içe aktarma sürümü, tohumu, dengeyi ve yöntem planını denetler, istatistikleri yeniden hesaplar. İçe aktarılan süreler yeniden ölçülmez.
+- **Rapor ve dışa aktarma:** Deneylerin altında tez raporu, ham CSV, istatistik CSV ve tam JSON yedeği bulunur. Rapor ekranına ve yazdır/PDF'ye buradan geçilir. Yazdırmada açılır bölümler geçici olarak açılır, işlemden sonra önceki durumları korunur.
+- **Model rehberi:** Kapsam açıklaması ilk bakışta görünür; matematiksel model, semboller, yöntem sınırları, istatistik protokolü, örnek, kaynaklar ve hocayla teyit edilecek konular ihtiyaç oldukça açılır.
 
 ## Model ve maliyet tanımı
 
