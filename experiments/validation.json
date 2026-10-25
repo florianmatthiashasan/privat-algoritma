@@ -2,7 +2,7 @@
   "scipy": "1.18.1",
   "formulation": "Independent facility-location MILP; binary setup, continuous demand allocation",
   "inputSHA256": "15fed892c2585742d6776b3ec2015e6800791f4c9dd0cb719e66b5a5dd945549",
-  "modelVersion": "thesis-v2.0.0",
+  "modelVersion": "thesis-v2.1.0",
   "designVersion": "balanced-factorial-v2",
   "statisticalChecks": 18,
   "total": 600,

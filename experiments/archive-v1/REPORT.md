@@ -40,7 +40,7 @@ Optimum oranı tüm eşit maliyetli yöntemleri başarı sayar; sıralama bağla
 
 Her problem/yöntem/model ısıtılır; 1 ms hedefiyle en fazla 256 çözüm içeren ölçüm grubu kalibre edilir. Grup süresi çözüm sayısına bölünür; 5 tekrarın medyanı alınır. Bu yaklaşım tarayıcının kısa süreleri sıfıra yuvarlamasını azaltır. Tabloda bu medyanların medyanı ve P95'i gösterilir. Yöntem sırası deterministik olarak karıştırılır. Girdi hazırlığı her yöntemin süresine dahildir; raporlama, denetim ve referans maliyetin hesaplanması hariçtir. Bu boyutlarda kesin DP zaten hızlıdır; yerel arama daha yavaş olabilir. Sezgiseller için genel bir hız üstünlüğü iddia edilmez. Çok kısa ölçümlerde JIT, çöp toplama ve zamanlayıcı çözünürlüğü etkilidir; küçük süre farklarıyla güçlü hız iddiası kurmayın.
 
-Model tek ürünlü, deterministik ve kapasitesizdir; başlangıç ve bitiş net stoku sıfırdır. Değişken üretim maliyeti ve kayıp satış yoktur. Yok satma, sonraki dönemde teslim edilen gecikmiş talep anlamındadır. Bağımsız küçük-problem üretim enumerasyonu, kitap örneği, ölçekleme ve denge kontrolleri için npm test çalıştırın.
+Model tek ürünlü, deterministik ve kapasitesizdir; başlangıç ve bitiş net stoku sıfırdır. Değişken üretim maliyeti ve kayıp satış yoktur. Yok satma, sonraki dönemde teslim edilen gecikmiş talep anlamındadır. Bağımsız küçük-problem üretim enumerasyonu, örnek problem, ölçekleme ve denge kontrolleri için npm test çalıştırın.
 
 ## Tekrar üretme
 
@@ -48,11 +48,6 @@ npm run benchmark -- --input experiments/problems.json --output /tmp/parti-tekra
 
 Aynı girdiler aynı maliyetleri ve planları verir; süreler ve tarih ortamla değişir. Yeni bir örneklem için --seed 20261019 kullanın. Ham CSV ve tam planları içeren results.json ile her bulgu izlenebilir.
 
-## Kaynaklar
-
-- Ekli ders kaynağı: Prof. Dr. Yakup Kara, PDF s. 243, 258–260: yok satmalı aralık maliyeti ve DP; s. 869–876: optimum maliyeti 430 olan örnek. Kitaptaki değişken üretim maliyeti bu uygulamada sıfır kabul edilir.
-- [Zangwill (1969), A Backlogging Model… — A Network Approach](https://pubsonline.informs.org/doi/10.1287/mnsc.15.9.506): yok satmalı lot büyüklüğünün ağ ve dinamik programlama yaklaşımı.
-- [Rossetti, Analysis of Inventory Systems, Dynamic Lot Sizing](https://rossetti.github.io/RossettiInventoryBook/05-Chapter5.html): klasik sezgisel durma kuralları.
 
 ## Ortam
 

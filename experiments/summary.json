@@ -1,5 +1,5 @@
 {
-  "modelVersion": "thesis-v2.0.0",
+  "modelVersion": "thesis-v2.1.0",
   "designVersion": "balanced-factorial-v2",
   "inputSHA256": "15fed892c2585742d6776b3ec2015e6800791f4c9dd0cb719e66b5a5dd945549",
   "config": {
@@ -13,12 +13,12 @@
     "platform": "darwin",
     "arch": "arm64",
     "cpu": "Apple M2",
-    "elapsedMs": 43801.989083,
+    "elapsedMs": 74789.072375,
     "sourceSHA256": {
-      "src/lotSizing.js": "2bdc27403d038bc7b3d549fb57ba1aa4a65d7deb7e95a009aa26c683d9af351b",
-      "src/experiments.js": "566f1e1eb75cb065d5dd1bb6bd48dd97fbf5b1f88aac363a92899757ae6fb0e7",
-      "src/statistics.js": "ea18934c87cd621cdfe04d1b82daefaf570d3333f7361d636a331294eaadabeb",
-      "src/experimentResult.js": "dd2613a5a5a214bba21e6cde7382863201a3804a4133e62674a56e30f1d9bfce"
+      "src/lotSizing.js": "0d04ab60906f1ed287860a3b135374ff592b1a22801eea4c52a642de88327785",
+      "src/experiments.js": "4b2d031af2a8ae52026f713399ed9968ba63c257acbe4412c9a5f39b3ba17ea8",
+      "src/statistics.js": "41bf8dd3c1fec602b469b1fd870a9fb446aa3cd4ac8057abc2067a8b71581a4f",
+      "src/experimentResult.js": "7ae9a2e06902d7b5139b538c8fc2706fb1650242982a3e0ea0d18686bd8a7c11"
     }
   },
   "summary": [
@@ -40,8 +40,113 @@
         65.87603038273359
       ],
       "optimalRate": 10,
-      "medianMs": 0.002636392578125424,
-      "p95Ms": 0.00516360546875152
+      "medianMs": 0.0037163886718687422,
+      "p95Ms": 0.007346362304694054
+    },
+    {
+      "mode": "noBacklog",
+      "method": "foq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 6832.343333333333,
+      "meanGrandTotal": 6832.343333333333,
+      "meanGap": 82.37793600360872,
+      "medianGap": 71.79878374053132,
+      "p95Gap": 175.35172413793103,
+      "maxGap": 242.45989304812835,
+      "sdGap": 48.54680622282802,
+      "meanGapCI": [
+        79.37049260510582,
+        85.59306805200399
+      ],
+      "optimalRate": 0,
+      "medianMs": 0.006056314453132927,
+      "p95Ms": 0.012164290234380815
+    },
+    {
+      "mode": "noBacklog",
+      "method": "eoq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 5886.1033333333335,
+      "meanGrandTotal": 5886.1033333333335,
+      "meanGap": 48.688032689875804,
+      "medianGap": 46.822845393336664,
+      "p95Gap": 92.87822141957834,
+      "maxGap": 145.45454545454547,
+      "sdGap": 23.639455845100073,
+      "meanGapCI": [
+        47.222418077829715,
+        50.128459387448636
+      ],
+      "optimalRate": 0,
+      "medianMs": 0.006015869140620467,
+      "p95Ms": 0.012211976953108206
+    },
+    {
+      "mode": "noBacklog",
+      "method": "meoq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 4732.49,
+      "meanGrandTotal": 4732.49,
+      "meanGap": 13.098089750911743,
+      "medianGap": 4.945618315279955,
+      "p95Gap": 40.874722615609386,
+      "maxGap": 77.38853503184713,
+      "sdGap": 15.29423539281846,
+      "meanGapCI": [
+        12.14432485097952,
+        14.108365717626194
+      ],
+      "optimalRate": 20.333333333333332,
+      "medianMs": 0.006722412109375853,
+      "p95Ms": 0.014255078125009391
+    },
+    {
+      "mode": "noBacklog",
+      "method": "fpq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 5476.1033333333335,
+      "meanGrandTotal": 5476.1033333333335,
+      "meanGap": 32.27579003871613,
+      "medianGap": 29.85732413902678,
+      "p95Gap": 86.74375455272806,
+      "maxGap": 305.82191780821915,
+      "sdGap": 30.714308748687962,
+      "meanGapCI": [
+        30.35271414921203,
+        34.37348631366853
+      ],
+      "optimalRate": 5.666666666666667,
+      "medianMs": 0.006672687500014263,
+      "p95Ms": 0.013181659375000265
+    },
+    {
+      "mode": "noBacklog",
+      "method": "poq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 4710.38,
+      "meanGrandTotal": 4710.38,
+      "meanGap": 12.813036666588433,
+      "medianGap": 7.060667114394448,
+      "p95Gap": 39.042495484412214,
+      "maxGap": 87.6923076923077,
+      "sdGap": 14.312733966237882,
+      "meanGapCI": [
+        12.102670079206947,
+        13.533250430911648
+      ],
+      "optimalRate": 21,
+      "medianMs": 0.006668537109391082,
+      "p95Ms": 0.014690641406254201
     },
     {
       "mode": "noBacklog",
@@ -61,8 +166,8 @@
         1.899533503050196
       ],
       "optimalRate": 37.333333333333336,
-      "medianMs": 0.004971841796880483,
-      "p95Ms": 0.01070489882812744
+      "medianMs": 0.006115314453115417,
+      "p95Ms": 0.013138946093738469
     },
     {
       "mode": "noBacklog",
@@ -82,8 +187,8 @@
         25.03395273628501
       ],
       "optimalRate": 21.666666666666668,
-      "medianMs": 0.004996580078127977,
-      "p95Ms": 0.010731249999977167
+      "medianMs": 0.0061027832031186335,
+      "p95Ms": 0.012960907421879142
     },
     {
       "mode": "noBacklog",
@@ -103,8 +208,8 @@
         0
       ],
       "optimalRate": 100,
-      "medianMs": 0.025588210937520728,
-      "p95Ms": 0.08797747187498998
+      "medianMs": 0.02671191406250273,
+      "p95Ms": 0.08947645312507575
     },
     {
       "mode": "noBacklog",
@@ -124,8 +229,8 @@
         11.426220224830827
       ],
       "optimalRate": 7.333333333333333,
-      "medianMs": 0.00486824609375347,
-      "p95Ms": 0.010113072265659185
+      "medianMs": 0.005965005859373207,
+      "p95Ms": 0.012557405468771777
     },
     {
       "mode": "noBacklog",
@@ -145,8 +250,8 @@
         2.561648201381937
       ],
       "optimalRate": 37,
-      "medianMs": 0.004872964843755767,
-      "p95Ms": 0.010394138281248645
+      "medianMs": 0.005989095703114344,
+      "p95Ms": 0.012659786718748478
     },
     {
       "mode": "noBacklog",
@@ -166,8 +271,8 @@
         1.0356379938762859
       ],
       "optimalRate": 58.666666666666664,
-      "medianMs": 0.02424999218746393,
-      "p95Ms": 0.07940360625002256
+      "medianMs": 0.02535123437502307,
+      "p95Ms": 0.08249583124970741
     },
     {
       "mode": "noBacklog",
@@ -187,8 +292,8 @@
         0.30954708201832903
       ],
       "optimalRate": 75.33333333333333,
-      "medianMs": 0.22215624999967076,
-      "p95Ms": 2.0942607000023603
+      "medianMs": 0.2958125000009204,
+      "p95Ms": 2.774427099999413
     },
     {
       "mode": "noBacklog",
@@ -208,8 +313,8 @@
         0.1792936784886017
       ],
       "optimalRate": 93.66666666666667,
-      "medianMs": 0.022670257812478667,
-      "p95Ms": 0.07211108750000221
+      "medianMs": 0.023928382812478333,
+      "p95Ms": 0.07430946562494682
     },
     {
       "mode": "backlog",
@@ -229,8 +334,113 @@
         115.45261014150809
       ],
       "optimalRate": 6.666666666666667,
-      "medianMs": 0.0034121074218749214,
-      "p95Ms": 0.006821234570312207
+      "medianMs": 0.0045148105468726385,
+      "p95Ms": 0.008937749218810609
+    },
+    {
+      "mode": "backlog",
+      "method": "foq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 6832.343333333333,
+      "meanGrandTotal": 6832.343333333333,
+      "meanGap": 127.94754726273437,
+      "medianGap": 117.50605385888895,
+      "p95Gap": 250.70067173543958,
+      "maxGap": 373.01905717151453,
+      "sdGap": 70.26342400453115,
+      "meanGapCI": [
+        124.2444964377496,
+        131.90819954750216
+      ],
+      "optimalRate": 0,
+      "medianMs": 0.006929361328126049,
+      "p95Ms": 0.013811976562462292
+    },
+    {
+      "mode": "backlog",
+      "method": "eoq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 5886.1033333333335,
+      "meanGrandTotal": 5886.1033333333335,
+      "meanGap": 87.9612604271861,
+      "medianGap": 69.21792632376531,
+      "p95Gap": 178.1007982373804,
+      "maxGap": 299.77220956719816,
+      "sdGap": 52.414321101803345,
+      "meanGapCI": [
+        86.03545743780762,
+        89.94627856526515
+      ],
+      "optimalRate": 0,
+      "medianMs": 0.006892658203128121,
+      "p95Ms": 0.013973035546845836
+    },
+    {
+      "mode": "backlog",
+      "method": "meoq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 4732.49,
+      "meanGrandTotal": 4732.49,
+      "meanGap": 43.680803130977566,
+      "medianGap": 30.128194231552662,
+      "p95Gap": 122.17288583323221,
+      "maxGap": 197.5447909754479,
+      "sdGap": 41.1628817920646,
+      "meanGapCI": [
+        42.43003614938595,
+        44.962412549993296
+      ],
+      "optimalRate": 9.666666666666666,
+      "medianMs": 0.007584716796856128,
+      "p95Ms": 0.015860769921959415
+    },
+    {
+      "mode": "backlog",
+      "method": "fpq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 5476.1033333333335,
+      "meanGrandTotal": 5476.1033333333335,
+      "meanGap": 66.86086330593767,
+      "medianGap": 55.93785878300804,
+      "p95Gap": 157.163132159027,
+      "maxGap": 305.82191780821915,
+      "sdGap": 51.26073007418454,
+      "meanGapCI": [
+        64.6138002192188,
+        69.12984268391898
+      ],
+      "optimalRate": 2,
+      "medianMs": 0.007547687499993572,
+      "p95Ms": 0.014910514062506054
+    },
+    {
+      "mode": "backlog",
+      "method": "poq",
+      "count": 300,
+      "validCount": 300,
+      "failures": 0,
+      "meanCost": 4710.38,
+      "meanGrandTotal": 4710.38,
+      "meanGap": 43.330977232597455,
+      "medianGap": 29.901175944407306,
+      "p95Gap": 119.87710122669071,
+      "maxGap": 205.69476082004556,
+      "sdGap": 40.80415228197146,
+      "meanGapCI": [
+        42.12455149178776,
+        44.54431456103101
+      ],
+      "optimalRate": 10,
+      "medianMs": 0.007568685546871734,
+      "p95Ms": 0.016328938281279192
     },
     {
       "mode": "backlog",
@@ -250,8 +460,8 @@
         29.581206307724184
       ],
       "optimalRate": 14,
-      "medianMs": 0.005865886718751767,
-      "p95Ms": 0.012240871484378602
+      "medianMs": 0.006983072265619228,
+      "p95Ms": 0.014739195312509423
     },
     {
       "mode": "backlog",
@@ -271,8 +481,8 @@
         57.32749517023407
       ],
       "optimalRate": 10,
-      "medianMs": 0.005866861328122752,
-      "p95Ms": 0.012423272265625585
+      "medianMs": 0.006960939453122705,
+      "p95Ms": 0.014601648828076463
     },
     {
       "mode": "backlog",
@@ -292,8 +502,8 @@
         0
       ],
       "optimalRate": 100,
-      "medianMs": 0.03370314062500768,
-      "p95Ms": 0.15446658749992823
+      "medianMs": 0.03489128124999752,
+      "p95Ms": 0.15563485625007162
     },
     {
       "mode": "backlog",
@@ -313,8 +523,8 @@
         40.99517422566612
       ],
       "optimalRate": 1.6666666666666667,
-      "medianMs": 0.005719806640634317,
-      "p95Ms": 0.011850906640625426
+      "medianMs": 0.006841796875001194,
+      "p95Ms": 0.014275553125015961
     },
     {
       "mode": "backlog",
@@ -334,8 +544,8 @@
         30.570966046175478
       ],
       "optimalRate": 14.666666666666666,
-      "medianMs": 0.005706216796880881,
-      "p95Ms": 0.012053466796879775
+      "medianMs": 0.006849609375009003,
+      "p95Ms": 0.01435221132812714
     },
     {
       "mode": "backlog",
@@ -355,8 +565,8 @@
         1.3914169225274367
       ],
       "optimalRate": 43.666666666666664,
-      "medianMs": 0.02584863281250449,
-      "p95Ms": 0.08486902812504127
+      "medianMs": 0.02705110156250612,
+      "p95Ms": 0.08733283437509272
     },
     {
       "mode": "backlog",
@@ -376,8 +586,8 @@
         0.3696245392735703
       ],
       "optimalRate": 72,
-      "medianMs": 0.29639587500014386,
-      "p95Ms": 3.1616830000000626
+      "medianMs": 0.38338549999900806,
+      "p95Ms": 4.1714892499992855
     },
     {
       "mode": "backlog",
@@ -397,8 +607,8 @@
         2.362261068686202
       ],
       "optimalRate": 78,
-      "medianMs": 0.025082031249965553,
-      "p95Ms": 0.07792920624985981
+      "medianMs": 0.02636848437497008,
+      "p95Ms": 0.08073160000005827
     }
   ],
   "comparisons": [
@@ -442,24 +652,24 @@
         "excessKurtosis": 17.49817254382274,
         "outliers": 35,
         "ties": 172,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 5,
       "signP": 8.930153081104169e-20,
-      "geometricTimeRatio": 1.069776034969827,
+      "geometricTimeRatio": 1.0604525153735893,
       "logTimeTest": {
         "n": 300,
-        "mean": 0.06744931345245679,
-        "sd": 0.09854322595317716,
-        "t": 11.8552682546443,
+        "mean": 0.05869571832338186,
+        "sd": 0.144913157082478,
+        "t": 7.015509728008091,
         "df": 299,
-        "p": 7.794813239326801e-27,
+        "p": 1.5361895534636493e-11,
         "ci": [
-          0.05625298265250229,
-          0.0786456442524113
+          0.04223090678238235,
+          0.07516052986438136
         ],
         "status": "ok",
-        "effectDz": 0.684464231813411
+        "effectDz": 0.4050406429967909
       },
       "differences": [
         0,
@@ -764,7 +974,7 @@
         -1.4445865623354148
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.",
       "holmP": 9.074554080259464e-8,
       "pairedHolmP": 3.834211844513581e-11,
       "signHolmP": 3.5720612324416675e-19,
@@ -810,24 +1020,24 @@
         "excessKurtosis": 29.73079508661668,
         "outliers": 31,
         "ties": 203,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 32.333333333333336,
       "signP": 1.262177448353624e-29,
-      "geometricTimeRatio": 8.627323270920801,
+      "geometricTimeRatio": 10.733511934880331,
       "logTimeTest": {
         "n": 300,
-        "mean": 2.154934291389695,
-        "sd": 0.6563032153282196,
-        "t": 56.87090345569576,
+        "mean": 2.3733708036394945,
+        "sd": 0.6700869121517745,
+        "t": 61.34724828311655,
         "df": 299,
-        "p": 2.2012548197992258e-162,
+        "p": 1.899776901435698e-171,
         "ci": [
-          2.080366122620996,
-          2.2295024601583937
+          2.297236552293429,
+          2.44950505498556
         ],
         "status": "ok",
-        "effectDz": 3.283443141920316
+        "effectDz": 3.5418850310300143
       },
       "differences": [
         0,
@@ -1132,7 +1342,7 @@
         -0.15047776690993905
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.",
       "holmP": 0.0000017418882385192067,
       "pairedHolmP": 2.971466554769013e-10,
       "signHolmP": 6.310887241768119e-29,
@@ -1178,24 +1388,24 @@
         "excessKurtosis": 15.016708654846774,
         "outliers": 88,
         "ties": 212,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 6,
       "signP": 2.0783545041773362e-8,
-      "geometricTimeRatio": 9.229303681168577,
+      "geometricTimeRatio": 11.382379730136297,
       "logTimeTest": {
         "n": 300,
-        "mean": 2.222383604842152,
-        "sd": 0.649674815710516,
-        "t": 59.24935405237959,
+        "mean": 2.4320665219628768,
+        "sd": 0.6768942209292024,
+        "t": 62.2322166917661,
         "df": 299,
-        "p": 2.8489670788868973e-167,
+        "p": 3.5768610012432515e-173,
         "ci": [
-          2.1485685447125937,
-          2.2961986649717105
+          2.3551588345922414,
+          2.508974209333512
         ],
         "status": "ok",
-        "effectDz": 3.42076305114528
+        "effectDz": 3.5929787059258276
       },
       "differences": [
         0,
@@ -1500,7 +1710,7 @@
         -1.595064329245354
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğinin altında.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğinin altındadır.",
       "holmP": 0.009403424062688102,
       "pairedHolmP": 0.04017947734391358,
       "signHolmP": 4.1567090083546724e-8,
@@ -1546,24 +1756,24 @@
         "excessKurtosis": 18.340427945167683,
         "outliers": 51,
         "ties": 112,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 15.666666666666666,
       "signP": 4.157057220707328e-12,
-      "geometricTimeRatio": 1.0479836421030704,
+      "geometricTimeRatio": 1.0471435420667787,
       "logTimeTest": {
         "n": 300,
-        "mean": 0.04686797709675731,
-        "sd": 0.14803653208887227,
-        "t": 5.483627347526886,
+        "mean": 0.04606602093136192,
+        "sd": 0.10797654062920681,
+        "t": 7.38944666042283,
         "df": 299,
-        "p": 8.875675984570054e-8,
+        "p": 1.483733441303176e-12,
         "ci": [
-          0.03004829245874232,
-          0.0636876617347723
+          0.03379789132807741,
+          0.058334150534646426
         ],
         "status": "ok",
-        "effectDz": 0.3165973725230241
+        "effectDz": 0.4266299018557501
       },
       "differences": [
         0,
@@ -1868,7 +2078,7 @@
         0.031111456793964543
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.",
       "holmP": 0.0004951520337828927,
       "pairedHolmP": 0.04017947734391358,
       "signHolmP": 1.2471171662121982e-11,
@@ -1914,24 +2124,24 @@
         "excessKurtosis": 15.795791953590413,
         "outliers": 14,
         "ties": 157,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 47.666666666666664,
       "signP": 1.793662034335772e-43,
-      "geometricTimeRatio": 10.897586583763085,
+      "geometricTimeRatio": 13.120000595902331,
       "logTimeTest": {
         "n": 300,
-        "mean": 2.3885413503856636,
-        "sd": 0.7864500230914043,
-        "t": 52.60442308317306,
+        "mean": 2.574137828935327,
+        "sd": 0.8132736398719698,
+        "t": 54.82210767464341,
         "df": 299,
-        "p": 3.5595904742799504e-153,
+        "p": 4.9140789618864555e-158,
         "ci": [
-          2.299186100128816,
-          2.477896600642511
+          2.481734920315142,
+          2.6665407375555117
         ],
         "status": "ok",
-        "effectDz": 3.037117782763493
+        "effectDz": 3.165155862349802
       },
       "differences": [
         0,
@@ -2236,7 +2446,7 @@
         -1.392237691529906
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.",
       "holmP": 3.0397463014132542e-9,
       "pairedHolmP": 7.046865430507015e-21,
       "signHolmP": 1.076197220601463e-42,
@@ -2282,24 +2492,24 @@
         "excessKurtosis": 18.62131772572525,
         "outliers": 129,
         "ties": 171,
-        "warning": "Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin."
+        "warning": "Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır."
       },
       "winRate": 19.333333333333332,
       "signP": 0.29068785478073933,
-      "geometricTimeRatio": 11.42049247818557,
+      "geometricTimeRatio": 13.738523895911388,
       "logTimeTest": {
         "n": 300,
-        "mean": 2.435409327482419,
-        "sd": 0.7903527129098084,
-        "t": 53.37177469659764,
+        "mean": 2.620203849866687,
+        "sd": 0.8179711060014869,
+        "t": 55.482720121270724,
         "df": 299,
-        "p": 7.100245649581034e-155,
+        "p": 1.8827484147747099e-159,
         "ci": [
-          2.3456106595700823,
-          2.5252079953947555
+          2.5272672223206305,
+          2.7131404774127432
         ],
         "status": "ok",
-        "effectDz": 3.0814208488208696
+        "effectDz": 3.2032963397388317
       },
       "differences": [
         0,
@@ -2604,7 +2814,7 @@
         -1.3611262347359414
       ],
       "practicalThreshold": 0.5,
-      "practicalMeaning": "Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.",
+      "practicalMeaning": "Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.",
       "holmP": 0.0000016762846627846346,
       "pairedHolmP": 0.000013985601230671801,
       "signHolmP": 0.29068785478073933,

@@ -1,4 +1,4 @@
-import { validateRows, MODEL_VERSION } from './lotSizing.js'
+import { validateRows, MODEL_VERSION, methods } from './lotSizing.js'
 import { checkConfig, DESIGN_VERSION, auditPlan, generateProblems } from './experiments.js'
 
 const database = () => new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ export function importProblem(text, filename) {
 export function validateExperiment(input) {
   if (input?.modelVersion !== MODEL_VERSION || input?.designVersion !== DESIGN_VERSION || input.version !== 2) throw new Error('Deney sürümü bu modelle uyumlu değil. Eski LTC/PPB sonuçları tez sürümünde yeniden hesaplanmalıdır.')
   const config = checkConfig(input.config)
-  if (!Array.isArray(input.problems) || input.problems.length !== config.count || !Array.isArray(input.records) || input.records.length !== config.count * 18) throw new Error('Deney girdileri veya sonuç sayısı eksik.')
+  if (!Array.isArray(input.problems) || input.problems.length !== config.count || !Array.isArray(input.records) || input.records.length !== config.count * 2 * methods.length) throw new Error('Deney girdileri veya sonuç sayısı eksik.')
   const problems = new Map()
   const expectedProblems = generateProblems(config)
   for (const [i, p] of input.problems.entries()) {
@@ -84,7 +84,7 @@ export function validateExperiment(input) {
     problems.set(p.id, p)
   }
   const seen = new Set()
-  const allowed = new Set(['l4l', 'silver', 'luc', 'ww', 'ppb', 'ltc', 'merge', 'local', 'window'])
+  const allowed = new Set(methods.map(m => m.id))
   for (const r of input.records) {
     const p = problems.get(r.problemId); const key = `${r.problemId}/${r.mode}/${r.method}`
     if (!p || seen.has(key) || !allowed.has(r.method) || !['noBacklog', 'backlog'].includes(r.mode) || !Array.isArray(r.issues)) throw new Error('Deney sonuç kimlikleri geçersiz.')

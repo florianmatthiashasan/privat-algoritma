@@ -18,10 +18,10 @@ Uygulama `http://127.0.0.1:5173` adresinde açılır. Gezinme URL hash'ine yans�
 
 Üst menü numaralı bir yol izler: **Başlangıç → 1 Problem → 2 Deney → 3 Rapor**, ayrıca **Rehber**. Başlangıç sayfası üç adımı ve her adımın durumunu (aktif problem, son deney, rapor hazır mı) gösterir.
 
-- **1 Problem:** Solda veriler (model seçimi, dönem sayısı, c, talep/maliyet tablosu, ders örneği ve mini örnek). Sağda anında güncellenen sonuç: optimum karar maliyeti ve dokuz yöntemin optimumdan sapma sıralaması. Bir yönteme tıklanınca aşağıda “Üretim planı”, “Maliyet” ve “Algoritma adım adım” sekmeleri açılır. Dönem silme geri alınabilir. “Veri ve kayıtlar” düğmesi CSV/JSON içe aktarma, senaryolar, ürünler ve toplu maliyet düzenlemeye götürür. CSV `demand,setup,holding,backlog` veya Türkçe başlıkları kabul eder; gecikme sütunu yoksa 10, model yok satmasız, c=0 varsayılır.
+- **1 Problem:** Solda veriler (model seçimi, dönem sayısı, c, talep/maliyet tablosu, örnek problem ve mini örnek). Sağda anında güncellenen sonuç: optimum karar maliyeti ve on dört yöntemin optimumdan sapma sıralaması. Bir yönteme tıklanınca aşağıda “Üretim planı”, “Maliyet” ve “Algoritma adım adım” sekmeleri açılır. Dönem silme geri alınabilir. “Veri ve kayıtlar” düğmesi CSV/JSON içe aktarma, senaryolar, ürünler ve toplu maliyet düzenlemeye götürür. CSV `demand,setup,holding,backlog` veya Türkçe başlıkları kabul eder; gecikme sütunu yoksa 10, model yok satmasız, c=0 varsayılır.
 - **2 Deney:** Problem sayısı ve başlat/durdur üstte; tohum, süre tekrarı, c, dosyadan açma ve geçmiş “Gelişmiş ayarlar” altında. Sonuçlar model seçimi, filtreler ve sekmelerle gösterilir: Özet, Ayrıntılı tablo, Grafikler, t testi, Zor örnekler, İz ve sınırlar. Filtreler önceden tanımlı altı eşleştirilmiş testi değiştirmez. Worker diğer ekranlara geçerken çalışır; deneyler IndexedDB'ye kaydedilir.
 - **3 Rapor:** Açıklamalı tez raporu (Markdown), ham sonuç CSV, istatistik CSV, tam deney JSON yedeği, deney girdileri ve iki modelin özet tabloları. “Yazdır / PDF” sayfayı rapor düzeninde yazdırır.
-- **Rehber:** Yöntem tablosu (karar kuralı ve ders notu sayfası), kapsam, tasarım kararları, matematiksel model, protokol ve kaynaklar.
+- **Rehber:** Yöntem tablosu (karar kuralları), model dayanağı, tasarım kararları, matematiksel model ve protokol.
 
 ## Model ve maliyet tanımı
 
@@ -29,12 +29,12 @@ Uygulama `http://127.0.0.1:5173` adresinde açılır. Gezinme URL hash'ine yans�
 
 `C = Σ A[t]·1(Q[t]>0) + h[t]·max(N[t],0) + b[t]·max(-N[t],0)` karar maliyetidir. Sabit birim üretim maliyeti `c` için üretim dahil toplam `C+cΣD[t]` ayrıca gösterilir. **Yüzde sapma C üzerinden hesaplanır**; ortak sabit üretim maliyeti paydaya sessizce eklenmez. API'de `plan.total` karar maliyeti, `plan.grandTotal` üretim dahil toplamdır. Dönemlik değişken c_t bu sürümde desteklenmez.
 
-İlgili ders dayanakları: ekli Prof. Dr. Yakup Kara notlarında PDF s. 243–260, 370, 380–386, 867–876. Sabit c ve 300 temel problemin iki modelde çözülmesi deney tasarımının temel kararlarıdır (bkz. THESIS_PROTOCOL.md §8).
+Sabit c ve 300 temel problemin iki modelde çözülmesi deney tasarımının temel kararlarıdır (bkz. THESIS_PROTOCOL.md §8).
 
 ## Yöntemler ve önemli düzeltme
 
 - Yok satmasız kesin referans **Wagner–Whitin**; yok satmalı referans **Zangwill türü aralık DP**. Aynı maliyet ve sınır koşulları kullanılır. Zaman sırasıyla O(T²)/O(T³), bellek O(T²).
-- Ders yöntemleri: L4L, Silver–Meal, LUC, LTC, PPB. SM/LUC ilk ortalama maliyet artışında durur. **LTC stok maliyeti hazırlığı aşmadan önceki partiyi; PPB hazırlığa en yakın stok maliyetini seçer.** PPB eşitlikte daha uzun partiyi seçer. Kitap örneği: LTC 470, PPB 430, WW 430. Eski prototip LTC'yi PPB ile aynı kurala bağlamıştı; eski sonuçlar `experiments/archive-v1` altında açıkça arşivlenmiştir.
+- Klasik yöntemler (on yöntem): L4L, sabit sipariş miktarı (FOQ), ekonomik sipariş miktarı (EOQ), değiştirilmiş EOQ (MEOQ), sabit dönem miktarı (FPQ), dönemsel sipariş miktarı (POQ), LUC, LTC, PPB, Silver–Meal. Q₀ = ⌈√(2·Ā·D̄/h̄)⌉ (örnek problemde 88). FOQ partisi Q₀’ı aşan ilk 1-2-5 sayısıdır (örnekte 100); FOQ ve EOQ tanımları gereği ufuk sonunda stok bırakabilir, yalnız bu iki yöntem için N_T>0 kabul edilir. 6 dönemlik örnek problem: L4L 570, FOQ 680, EOQ 912, MEOQ 440, FPQ 550, LUC 440, POQ 570. POQ aralığı round(Q₀/D̄) kuralıyla belirlenir. SM/LUC ilk ortalama maliyet artışında durur. **LTC stok maliyeti hazırlığı aşmadan önceki partiyi; PPB hazırlığa en yakın stok maliyetini seçer.** PPB eşitlikte daha uzun partiyi seçer. Örnek problemde LTC 470, PPB 430, WW 430. Eski prototip LTC'yi PPB ile aynı kurala bağlamıştı; eski sonuçlar `experiments/archive-v1` altında açıkça arşivlenmiştir.
 - **Tasarruflu birleştirme (TB):** En büyük pozitif komşu parti tasarrufunu seçer; aralık maliyetleri önbelleğe alınır. Her iki modeli destekler.
 - **Ekle–sil–kaydır (ESK):** TB planına en fazla sekiz iyileştiren ekleme/silme/komşuya kaydırma hamlesi uygular. Optimum referansını kullanmaz ve başlangıç planından pahalı olamaz.
 - **Sınırlı aralık araması (SA6):** En fazla altı takvim dönemlik partiler altında en iyi aralık planını arar. Özgün problem için küresel optimumu garanti etmez.
@@ -65,6 +65,6 @@ Python/SciPy sadece bağımsız doğrulama içindir; web uygulamasının çalı�
 - [Ham CSV](experiments/results.csv), [özet ve testler](experiments/summary.json), [istatistik CSV](experiments/statistics.csv).
 - [Bağımsız doğrulama](experiments/validation.json): ilgili girdi parmak izine karşı SciPy/HiGHS kontrolünün gerçek sonucu.
 
-`npm test`: ders örnekleri, 160 küçük problemin iki modda bağımsız üretim enumerasyonu, bütün 300 problemin plan/maliyet denetimi, sıfır ve çok küçük talep, sabit c, trace-plan eşitliği, veri içe aktarma, sürüm/tohum kontrolü ve bağımsız SciPy istatistik fikstürleri. Harici doğrulamada üretim dönemlerini açan ikili değişkenler ve talep atama değişkenleriyle ayrı bir MILP kurulur; optimum durum kodu olmadan referans onaylanmaz. Sıradan t, tabakalı t ve işaret testi SciPy ile uzlaştırılır.
+`npm test`: örnek problem, 160 küçük problemin iki modda bağımsız üretim enumerasyonu, bütün 300 problemin plan/maliyet denetimi, sıfır ve çok küçük talep, sabit c, trace-plan eşitliği, veri içe aktarma, sürüm/tohum kontrolü ve bağımsız SciPy istatistik fikstürleri. Harici doğrulamada üretim dönemlerini açan ikili değişkenler ve talep atama değişkenleriyle ayrı bir MILP kurulur; optimum durum kodu olmadan referans onaylanmaz. Sıradan t, tabakalı t ve işaret testi SciPy ile uzlaştırılır.
 
 Tarayıcı ve Node süreleri ayrı ortamlar olarak raporlanır. Modelin varsayımları ve tasarım kararları raporun parçasıdır.

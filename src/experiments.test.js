@@ -40,7 +40,7 @@ test('kesin DP, 160 küçük rassal problemin iki modunda bağımsız üretim en
   }
 })
 
-test('kitap PDF s. 869–876 Wagner–Whitin örneği 430 maliyet verir', () => {
+test('6 dönemlik örnekte Wagner–Whitin 430 maliyet verir', () => {
   const rows = [50, 40, 80, 100, 60, 30].map((demand, t) => ({ demand, setup: [100, 100, 80, 90, 100, 100][t], holding: [1, 2, 2, 1, 1, 2][t], backlog: 1 }))
   close(solver.ww(rows).total, inventoryOracle(rows, false))
   assert.equal(solver.ww(rows).total, 430)
@@ -138,20 +138,20 @@ test('istatistikler elle hesaplanabilir örnekle doğrulanır; hatalı sonuçlar
 
 test('deney ham maliyet, tekrar medyanı ve dışa aktarılabilir sonuçları korur', () => {
   const [problem] = generateProblems({ count: 1 }); const records = runProblem(problem, { repetitions: 2 })
-  assert.equal(records.length, 18)
+  assert.equal(records.length, 2 * Object.keys(solver).length)
   assert.ok(records.every(r => r.issues.length === 0 && r.runtimeMs >= 0))
-  assert.equal(summarize(records).length, 18)
+  assert.equal(summarize(records).length, 2 * Object.keys(solver).length)
   const csv = recordsToCSV(records)
-  assert.ok(csv.includes('runtimeMs')); assert.equal(csv.split('\n').length, 19)
+  assert.ok(csv.includes('runtimeMs')); assert.equal(csv.split('\n').length, 2 * Object.keys(solver).length + 1)
 })
 
-test('ders notlarında LTC 470, PPB 430 verir; sabit üretim maliyeti ve izleme karar planını değiştirmez', () => {
+test('örnek problemde LTC 470, PPB 430 verir; sabit üretim maliyeti ve izleme karar planını değiştirmez', () => {
   const rows = [50, 40, 80, 100, 60, 30].map((demand, t) => ({ demand, setup: [100, 100, 80, 90, 100, 100][t], holding: [1, 2, 2, 1, 1, 2][t], backlog: 1 }))
   assert.equal(solver.ltc(rows).total, 470); assert.equal(solver.ppb(rows).total, 430)
   for (const allowBacklog of [false, true]) for (const method of Object.values(solver)) {
     const plain = method(rows, { allowBacklog }); const traced = method(rows, { allowBacklog, trace: true, unitCost: 3 })
     assert.deepEqual(plain.production, traced.production); close(traced.total, plain.total)
-    close(traced.grandTotal, plain.total + 1080); assert.ok(traced.trace.length > 0)
+    close(traced.grandTotal, plain.total + 3 * traced.production.reduce((a, b) => a + b, 0)); assert.ok(traced.trace.length > 0)
   }
 })
 

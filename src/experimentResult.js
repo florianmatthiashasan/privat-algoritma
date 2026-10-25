@@ -1,4 +1,4 @@
-import { MODEL_VERSION, solver, planFromProduction, methodRole } from './lotSizing.js'
+import { MODEL_VERSION, solver, planFromProduction, methodRole, endStockMethods } from './lotSizing.js'
 import { checkConfig, DESIGN_VERSION, relativeGap, summarize, auditPlan } from './experiments.js'
 import { compareMethods } from './statistics.js'
 import { validateExperiment } from './persistence.js'
@@ -12,12 +12,6 @@ export const protocol = {
   inference: 'Sıradan eşleştirilmiş t testinin yanında, ana koşul ve b/h düzeyine göre tabakalı t testi (Satterthwaite serbestlik derecesi) uygulanır; tam deneyde 90 tabaka vardır. Altı karşılaştırmanın p değerleri Holm yöntemiyle düzeltilir. %95 güven aralıkları tabakalı t ve 2.000 tekrarlı tabakalı bootstrap ile verilir. İşaret testi, ortalama farktan bağımsız olarak kazanma yönünü sınar.',
   caveats: 'p ≥ 0,05 sonucu yöntemlerin eşit olduğu biçiminde yorumlanmaz. Farkların varyansı sıfırsa t ve p hesaplanmaz. Pratik anlamlılık eşiği 0,5 yüzde puandır. 300 temel problem iki modelde çözülür; bu 600 bağımsız problem anlamına gelmez. Süre ölçüm tekrarları ayrı problem sayılmaz.',
   decisions: ['Deney 300 temel problemden oluşur; her problem iki modelde çözülür (600 model durumu).', 'Birim üretim maliyeti c dönemler boyunca sabittir; bu nedenle yöntemlerin sıralamasını ve yüzde sapmayı etkilemez.', 'İstatistiksel karşılaştırmalar TB−SA6, ESK−TB ve ESK−SA6 çiftleriyle yapılır; pratik anlamlılık eşiği 0,5 yüzde puandır.', 'Talep dağılımı ve parametre düzeyleri kontrollü bir sentetik deney tasarımıdır.'],
-  sources: [
-    { title: 'Ders notları', detail: 'Prof. Dr. Yakup Kara, PDF s. 243, 247–260, 370, 380–386, 867–876. LTC 470, PPB 430, WW 430 doğrulama örnekleri.' },
-    { title: 'Eşleştirilmiş t-testi', url: 'https://www.itl.nist.gov/div898/handbook/prc/section3/prc311.htm' },
-    { title: 'Holm düzeltmesi', url: 'https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html' },
-    { title: 'Yok satmalı ağ/DP yaklaşımı', url: 'https://pubsonline.informs.org/doi/10.1287/mnsc.15.9.506' },
-  ],
 }
 export async function finalizeExperiment(config, problems, records, extra = {}) {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(problems)))
@@ -33,7 +27,7 @@ export async function restoreExperiment(input) {
     const problem = problems.get(r.problemId); const optimum = references.get(`${r.problemId}/${r.mode}`)
     const metadata = { ...r, cellId: problem.cellId, family: problem.family, periods: problem.rows.length, cvTarget: problem.cvTarget, setupScale: problem.setupScale, backlogRatio: problem.backlogRatio, role: methodRole(r.method, r.mode === 'backlog').kind, optimal: optimum }
     if (r.issues.length) return { ...metadata, gap: null }
-    const plan = planFromProduction(problem.rows, r.production, { allowBacklog: r.mode === 'backlog', unitCost: checked.config.unitCost })
+    const plan = { ...planFromProduction(problem.rows, r.production, { allowBacklog: r.mode === 'backlog', unitCost: checked.config.unitCost, allowEndStock: endStockMethods.has(r.method) }), method: r.method }
     const expected = solver[r.method](problem.rows, { allowBacklog: r.mode === 'backlog', unitCost: checked.config.unitCost })
     if (Math.abs(plan.total - expected.total) > 1e-7 * Math.max(1, expected.total) || plan.production.some((q, t) => Math.abs(q - expected.production[t]) > 1e-7)) throw new Error(`${problem.id}: kayıtlı plan yöntem/sürüm ile eşleşmiyor; deneyi yeniden çalıştırın.`)
     return { ...metadata, ...plan, gap: relativeGap(plan.total, optimum), issues: auditPlan(problem.rows, plan, r.mode === 'backlog', optimum) }

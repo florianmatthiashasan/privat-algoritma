@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowRight, CircleHelp, Download, FileText, FlaskConical, PackageOpen, Printer, Table2 } from 'lucide-react'
-import PlanningView, { bookRows, calculateWorkspace, methodTitle, money } from './PlanningView.jsx'
+import PlanningView, { sampleRows, calculateWorkspace, methodTitle, money } from './PlanningView.jsx'
 import ExperimentView from './ExperimentView.jsx'
 import DataManagement from './DataManagement.jsx'
 import ThesisGuide from './ThesisGuide.jsx'
@@ -12,7 +12,7 @@ import { download, jsonDownload } from './download.js'
 import { reportMarkdown, statisticsCSV } from './report.js'
 import { Empty, PageHead } from './UI.jsx'
 import './styles.css'
-const defaultWorkspace = () => ({ rows: bookRows.map(r => ({ ...r })), allowBacklog: false, unitCost: 0 })
+const defaultWorkspace = () => ({ rows: sampleRows.map(r => ({ ...r })), allowBacklog: false, unitCost: 0 })
 function loadLocal(key, fallback) { try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback } catch { return fallback } }
 function loadStore() {
   const stored = loadLocal('parti-tez.workspace.v2', null)
@@ -20,7 +20,7 @@ function loadStore() {
     try { for (const p of stored.products) { normalizeRows(p.workspace.rows); if (!Number.isFinite(p.workspace.unitCost) || p.workspace.unitCost < 0 || p.workspace.unitCost > 1e9) throw new Error() }; if (!stored.products.some(p => p.id === stored.activeId)) stored.activeId = stored.products[0].id; return stored } catch { /* recover valid legacy data below */ }
   }
   let workspace = defaultWorkspace()
-  try { workspace = { rows: normalizeRows(loadLocal('parti-planlama.rows.v1', bookRows)), allowBacklog: loadLocal('parti-planlama.backlog.v1', false) === true, unitCost: 0 } } catch { /* use the book example */ }
+  try { workspace = { rows: normalizeRows(loadLocal('parti-planlama.rows.v1', sampleRows)), allowBacklog: loadLocal('parti-planlama.backlog.v1', false) === true, unitCost: 0 } } catch { /* use the sample problem */ }
   return { activeId: 'standard', products: [{ id: 'standard', name: loadLocal('parti-planlama.product.v1', 'Standart ürün'), workspace }] }
 }
 const nav = [['start', 'Başlangıç'], ['planning', 'Problem', 1], ['experiments', 'Deney', 2], ['reports', 'Rapor', 3], ['guide', 'Rehber']]
@@ -39,19 +39,23 @@ function Navigation({ active, onHelp }) {
 
 const groups = [
   ['exact', 'Kesin referans', 'Her problemde gerçek optimumu bulur; diğer yöntemler buna göre ölçülür.', ['ww']],
-  ['heuristic', 'Ders yöntemleri', 'Prof. Dr. Yakup Kara ders notları, PDF s. 370–387.', ['l4l', 'silver', 'luc', 'ltc', 'ppb']],
-  ['extension', 'Proje uzantıları', 'Bu çalışmada geliştirilen, iki modelde de çalışan ek sezgiseller.', ['merge', 'local', 'window']],
+  ['heuristic', 'Klasik yöntemler', 'On klasik parti büyüklüğü belirleme yöntemi.', ['l4l', 'foq', 'eoq', 'meoq', 'fpq', 'poq', 'luc', 'ltc', 'ppb', 'silver']],
+  ['extension', 'Ek yöntemler', 'Bu çalışmada geliştirilen, iki modelde de çalışan ek sezgiseller.', ['merge', 'local', 'window']],
 ]
 function Home({ workspace, product, experiment }) {
   const { calculations, error } = useMemo(() => calculateWorkspace(workspace), [workspace])
   const exact = calculations.find(c => c.method.id === 'ww')
   const steps = [
-    { n: 1, href: '#planning', icon: <Table2 size={20}/>, title: 'Tek problem çözümü', text: 'Talep ve maliyetler girilir; dokuz yöntemin planı anında hesaplanır ve her karar adım adım izlenebilir.', status: error ? 'Girdi hatalı; düzeltilmesi gerekiyor' : `${product} · ${workspace.rows.length} dönem · optimum ${money(exact.plan.total)}`, done: !error, cta: 'Probleme geç' },
+    { n: 1, href: '#planning', icon: <Table2 size={20}/>, title: 'Tek problem çözümü', text: 'Talep ve maliyetler girilir; on dört yöntemin planı anında hesaplanır ve her karar adım adım izlenebilir.', status: error ? 'Girdi hatalı; düzeltilmesi gerekiyor' : `${product} · ${workspace.rows.length} dönem · optimum ${money(exact.plan.total)}`, done: !error, cta: 'Probleme geç' },
     { n: 2, href: '#experiments', icon: <FlaskConical size={20}/>, title: 'Kontrollü deney', text: 'Yöntemler 300 rastgele problemde kesin optimuma göre ölçülür; t testi ve güven aralıklarıyla karşılaştırılır.', status: experiment ? `${experiment.problems.length} problem · tohum ${experiment.config.seed}` : 'Henüz deney yok', done: !!experiment, cta: experiment ? 'Sonuçları gör' : 'Deneyi başlat' },
     { n: 3, href: '#reports', icon: <FileText size={20}/>, title: 'Rapor', text: 'Açıklamalı tez raporu, ham veriler (CSV/JSON) ve yazdırılabilir özet.', status: experiment ? 'Rapor hazır' : 'Önce deney gerekli', done: !!experiment, cta: 'Rapora geç' },
   ]
   return <>
-    <section className="hero"><p className="eyebrow">Tek ürünlü · kapasitesiz · talebi bilinen</p><h1>Hangi parti büyüklüğü yöntemi optimuma ne kadar yakın?</h1><p className="lead">Bu uygulama bir üretim planlama problemini dokuz yöntemle çözer, sonuçları kesin optimumla (Wagner–Whitin / Zangwill) karşılaştırır ve tez için kontrollü bir deney yürütür. Çalışma üç adımdan oluşur:</p></section>
+    <section className="hero">
+      <div className="hero-text"><p className="eyebrow">Tek ürünlü · kapasitesiz · deterministik talep</p><h1>Hangi parti büyüklüğü yöntemi optimuma ne kadar yakın?</h1><p className="lead">Bir üretim planlama problemi on dört yöntemle çözülür, her sonuç kesin optimumla (Wagner–Whitin / Zangwill) karşılaştırılır ve bulgular 300 problemlik kontrollü bir deneyle istatistiksel olarak sınanır.</p>
+        <div className="hero-actions"><a className="run-button big" href="#planning">Örnek problemi çöz <ArrowRight size={17}/></a><a className="ghost-button" href="#experiments">Deney sonuçları</a></div></div>
+      <div className="hero-stats" aria-label="Kapsam">{[['14', 'yöntem', '10 klasik · 3 ek · 1 kesin'], ['300', 'problem', '30 koşul × 10 tekrar'], ['2', 'model', 'yok satmasız · yok satmalı'], [error ? '—' : money(exact.plan.total).replace(' TL', ''), 'TL optimum', 'aktif problem']].map(([v, u, d]) => <div key={u}><strong>{v}</strong><span>{u}</span><small>{d}</small></div>)}</div>
+    </section>
     <ol className="steps">{steps.map(s => <li key={s.n} className="card step-card"><a href={s.href}><div className="step-top"><span className="step-num">{s.n}</span>{s.icon}</div><h2>{s.title}</h2><p>{s.text}</p><span className={`step-status ${s.done ? 'ok' : ''}`}>{s.status}</span><span className="step-cta">{s.cta} <ArrowRight size={15}/></span></a></li>)}</ol>
     <section className="home-grid">
       <div className="card"><div className="card-head"><div><h2>Karşılaştırılan yöntemler</h2><p>Renkli etiketler uygulamanın her yerinde aynı anlamı taşır.</p></div></div><div className="card-body method-groups">{groups.map(([kind, title, text, ids]) => <div key={kind}><h3><span className={`badge badge-${kind === 'extension' ? 'heuristic' : kind}`}>{title}</span></h3><p className="muted">{text}</p><ul>{ids.map(id => { const m = methods.find(x => x.id === id); return <li key={id}><b>{m.short}</b> {id === 'ww' ? 'Wagner–Whitin (yok satmasız) / Zangwill (yok satmalı)' : m.name}<small>{m.description}</small></li> })}</ul></div>)}</div></div>

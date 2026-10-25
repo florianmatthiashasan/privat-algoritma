@@ -25,8 +25,9 @@ export function planFromProduction(rows, production, options = {}) {
     backlogCost += Math.max(0, -net) * (row.backlog ?? 0)
     return net
   })
-  if (Math.abs(net) > balanceTolerance) throw new Error('Ufuk sonunda tüm talep karşılanmalı ve net stok sıfır olmalıdır.')
-  return { production, stock, inventory: stock.map(x => Math.max(0, x)), backlog: stock.map(x => Math.max(0, -x)), maxBacklog: Math.max(0, ...stock.map(x => -x)), backlogUnitPeriods: stock.reduce((sum, x) => sum + Math.max(0, -x), 0), productionCost: unitCost * production.reduce((a, b) => a + b, 0), grandTotal: setupCost + stockCost + backlogCost + unitCost * production.reduce((a, b) => a + b, 0), lots: production.flatMap((q, t) => q > 0 ? [[t, t]] : []), setupCost, stockCost, backlogCost, total: setupCost + stockCost + backlogCost }
+  // FOQ/EOQ may end with leftover stock by definition (fixed lot sizes).
+  if (net < -balanceTolerance || (!options.allowEndStock && net > balanceTolerance)) throw new Error('Ufuk sonunda tüm talep karşılanmalı ve net stok sıfır olmalıdır.')
+  return { production, stock, endStock: Math.max(0, net), inventory: stock.map(x => Math.max(0, x)), backlog: stock.map(x => Math.max(0, -x)), maxBacklog: Math.max(0, ...stock.map(x => -x)), backlogUnitPeriods: stock.reduce((sum, x) => sum + Math.max(0, -x), 0), productionCost: unitCost * production.reduce((a, b) => a + b, 0), grandTotal: setupCost + stockCost + backlogCost + unitCost * production.reduce((a, b) => a + b, 0), lots: production.flatMap((q, t) => q > 0 ? [[t, t]] : []), setupCost, stockCost, backlogCost, total: setupCost + stockCost + backlogCost }
 }
 const quantity = (rows, start, end) => rows.slice(start, end + 1).reduce((s, r) => s + r.demand, 0)
 export function holdingCost(rows, start, end) {
@@ -60,12 +61,72 @@ function sequential(rows, criterion, options = {}, kind = 'silver') {
       if (!accepted) break
       previous = score; units += rows[next].demand; cost = nextCost; end = next
     }
-    if (options.trace) trace.push({ period: start, explanation: kind === 'silver' ? 'Ortalama dönem maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'luc' ? 'Ortalama birim maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'ltc' ? 'Stok maliyeti hazırlık maliyetini aşan ilk aday dışarıda bırakılır (PDF s. 382–383).' : 'Stok maliyeti hazırlığa en yakın olan aday seçilir; eşitlikte daha uzun parti alınır (PDF s. 384–385).', candidates: candidates.map(c => ({ ...c, chosen: c.end === end })) })
+    if (options.trace) trace.push({ period: start, explanation: kind === 'silver' ? 'Ortalama dönem maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'luc' ? 'Ortalama birim maliyeti ilk yükselene kadar ileriye bakılır.' : kind === 'ltc' ? 'Stok maliyeti hazırlık maliyetini aşan ilk aday dışarıda bırakılır.' : 'Stok maliyeti hazırlığa en yakın olan aday seçilir; eşitlikte daha uzun parti alınır.', candidates: candidates.map(c => ({ ...c, chosen: c.end === end })) })
     lots.push([start, end]); start = end + 1
   }
   const plan = lotsToPlan(rows, lots, options)
   return options.trace ? { ...plan, trace } : plan
 }
+// EOQ parameters: horizon averages of A, h and D; Q0 is rounded up (87.2 -> 88).
+export function economicQuantity(rows) {
+  const avg = field => rows.reduce((s, r) => s + r[field], 0) / rows.length
+  const demand = avg('demand'); const holding = avg('holding')
+  if (demand <= 0) return 0
+  if (holding <= 0) return rows.reduce((s, r) => s + r.demand, 0)
+  return Math.ceil(Math.sqrt(2 * avg('setup') * demand / holding) - 1e-9)
+}
+// Smallest 1-2-5 series value not below Q0 (88 -> 100).
+export function roundLot(q) {
+  if (q <= 0) return 0
+  const scale = 10 ** Math.floor(Math.log10(q))
+  return [1, 2, 5, 10].map(f => f * scale).find(x => x >= q - 1e-9 * scale)
+}
+function quantityRule(rows, options = {}, kind) {
+  validateRows(rows)
+  const q0 = economicQuantity(rows); const lot = kind === 'foq' ? options.fixedQuantity ?? roundLot(q0) : q0
+  const tolerance = 64 * Number.EPSILON * Math.max(1, rows.reduce((s, r) => s + r.demand, 0))
+  const production = []; const trace = []; let stock = 0
+  for (let t = 0; t < rows.length; t++) {
+    const need = rows[t].demand - stock; let q = 0
+    if (need > tolerance) q = kind === 'foq' ? Math.ceil(need / lot - 1e-12) * lot : Math.max(lot, need)
+    production.push(q); stock += q - rows[t].demand
+    if (options.trace && q > 0) {
+      let end = t; let rest = stock
+      while (end + 1 < rows.length && rest >= rows[end + 1].demand - tolerance) { rest -= rows[end + 1].demand; end++ }
+      trace.push({ period: t, explanation: kind === 'foq' ? `Stok ${t + 1}. dönemin talebini karşılamadığında sabit parti (${lot} adet) veya katları sipariş edilir.` : `Q₀ = √(2·Ā·D̄/h̄) = ${lot}. Stok yetmediğinde Q₀ sipariş edilir; Q₀ dönemin ihtiyacını karşılamıyorsa ihtiyaca yükseltilir.`, candidates: [{ start: t, end, period: t, cost: rows[t].setup, score: q, chosen: true }] })
+    }
+  }
+  const plan = { ...planFromProduction(rows, production, { ...options, allowEndStock: true }), method: kind }
+  return options.trace ? { ...plan, trace } : plan
+}
+export const fixedOrderQuantity = (rows, options = {}) => quantityRule(rows, options, 'foq')
+export const economicOrderQuantity = (rows, options = {}) => quantityRule(rows, options, 'eoq')
+function periodRule(rows, options = {}, kind) {
+  validateRows(rows)
+  const q0 = economicQuantity(rows); const mean = rows.reduce((s, r) => s + r.demand, 0) / rows.length
+  const span = kind === 'fpq' ? options.fixedPeriods ?? 2 : Math.max(1, Math.round(mean > 0 ? q0 / mean : 1))
+  const lots = []; const trace = []; let start = 0
+  while (start < rows.length) {
+    if (rows[start].demand === 0) { start++; continue }
+    let end = Math.min(rows.length - 1, start + span - 1)
+    const candidates = []
+    if (kind === 'meoq') {
+      let sum = 0; let best = Infinity; end = start
+      for (let j = start; j < rows.length; j++) {
+        sum += rows[j].demand; const gap = Math.abs(sum - q0)
+        candidates.push({ start, end: j, period: start, cost: sum, score: gap })
+        if (gap <= best + 1e-9) { best = gap; end = j } else if (sum > q0) break
+      }
+    } else candidates.push({ start, end, period: start, cost: rows.slice(start, end + 1).reduce((s, r) => s + r.demand, 0), score: end - start + 1 })
+    if (options.trace) trace.push({ period: start, explanation: kind === 'meoq' ? `Q₀ = ${q0}. Ardışık dönem talepleri toplanır; toplamı Q₀’a en yakın olan parti seçilir. Aday maliyeti sütunu toplam talebi, kriter |toplam − Q₀| değerini gösterir.` : kind === 'fpq' ? `Her sipariş sabit ${span} dönemin net ihtiyacını karşılar.` : `Sipariş aralığı = round(Q₀ / ortalama talep) = round(${q0} / ${+mean.toFixed(2)}) = ${span} dönem.`, candidates: candidates.map(c => ({ ...c, chosen: c.end === end })) })
+    lots.push([start, end]); start = end + 1
+  }
+  const plan = lotsToPlan(rows, lots, options)
+  return options.trace ? { ...plan, trace } : plan
+}
+export const modifiedEOQ = (rows, options = {}) => periodRule(rows, options, 'meoq')
+export const fixedPeriodQuantity = (rows, options = {}) => periodRule(rows, options, 'fpq')
+export const periodOrderQuantity = (rows, options = {}) => periodRule(rows, options, 'poq')
 export const silverMeal = (rows, options = {}) => sequential(rows, (k, h, q, n) => (k + h) / n, options, 'silver')
 export const leastUnitCost = (rows, options = {}) => sequential(rows, (k, h, q) => (k + h) / q, options, 'luc')
 export const ppb = (rows, options = {}) => sequential(rows, (k, h) => Math.abs(k - h), options, 'ppb')
@@ -104,7 +165,7 @@ function context(rows, options = {}) {
   return { n, demand, transport, block, toPlan, events, tracing: options.trace }
 }
 // Interval shortest path. Backlog mode minimizes each interval over its
-// production period (Zangwill recurrence, supplied PDF pp. 258–260).
+// production period (Zangwill recurrence).
 function intervalDP(rows, options, window = Infinity) {
   const ctx = context(rows, options); const dp = Array(ctx.n + 1).fill(Infinity); const previous = Array(ctx.n + 1)
   const trace = []
@@ -177,21 +238,28 @@ export function localSearch(rows, options = {}) {
 }
 export const methods = [
   { id: 'l4l', name: 'Lot-for-Lot', short: 'L4L', description: 'Her talebi kendi döneminde karşılayan temel plan.' },
+  { id: 'foq', name: 'Sabit sipariş miktarı', short: 'FOQ', description: 'Stok yetmediğinde sabit parti veya katları sipariş edilir; parti, Q₀’ı aşan ilk yuvarlak sayıdır (1-2-5 serisi).', endStock: true },
+  { id: 'eoq', name: 'Ekonomik sipariş miktarı', short: 'EOQ', description: 'Ortalama A, h ve D ile Q₀ = √(2AD/h) sipariş edilir; yetmezse ihtiyaca yükseltilir.', endStock: true },
+  { id: 'meoq', name: 'Değiştirilmiş EOQ', short: 'MEOQ', description: 'Toplamı Q₀’a en yakın ardışık dönem talepleri birlikte sipariş edilir.' },
+  { id: 'fpq', name: 'Sabit dönem miktarı', short: 'FPQ', description: 'Her sipariş sabit sayıda (2) dönemin talebini karşılar.' },
+  { id: 'poq', name: 'Dönemsel sipariş miktarı', short: 'POQ', description: 'Sipariş aralığı round(Q₀ / ortalama talep) dönemdir.' },
   { id: 'silver', name: 'Silver-Meal', short: 'SM', description: 'İlk artışa kadar dönem başına maliyeti azaltır.' },
   { id: 'luc', name: 'Least Unit Cost', short: 'LUC', description: 'İlk artışa kadar birim başına maliyeti azaltır.' },
   { id: 'ww', name: 'Kesin dinamik programlama', short: 'OPT', description: 'Yok satmasız Wagner–Whitin; yok satmalı aralık DP.' },
-  { id: 'ppb', name: 'Part-Period Balancing', short: 'PPB', description: 'Stok maliyetini hazırlığa en yakın yapan partiyi seçer (PDF s. 384).'  },
-  { id: 'ltc', name: 'Least Total Cost', short: 'LTC', description: 'Stok maliyeti hazırlığı aşmadan önceki partiyi seçer (PDF s. 382).'  },
+  { id: 'ppb', name: 'Part-Period Balancing', short: 'PPB', description: 'Stok maliyetini hazırlığa en yakın yapan partiyi seçer.'  },
+  { id: 'ltc', name: 'Least Total Cost', short: 'LTC', description: 'Stok maliyeti hazırlığı aşmadan önceki partiyi seçer.'  },
   { id: 'merge', name: 'Tasarruflu birleştirme', short: 'TB', description: 'En çok maliyet azaltan komşu partileri birleştirir.', extended: true },
   { id: 'local', name: 'Ekle–sil–kaydır', short: 'ESK', description: 'Birleştirme planını en fazla 8 yerel hamleyle iyileştirir.', extended: true },
   { id: 'window', name: 'Sınırlı aralık araması', short: 'SA6', description: 'En fazla 6 dönemlik partiler arasında en ucuz planı arar.', extended: true },
 ]
-export const solver = { l4l, silver: silverMeal, luc: leastUnitCost, ww: wagnerWhitin, ppb, ltc: leastTotalCost, merge: savingsMerge, local: localSearch, window: windowSearch }
+export const solver = { foq: fixedOrderQuantity, eoq: economicOrderQuantity, meoq: modifiedEOQ, fpq: fixedPeriodQuantity, poq: periodOrderQuantity, l4l, silver: silverMeal, luc: leastUnitCost, ww: wagnerWhitin, ppb, ltc: leastTotalCost, merge: savingsMerge, local: localSearch, window: windowSearch }
 
-export const MODEL_VERSION = 'thesis-v2.0.0'
+export const MODEL_VERSION = 'thesis-v2.1.0'
+export const classicMethods = ['l4l', 'foq', 'eoq', 'meoq', 'fpq', 'poq', 'luc', 'ltc', 'ppb', 'silver']
+export const endStockMethods = new Set(methods.filter(m => m.endStock).map(m => m.id))
 export const referenceName = allowBacklog => allowBacklog ? 'Zangwill aralık DP' : 'Wagner–Whitin'
 export function methodRole(id, allowBacklog) {
   if (id === 'ww') return { label: 'Kesin referans', kind: 'exact' }
-  if (allowBacklog && ['l4l', 'silver', 'luc', 'ppb', 'ltc'].includes(id)) return { label: 'Yok satmasız temel plan', kind: 'baseline' }
+  if (allowBacklog && classicMethods.includes(id)) return { label: 'Yok satmasız temel plan', kind: 'baseline' }
   return { label: 'Sezgisel', kind: 'heuristic' }
 }

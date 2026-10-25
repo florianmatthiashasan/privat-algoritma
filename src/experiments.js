@@ -1,4 +1,4 @@
-import { methods, solver, MODEL_VERSION, methodRole } from './lotSizing.js'
+import { methods, solver, MODEL_VERSION, methodRole, endStockMethods } from './lotSizing.js'
 
 export const DESIGN_VERSION = 'balanced-factorial-v2'
 export const families = [{ id: 'low', name: 'Düşük değişkenlik (CV 0,2)' }, { id: 'high', name: 'Yüksek değişkenlik (CV 1)' }]
@@ -73,7 +73,8 @@ export function auditPlan(rows, plan, allowBacklog, optimum = null) {
     if (!Number.isFinite(plan.stock[t]) || Math.abs(stock - plan.stock[t]) > tolerance) issues.push('Stok dengesi tutarsız.')
     total += (q > 0 ? row.setup : 0) + Math.max(stock, 0) * row.holding + Math.max(-stock, 0) * row.backlog
   }
-  if (Math.abs(stock) > tolerance) issues.push('Son stok sıfır değil.')
+  // Only FOQ/EOQ may end with leftover stock (fixed lot sizes); every method must meet all demand.
+  if (stock < -tolerance || (!endStockMethods.has(plan.method) && stock > tolerance)) issues.push('Son stok sıfır değil.')
   const costTolerance = 1e-7 * Math.max(1, Math.abs(total))
   if (!Number.isFinite(plan.total) || Math.abs(total - plan.total) > costTolerance) issues.push('Toplam maliyet tutarsız.')
   if ([plan.setupCost, plan.stockCost, plan.backlogCost].some(x => !Number.isFinite(x) || x < 0) || Math.abs(plan.total - plan.setupCost - plan.stockCost - plan.backlogCost) > costTolerance) issues.push('Maliyet bileşenleri tutarsız.')
@@ -149,7 +150,7 @@ export function runProblem(problem, config = {}) {
           for (let k = 0; k < timedBatchSize; k++) plan = solver[method.id](problem.rows, options)
           timings.push((performance.now() - start) / timedBatchSize)
         }
-        const issues = auditPlan(problem.rows, plan, allowBacklog, optimalPlan.total)
+        const issues = auditPlan(problem.rows, { ...plan, method: method.id }, allowBacklog, optimalPlan.total)
         const gap = relativeGap(plan.total, optimalPlan.total)
         if (gap === null) issues.push('Sıfır optimum ve pozitif maliyet: bağıl sapma tanımsız.')
         records.push({ problemId: problem.id, family: problem.family, cellId: problem.cellId, cvTarget: problem.cvTarget, setupScale: problem.setupScale, backlogRatio: problem.backlogRatio, periods: problem.rows.length, mode: allowBacklog ? 'backlog' : 'noBacklog', method: method.id,

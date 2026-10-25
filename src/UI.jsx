@@ -1,7 +1,10 @@
 import React, { useId } from 'react'
 
+const flow = [['planning', 'Problem'], ['experiments', 'Deney'], ['reports', 'Rapor']]
 export function PageHead({ step, title, children, actions }) {
-  return <section className="page-head"><div>{step && <p className="eyebrow">{step}</p>}<h1 id="page-title" tabIndex="-1">{title}</h1>{children && <p className="lead">{children}</p>}</div>{actions && <div className="head-actions">{actions}</div>}</section>
+  const current = step ? Number(step.match(/\d/)?.[0]) : 0
+  return <section className="page-head"><div className="page-head-text">{step && <p className="eyebrow">{step}</p>}<h1 id="page-title" tabIndex="-1">{title}</h1>{children && <p className="lead">{children}</p>}</div>
+    <div className="head-side">{current > 0 && <ol className="flow" aria-label="Çalışma adımları">{flow.map(([id, label], i) => <li key={id} className={i + 1 < current ? 'done' : i + 1 === current ? 'now' : ''}><a href={`#${id}`} aria-current={i + 1 === current ? 'step' : undefined}><span>{i + 1}</span>{label}</a></li>)}</ol>}{actions && <div className="head-actions">{actions}</div>}</div></section>
 }
 
 export function Tabs({ tabs, active, onChange, label }) {

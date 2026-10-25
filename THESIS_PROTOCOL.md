@@ -1,12 +1,12 @@
 # Tez çalışma protokolü — v2
 
-Bu metin uygulamanın dayandığı modeli, yöntemleri ve deney protokolünü tanımlar. Ders notlarındaki dayanaklar PDF sayfa numaralarıyla belirtilir; aynı içerik uygulamanın Rehber sayfasında da yer alır.
+Bu metin uygulamanın dayandığı modeli, yöntemleri ve deney protokolünü tanımlar; aynı içerik uygulamanın Rehber sayfasında da yer alır.
 
 ## 1. Amaç ve kapsam
 
 Deterministik, tek ürünlü, sonlu ufuklu, kapasitesiz parti büyüklüğü. Tedarik gecikmesizdir. Başlangıç ve bitiş net stoku sıfırdır. Talep dönemler arasında değişir, fakat çözüme başlandığında bütün dönem talepleri bilinir. Rassal problem üretimi stokastik karar modeli değildir.
 
-Model 1: talep kendi döneminden geç karşılanamaz. Model 2: talep sonraki dönemde karşılanabilir ve dönem sonu bekleyen miktara gecikme maliyeti ödenir. Kayıp satış yoktur. Bu yorum notların PDF s. 243–245 ve 258–260 bölümüne dayanır. Çok ürün, kapasite, belirsiz talep ve lost sales kapsam dışındadır.
+Model 1: talep kendi döneminden geç karşılanamaz. Model 2: talep sonraki dönemde karşılanabilir ve dönem sonu bekleyen miktara gecikme maliyeti ödenir. Kayıp satış yoktur. Çok ürün, kapasite, belirsiz talep ve lost sales kapsam dışındadır.
 
 ## 2. Semboller, birimler ve maliyet
 
@@ -16,11 +16,11 @@ N_t=N_(t−1)+Q_t−D_t; N_0=N_T=0; Q_t≥0. Yok satmasız modelde N_t≥0. Q_t�
 
 Karar maliyeti C=Σ(A_t y_t+h_t I_t+b_t B_t). Üretim dahil toplam C+cΣD_t. Ana yüzde sapma g=100(C−C*)/C*. Sabit ortak maliyet sıralamayı değiştirmez, fakat paydaya eklenirse yüzde sapmayı değiştirir; bu nedenle iki tutar açıkça ayrılır. Sıfır optimum ve sıfır maliyet %0; sıfır optimuma karşı pozitif maliyetin sapması tanımsızdır, mutlak maliyet korunur ve hata sayılır.
 
-Birim üretim maliyeti c dönemler boyunca sabittir. Ders notlarındaki dönemlik c_t içeren örnekler (ör. Zangwill örneği, PDF s. 260–267) bu varsayım altında birebir yeniden üretilmez. Dönemlik c_t gerektiğinde kesin DP ve ek sezgiseller, c_t terimi aralık maliyetine eklenerek genişletilebilir.
+Birim üretim maliyeti c dönemler boyunca sabittir. Dönemlik c_t gerektiğinde kesin DP ve ek sezgiseller, c_t terimi aralık maliyetine eklenerek genişletilebilir.
 
-## 3. Ders yöntemleri ve uzantılar
+## 3. Klasik yöntemler ve uzantılar
 
-Notlardaki kaynaklar: PDF s. 370 ve 380–386 (L4L, SM, LUC, LTC, PPB), 243–260 ve 867–876 (kesin DP). LTC stok maliyeti hazırlığı aşmadan önce durur; PPB hazırlığa en yakın maliyeti seçer ve eşitlikte daha uzun partiyi alır. Kitapta LTC=470, PPB=430, WW=430 örneği regresyon testidir.
+Klasik yöntemler: L4L, FOQ, EOQ, MEOQ, FPQ, POQ, LUC, LTC, PPB ve Silver–Meal; kesin referans Wagner–Whitin / Zangwill DP. LTC stok maliyeti hazırlığı aşmadan önce durur; PPB hazırlığa en yakın maliyeti seçer ve eşitlikte daha uzun partiyi alır. 6 dönemlik örnek problemde LTC=470, PPB=430, WW=430 sonuçları regresyon testidir.
 
 Yok satmasız referans Wagner–Whitin; yok satmalı referans Zangwill türü aralık DP'dir. Klasik yok satmasız kurallar, yok satmalı deneyde yalnız aynı planları koruyan temel karşılaştırmalardır. Ek TB ve SA6, iki modelin kurallarına göre uygulanır. ESK, TB'nin en fazla sekiz iyileştiren hamleyle geliştirilmesidir. SA6 kısıtlı çözüm uzayında kesindir; özgün problem için sezgiseldir.
 
@@ -36,7 +36,7 @@ b/h∈{0,25;1;4} ana koşul ve tekrar indeksine göre döndürülür. Her ana ko
 
 Her modelde önceden tanımlı çiftler TB−SA6, ESK−TB, ESK−SA6. Delta_i=g_(i,A)−g_(i,B), birim yüzde puan. Negatif fark ilk yöntem lehine. H0: tasarımın hedef karışımında E[delta]=0; H1: farklı. İki modelde altı ana karşılaştırma bir Holm ailesidir. Algoritma seçimi veya görünüm filtresi aileyi değiştirmez. ESK−TB için yapısal olarak kötüleşmeme özelliği vardır; çok sayıda sıfır ve tek yönlü fark nedeniyle standart t'nin varsayımları özellikle dikkatle yorumlanır.
 
-Sıradan eşleştirilmiş t: t=mean(delta)/(s_delta/sqrt(n)), sd=n−1. Çıktı karşılaştırma ve ders gereksinimi için saklanır; farklı sabit koşulları tek dağılım gibi ele aldığı için tek başına doğrulayıcı sonuç sayılmaz.
+Sıradan eşleştirilmiş t: t=mean(delta)/(s_delta/sqrt(n)), sd=n−1. Çıktı karşılaştırma için saklanır; farklı sabit koşulları tek dağılım gibi ele aldığı için tek başına doğrulayıcı sonuç sayılmaz.
 
 Ana çıkarım tabakası: (T,CV,rho,b/h); 30 ana koşulun 90 alt tabakası. Tabaka h'de geçerli çift sayısı n_h, w_h=n_h/n, fark ortalaması dbar_h, örnek varyansı s_h². Tahmin D=Σw_h dbar_h, v_h=w_h² s_h²/n_h, SE=sqrt(Σv_h). Yaklaşık sd=(Σv_h)²/Σ[v_h²/(n_h−1)]. Yaklaşık tabakalı t=D/SE. Her tabakada en az iki geçerli eşleşme yoksa hesaplanmaz. Sıfır varyansta t/p üretilmez. Satterthwaite yaklaşımı tam dağılım kanıtı değildir; özellikle küçük alt tabakalarda normal yaklaşım ve sonlu varyans duyarlılığı belirtilir.
 
@@ -56,7 +56,7 @@ Her yöntemde karar maliyeti, üretim dahil toplam, ortalama/medyan/P95/en köt�
 
 ## 7. Doğrulama ve veri bütünlüğü
 
-Ders örnekleri ve 160 küçük problemin bağımsız üretim enumerasyonu. Ek olarak SciPy/HiGHS ile her talebi bir açık üretim dönemine atayan MILP: y_p∈{0,1}, z_pt∈[0,1], Σ_p z_pt=1, z_pt≤y_p. Yok satmasız p>t atamaları yasak; birim taşıma maliyeti ilgili h veya b dönemlerinin açık toplamıdır. Amaç ΣA_p y_p + ΣD_t taşıma_(p,t) z_pt. Bu formülasyon JS aralık DP'sini kullanmaz. Yalnız status=0 ve tolerans içinde aynı amaç değeri varsa onaylanır; alt sınır ve MIP gap kaydedilir.
+Örnek problem ve 160 küçük problemin bağımsız üretim enumerasyonu. Ek olarak SciPy/HiGHS ile her talebi bir açık üretim dönemine atayan MILP: y_p∈{0,1}, z_pt∈[0,1], Σ_p z_pt=1, z_pt≤y_p. Yok satmasız p>t atamaları yasak; birim taşıma maliyeti ilgili h veya b dönemlerinin açık toplamıdır. Amaç ΣA_p y_p + ΣD_t taşıma_(p,t) z_pt. Bu formülasyon JS aralık DP'sini kullanmaz. Yalnız status=0 ve tolerans içinde aynı amaç değeri varsa onaylanır; alt sınır ve MIP gap kaydedilir.
 
 SciPy'nin bağımsız t/t-kuyruğu/CI fikstürleri JS özel fonksiyonlarını sınar. Gerçek deneyin sıradan t, tabakalı t ve işaret testi sonuçları Python tarafında yeniden hesaplanır. `validation.json` ilgili girdi SHA-256'sını ve gerçek kontrol sayılarını taşır. Dosya olmadan harici kontrol yapılmış sayılmaz.
 
@@ -69,13 +69,3 @@ JSON geri yüklemede model/tasarım sürümü, tam yöntem-problem kapsamı, ür
 - İstatistiksel karşılaştırmalar TB−SA6, ESK−TB ve ESK−SA6 çiftleriyle yapılır; anlamlılık düzeyi 0,05, pratik anlamlılık eşiği 0,5 yüzde puandır.
 - Talep dağılımı ve parametre düzeyleri kontrollü bir sentetik deney tasarımıdır; çalışma tekrarlanabilir biçimde (sabit tohum, saklanan girdiler) yürütülür.
 
-## Kaynaklar
-
-- Ekli Prof. Dr. Yakup Kara ders notları, yukarıda belirtilen PDF sayfaları.
-- [NIST: paired comparisons](https://www.itl.nist.gov/div898/handbook/prc/section3/prc311.htm).
-- [R: Holm ve diğer p düzeltmeleri](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
-- [R: Wilcoxon varsayımları](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/wilcox.test.html).
-- [SciPy: eşleştirilmiş t](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_rel.html).
-- [SciPy: MILP ve durum kodları](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.milp.html).
-- [NumPy: gamma parametreleri](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.gamma.html).
-- [Zangwill: backlogging ağ ve DP yaklaşımı](https://pubsonline.informs.org/doi/10.1287/mnsc.15.9.506).
