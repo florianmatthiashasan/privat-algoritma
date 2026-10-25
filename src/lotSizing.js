@@ -116,7 +116,7 @@ function intervalDP(rows, options, window = Infinity) {
       if (options.trace) candidates.push({ ...block, intervalCost: block.cost, prefixCost: dp[start], cost: candidate, score: candidate })
       if (candidate < dp[end + 1]) { dp[end + 1] = candidate; previous[end + 1] = block }
     }
-    if (options.trace) trace.push({ period: end, explanation: 'Bu değerlendirme ilk ' + (end + 1) + ' dönemin alt problemini çözer; nihai üretim planı bütün ufuk hesaplandıktan sonra geriye izlenir. ' + (options.allowBacklog ? 'Her aralıkta gecikme ve stok maliyetiyle en iyi üretim dönemi seçilir.' : 'Her aday, son partinin başlangıç dönemini temsil eder.'), candidates: candidates.map(c => ({ ...c, chosen: c.start === previous[end + 1].start })) })
+    if (options.trace) trace.push({ period: end, explanation: 'Bu değerlendirme ilk ' + (end + 1) + ' dönemin alt problemini çözer; nihai üretim planı bütün ufuk hesaplandıktan sonra geriye izlenir. ' + (options.allowBacklog ? 'Her aralıkta yok satma ve stok maliyetleri dikkate alınarak en iyi üretim dönemi seçilir.' : 'Her aday, son partinin başlangıç dönemini temsil eder.'), candidates: candidates.map(c => ({ ...c, chosen: c.start === previous[end + 1].start })) })
   }
   const blocks = []; let end = ctx.n
   while (end > 0) { const block = previous[end]; blocks.unshift(block); end = block.start }

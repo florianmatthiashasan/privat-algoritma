@@ -91,6 +91,8 @@ const mean = values => values.reduce((a, b) => a + b, 0) / values.length
 export function bootstrapMeanCI(records, seed = 729, draws = 1000) {
   if (!records.length) return [null, null]
   const groups = groupRecords(records).map(group => group.map(r => r.gap))
+  // A single-observation stratum has no resampling variance; a zero-width CI would be spurious.
+  if (groups.some(group => group.length < 2)) return [null, null]
   const rand = randomSource(seed); const means = []
   for (let k = 0; k < draws; k++) {
     let total = 0; let n = 0

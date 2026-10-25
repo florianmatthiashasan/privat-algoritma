@@ -65,7 +65,7 @@ function diagnostics(xs) {
   const skewness = m2 ? mean(xs.map(x => (x - avg) ** 3)) / m2 ** 1.5 : 0
   const excessKurtosis = m2 ? mean(xs.map(x => (x - avg) ** 4)) / m2 ** 2 - 3 : 0
   const outliers = xs.filter(x => x < q1 - 1.5 * iqr || x > q3 + 1.5 * iqr).length
-  return { skewness, excessKurtosis, outliers, ties: xs.filter(x => Math.abs(x) <= 1e-9).length, warning: Math.abs(skewness) > 1 || excessKurtosis > 3 || xs.length < 30 ? 'Asimetri, kuyruk veya küçük örneklem uyarısı: t sonucu yaklaşık; bootstrap ve fark grafiğini inceleyin.' : 'Moment kontrolü normallik kanıtı değildir; fark grafiği ve bağımsız problem tasarımı birlikte değerlendirilmelidir.' }
+  return { skewness, excessKurtosis, outliers, ties: xs.filter(x => Math.abs(x) <= 1e-9).length, warning: Math.abs(skewness) > 1 || excessKurtosis > 3 || xs.length < 30 ? 'Farklar belirgin biçimde çarpık veya ağır kuyrukludur (ya da örneklem küçüktür); t sonucu bootstrap aralığı ve fark dağılımıyla birlikte yorumlanmalıdır.' : 'Çarpıklık ve basıklık makul düzeydedir; t sonucu bootstrap aralığıyla birlikte yorumlanır.' }
 }
 function signP(xs) {
   const nonzero = xs.filter(x => Math.abs(x) > 1e-9); const n = nonzero.length
@@ -108,7 +108,7 @@ export function compareMethods(records, { draws = 2000, seed = 6917 } = {}) {
       paired, stratified, bootstrapCI: [quantile(bootstrap, 0.025), quantile(bootstrap, 0.975)], diagnostics: diagnostics(differences),
       winRate: pairs.length ? 100 * differences.filter(x => x < -1e-9).length / pairs.length : null, signP: signP(differences),
       geometricTimeRatio: logs.length ? Math.exp(mean(logs)) : null, logTimeTest: pairedT(logs), differences,
-      practicalThreshold: 0.5, practicalMeaning: paired.mean === null ? 'Veri yok.' : Math.abs(paired.mean) < 0.5 ? 'Ortalama fark önerilen 0,5 yüzde puan eşiğinin altında.' : 'Ortalama fark önerilen 0,5 yüzde puan eşiğini aşıyor; süre ve kuyruk performansıyla birlikte yorumlayın.' })
+      practicalThreshold: 0.5, practicalMeaning: paired.mean === null ? 'Veri yok.' : Math.abs(paired.mean) < 0.5 ? 'Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğinin altındadır.' : 'Ortalama fark 0,5 yüzde puanlık pratik anlamlılık eşiğini aşmaktadır.' })
   }
   const p = holmAdjust(output.map(r => r.stratified.p)); const ordinary = holmAdjust(output.map(r => r.paired.p)); const signs = holmAdjust(output.map(r => r.signP))
   return output.map((r, i) => ({ ...r, holmP: p[i], pairedHolmP: ordinary[i], signHolmP: signs[i], familySize: output.length }))

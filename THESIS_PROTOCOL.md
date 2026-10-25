@@ -1,6 +1,6 @@
 # Tez çalışma protokolü — v2
 
-Bu metin araştırmacı önerisini, ders notlarındaki dayanaklardan ayırır. Danışmanın kesin talebi olduğu söylenmeyen tasarım kararları onay bekler. Uygulamadaki Model ve yöntemler ekranı aynı ayrımı gösterir.
+Bu metin uygulamanın dayandığı modeli, yöntemleri ve deney protokolünü tanımlar. Ders notlarındaki dayanaklar PDF sayfa numaralarıyla belirtilir; aynı içerik uygulamanın Rehber sayfasında da yer alır.
 
 ## 1. Amaç ve kapsam
 
@@ -16,13 +16,13 @@ N_t=N_(t−1)+Q_t−D_t; N_0=N_T=0; Q_t≥0. Yok satmasız modelde N_t≥0. Q_t�
 
 Karar maliyeti C=Σ(A_t y_t+h_t I_t+b_t B_t). Üretim dahil toplam C+cΣD_t. Ana yüzde sapma g=100(C−C*)/C*. Sabit ortak maliyet sıralamayı değiştirmez, fakat paydaya eklenirse yüzde sapmayı değiştirir; bu nedenle iki tutar açıkça ayrılır. Sıfır optimum ve sıfır maliyet %0; sıfır optimuma karşı pozitif maliyetin sapması tanımsızdır, mutlak maliyet korunur ve hata sayılır.
 
-İlk sürüm c_t değişimine izin vermez. Notlardaki dönemlik c_t içeren örnekler, bu sadeleştirme altında aynen çözüldüğü iddia edilen örnekler değildir. Dönemlik c_t zorunlu tutulursa çözücüler ve sezgisel maliyet kuralları birlikte genişletilmelidir.
+Birim üretim maliyeti c dönemler boyunca sabittir. Ders notlarındaki dönemlik c_t içeren örnekler (ör. Zangwill örneği, PDF s. 260–267) bu varsayım altında birebir yeniden üretilmez. Dönemlik c_t gerektiğinde kesin DP ve ek sezgiseller, c_t terimi aralık maliyetine eklenerek genişletilebilir.
 
 ## 3. Ders yöntemleri ve uzantılar
 
 Notlardaki kaynaklar: PDF s. 370 ve 380–386 (L4L, SM, LUC, LTC, PPB), 243–260 ve 867–876 (kesin DP). LTC stok maliyeti hazırlığı aşmadan önce durur; PPB hazırlığa en yakın maliyeti seçer ve eşitlikte daha uzun partiyi alır. Kitapta LTC=470, PPB=430, WW=430 örneği regresyon testidir.
 
-Yok satmasız referans Wagner–Whitin; yok satmalı referans Zangwill türü aralık DP'dir. Klasik yok satmasız kurallar, yok satmalı deneyde yalnız aynı planları koruyan temel karşılaştırmalardır. Ek TB ve SA6, iki modelin kurallarına göre uygulanır. ESK, TB'nin en fazla sekiz iyileştiren hamleyle geliştirilmesidir. SA6 kısıtlı çözüm uzayında kesindir; özgün problem için sezgiseldir. Bu uzantılar için bilimsel yenilik iddiası yapılmaz.
+Yok satmasız referans Wagner–Whitin; yok satmalı referans Zangwill türü aralık DP'dir. Klasik yok satmasız kurallar, yok satmalı deneyde yalnız aynı planları koruyan temel karşılaştırmalardır. Ek TB ve SA6, iki modelin kurallarına göre uygulanır. ESK, TB'nin en fazla sekiz iyileştiren hamleyle geliştirilmesidir. SA6 kısıtlı çözüm uzayında kesindir; özgün problem için sezgiseldir.
 
 ## 4. Kontrollü deney
 
@@ -30,7 +30,7 @@ Yok satmasız referans Wagner–Whitin; yok satmalı referans Zangwill türü ar
 
 D_t, gamma dağılımından üretilip tamsayıya yuvarlanır. Ortalama hedefi mu=100; şekil k=1/CV², ölçek theta=mu CV². Böylece yuvarlama öncesi ortalama mu, CV hedefidir. Gerçekleşen ortalama ve popülasyon biçiminde örnek CV ayrıca saklanır. Tamamen sıfır üretilen ufukta ilk talep 100'e ayarlanır; bu açık bir üreteç kuralıdır. Sıfır talepli uç örnekler ayrıca doğruluk testlerinde bulunur. h=1, A=rho*h*mu.
 
-b/h∈{0,25;1;4} ana koşul ve tekrar indeksine göre döndürülür. Her ana koşulda 4/3/3 gözlem, hangi seviyenin 4 olduğu koşullar arasında dönüşümlüdür; toplamda 100/100/100. Bu, dördüncü tam faktör değildir. Tohum ve ham girdiler saklanır. Kontrol parametreleri sentetik zorluk koşullarıdır; gerçek talep dağılımı iddiası yoktur. Varsayılan tohum 20261018; yeni tohumlar ayrı deney olarak raporlanır, birleştirilip aynı 300 problem gibi sunulmaz.
+b/h∈{0,25;1;4} ana koşul ve tekrar indeksine göre döndürülür. Her ana koşulda 4/3/3 gözlem, hangi seviyenin 4 olduğu koşullar arasında dönüşümlüdür; toplamda 100/100/100. b/h tam faktöriyel bir dördüncü faktör değil, dengeli dağıtılmış bir alt düzeydir. Tohum ve ham girdiler saklanır. Kontrol parametreleri, yöntemleri farklı zorluk koşullarında sınamak için seçilmiş sentetik düzeylerdir. Varsayılan tohum 20261018; yeni tohumlar ayrı deney olarak raporlanır, birleştirilip aynı 300 problem gibi sunulmaz.
 
 ## 5. İstatistiksel sorular
 
@@ -40,17 +40,17 @@ Sıradan eşleştirilmiş t: t=mean(delta)/(s_delta/sqrt(n)), sd=n−1. Çıktı
 
 Ana çıkarım tabakası: (T,CV,rho,b/h); 30 ana koşulun 90 alt tabakası. Tabaka h'de geçerli çift sayısı n_h, w_h=n_h/n, fark ortalaması dbar_h, örnek varyansı s_h². Tahmin D=Σw_h dbar_h, v_h=w_h² s_h²/n_h, SE=sqrt(Σv_h). Yaklaşık sd=(Σv_h)²/Σ[v_h²/(n_h−1)]. Yaklaşık tabakalı t=D/SE. Her tabakada en az iki geçerli eşleşme yoksa hesaplanmaz. Sıfır varyansta t/p üretilmez. Satterthwaite yaklaşımı tam dağılım kanıtı değildir; özellikle küçük alt tabakalarda normal yaklaşım ve sonlu varyans duyarlılığı belirtilir.
 
-Fark çiftleri aynı tabaka içinde birlikte yeniden örneklenir; bootstrap 2000 tekrar, yüzdelik %95 aralık. Başarı tablosunun ortalama sapma aralığı 1000 tekrar aynı tabakalaştırmayla üretilir. Aralıklar tekil %95'tir; eşzamanlı güven aralığı değildir. Ana Holm düzeltmesi t-p değerlerine uygulanır; bootstrap aralıkları duyarlılık kontrolüdür. Eksik çiftler sayılır; bu durumda bulgular geçerli çiftlere koşulludur ve başarısız yöntemlerin genel üstünlüğü iddia edilemez.
+Fark çiftleri aynı tabaka içinde birlikte yeniden örneklenir; bootstrap 2000 tekrar, yüzdelik %95 aralık. Başarı tablosunun ortalama sapma aralığı 1000 tekrar aynı tabakalaştırmayla üretilir. Aralıklar tekil %95'tir; eşzamanlı güven aralığı değildir. Ana Holm düzeltmesi t-p değerlerine uygulanır; bootstrap aralıkları duyarlılık kontrolüdür. Eksik çiftler sayılır; bu durumda bulgular geçerli çiftlere koşulludur ve eksik çiftler üzerinden genel bir üstünlük sonucu çıkarılmaz.
 
 Çarpıklık, aşırı basıklık, IQR uç değer sayısı ve histogram/Q–Q grafiği gösterilir. Bunlar normallik kanıtı veya otomatik test seçme kuralı değildir. Karışım Q–Q grafiği tabaka içi normalliği kanıtlamaz. Uç değerler yalnız büyük oldukları için çıkarılmaz. Wilcoxon simetri varsaydığı için otomatik alternatif olarak kullanılmaz. Bağlar çıkarılarak iki yönlü binom işaret testi ayrıca verilir; bu test kazanma yönünü sınar, ortalama fark hipotezini değil. İşaret testi için ayrı ikincil altılı Holm ailesi vardır. p≥0,05 eşitlik, eşdeğerlik veya optimumluk kanıtı değildir.
 
-Önerilen pratik eşik |ortalama fark|=0,5 yüzde puandır; hocanın talebi değildir. Eşik aşımı tek başına yöntemi seçtirmez; süre ve kuyruk performansı da yorumlanır. d_z sıradan eşleştirilmiş farkın standartlaştırılmış betimsel etkisidir; karma tasarım için evrensel etki diye sunulmaz.
+Pratik anlamlılık eşiği |ortalama fark| = 0,5 yüzde puandır. Yöntem seçiminde eşiğin yanında süre ve kuyruk performansı (P95, en kötü durum) da değerlendirilir. d_z, sıradan eşleştirilmiş farkın standartlaştırılmış betimsel etki büyüklüğüdür.
 
 ## 6. Süre ve raporlama
 
 Her yöntem aynı veriyi kullanır. Isınma ve 1 ms hedefli grup kalibrasyonu, en fazla 256 çözüm/grup; grup süresi çözüm sayısına bölünür. Varsayılan beş tekrarın medyanı problem süresidir. Tekrarlar bağımsız deney sayılmaz. Yöntem sırası Fisher–Yates ile tohumlu karıştırılır. Yöntemin ön hesabı dahildir; rapor, referansın dışarıdan hesaplanması ve denetim hariçtir. OS yükü, JIT/GC ve zamanlayıcı çözünürlüğü sınırlılıkları belirtilir.
 
-Süre oranı exp(mean(log(t_A/t_B))) betimseldir; 1'den küçük değer ilk yöntemin daha hızlı olduğunu gösterir. Pozitif olmayan süreler oran hesabından çıkarılır. Zamanlama için hesaplanan sıradan log-fark t değeri ham JSON'da yalnız ikincil/keşifsel kayıttır; ana kalite test ailesine dahil edilmiş bir hız anlamlılığı iddiası yoktur.
+Süre oranı exp(mean(log(t_A/t_B))) betimseldir; 1'den küçük değer ilk yöntemin daha hızlı olduğunu gösterir. Pozitif olmayan süreler oran hesabından çıkarılır. Zamanlama için hesaplanan sıradan log-fark t değeri ham JSON'da yalnız ikincil/keşifsel kayıttır; hız farkları ana test ailesine dahil edilmez.
 
 Her yöntemde karar maliyeti, üretim dahil toplam, ortalama/medyan/P95/en kötü yüzde sapma, örnek standart sapma, optimum oranı, hata sayısı, medyan/P95 süre gösterilir. Optimum eşitliği toleransı 1e−7×max(1,C*)'dır. Küçük yuvarlama sapmaları 1e−9 göreli toleransla sıfır kabul edilir. Plan dengesi toleransı talep toplamıyla ölçeklenen 64 makine epsilonudur; gerçek küçük talepler sabit 1e−7 ile sıfırlanmaz.
 
@@ -60,11 +60,14 @@ Ders örnekleri ve 160 küçük problemin bağımsız üretim enumerasyonu. Ek o
 
 SciPy'nin bağımsız t/t-kuyruğu/CI fikstürleri JS özel fonksiyonlarını sınar. Gerçek deneyin sıradan t, tabakalı t ve işaret testi sonuçları Python tarafında yeniden hesaplanır. `validation.json` ilgili girdi SHA-256'sını ve gerçek kontrol sayılarını taşır. Dosya olmadan harici kontrol yapılmış sayılmaz.
 
-JSON geri yüklemede model/tasarım sürümü, tam yöntem-problem kapsamı, üreteç/tohumla girdi uyumu, denge/maliyet ve deterministik yöntem planı denetlenir. Optimum, sapma, özetler ve testler yeniden hesaplanır. İçe aktarılan süreler yeniden ölçülmez; kaynak dosyadaki ölçüm olarak korunur. SHA-256 parmak izi bütünlük karşılaştırmasıdır, dijital imza veya kaynak doğrulaması değildir.
+JSON geri yüklemede model/tasarım sürümü, tam yöntem-problem kapsamı, üreteç/tohumla girdi uyumu, denge/maliyet ve deterministik yöntem planı denetlenir. Optimum, sapma, özetler ve testler yeniden hesaplanır. İçe aktarılan süreler yeniden ölçülmez; kaynak dosyadaki ölçüm olarak korunur. SHA-256 parmak izi girdilerin değişmediğini doğrulamak için kullanılır.
 
-## 8. Açık kapsam kararları
+## 8. Tasarım kararları
 
-Hocayla 300 sayısının yorumu, zorunlu yöntem/test çiftleri, dönemlik c_t ihtiyacı, istatistiksel ve pratik eşikler teyit edilmelidir. Mevcut sürüm tez çalışmasına yönelik tekrarlanabilir bir araçtır; danışman onayı, bilimsel özgünlük veya işletme ortamına geçerlilik belgesi değildir.
+- Deney 300 temel problemden oluşur; her problem iki modelde çözülür (600 model durumu).
+- Birim üretim maliyeti c dönemler boyunca sabittir; yöntemlerin sıralamasını ve yüzde sapmayı etkilemez.
+- İstatistiksel karşılaştırmalar TB−SA6, ESK−TB ve ESK−SA6 çiftleriyle yapılır; anlamlılık düzeyi 0,05, pratik anlamlılık eşiği 0,5 yüzde puandır.
+- Talep dağılımı ve parametre düzeyleri kontrollü bir sentetik deney tasarımıdır; çalışma tekrarlanabilir biçimde (sabit tohum, saklanan girdiler) yürütülür.
 
 ## Kaynaklar
 

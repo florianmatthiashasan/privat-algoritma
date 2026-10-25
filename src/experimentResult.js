@@ -5,13 +5,13 @@ import { validateExperiment } from './persistence.js'
 
 export const protocol = {
   version: 'protocol-v2.0.0', statisticsVersion: 'paired-stratified-v1.0.0',
-  problem: 'Tek ürün; bilinen deterministik talep; kapasitesiz; sıfır tedarik süresi; sıfır başlangıç/bitiş net stoku; kayıp satış yok.',
-  cost: 'Sapma: hazırlık + stok + gecikme karar maliyeti. Sabit birim üretim maliyeti ayrıca gösterilir; yüzde sapma paydasına dahil değildir.',
-  design: '3 ufuk × 2 hedef CV × 5 hazırlık oranı × 10 tekrar = 300 temel problem. Gamma talep, ortalama 100; h=1. b/h=0,25/1/4 dönüşümlü ve 300 problemde dengeli; dördüncü tam faktör değildir.',
-  hypotheses: 'Önceden tanımlı çiftler: TB−SA6, ESK−TB, ESK−SA6; iki modelde toplam 6 karşılaştırma. H0: ortalama sapma farkı 0, H1: farklı. Negatif fark ilk yöntem lehine.',
-  inference: 'Sıradan eşleştirilmiş t yanında ana koşul ve b/h alt seviyesine göre tabakalı fark-ortalaması t yaklaşımı (Satterthwaite df) verilir. Tam deneyde 90 çıkarım tabakası vardır; tabaka içi varyanslar kullanılır. Sonuçlar yaklaşık ve varsayımlara duyarlıdır. Holm ailesi filtrelerden bağımsız tam 6 karşılaştırmadır. Tekil %95 GA eşzamanlı GA değildir. Tabakalı eşleştirilmiş bootstrap 2000 tekrar; işaret testi kazanma yönünü sınar, ortalama farkı değil.',
-  caveats: 'p≥0,05 eşitlik veya optimumluk kanıtı değildir. Sıfır varyanslı farklarda t/p tanımsız raporlanır. 0,5 yüzde puan pratik eşik araştırmacı önerisidir. 300 temel problem iki modda 600 bağımsız problem sayılmaz; süre tekrarları yeni problem değildir.',
-  approvals: ['300 temel problemin iki modelde incelenmesi başlangıç önerisidir; hocayla teyit edilecek.', 'İlk sürümde c dönemler boyunca sabittir; dönemlik c_t gereksinimi hocayla teyit edilecek.', 'Zorunlu yöntemler, test çiftleri ve pratik eşik hocayla teyit edilecek.'],
+  problem: 'Tek ürün; dönem talepleri önceden bilinir (deterministik); kapasite kısıtı yoktur; tedarik süresi sıfırdır; başlangıç ve bitiş net stoku sıfırdır; kayıp satış yoktur.',
+  cost: 'Yüzde sapma; hazırlık, stok ve yok satma maliyetlerinden oluşan karar maliyeti üzerinden hesaplanır. Sabit birim üretim maliyeti ayrıca raporlanır ve sapmanın paydasına eklenmez.',
+  design: '3 ufuk × 2 hedef CV × 5 hazırlık oranı × 10 tekrar = 300 temel problem. Talepler ortalaması 100 olan gamma dağılımından üretilir; h = 1. b/h = 0,25 / 1 / 4 düzeyleri dönüşümlü atanır; her düzeyde 100 problem bulunur.',
+  hypotheses: 'Önceden belirlenen yöntem çiftleri TB−SA6, ESK−TB ve ESK−SA6’dır; iki modelde toplam altı karşılaştırma yapılır. H₀: ortalama sapma farkı sıfırdır; H₁: fark sıfırdan farklıdır. Negatif fark ilk yöntemin lehinedir.',
+  inference: 'Sıradan eşleştirilmiş t testinin yanında, ana koşul ve b/h düzeyine göre tabakalı t testi (Satterthwaite serbestlik derecesi) uygulanır; tam deneyde 90 tabaka vardır. Altı karşılaştırmanın p değerleri Holm yöntemiyle düzeltilir. %95 güven aralıkları tabakalı t ve 2.000 tekrarlı tabakalı bootstrap ile verilir. İşaret testi, ortalama farktan bağımsız olarak kazanma yönünü sınar.',
+  caveats: 'p ≥ 0,05 sonucu yöntemlerin eşit olduğu biçiminde yorumlanmaz. Farkların varyansı sıfırsa t ve p hesaplanmaz. Pratik anlamlılık eşiği 0,5 yüzde puandır. 300 temel problem iki modelde çözülür; bu 600 bağımsız problem anlamına gelmez. Süre ölçüm tekrarları ayrı problem sayılmaz.',
+  decisions: ['Deney 300 temel problemden oluşur; her problem iki modelde çözülür (600 model durumu).', 'Birim üretim maliyeti c dönemler boyunca sabittir; bu nedenle yöntemlerin sıralamasını ve yüzde sapmayı etkilemez.', 'İstatistiksel karşılaştırmalar TB−SA6, ESK−TB ve ESK−SA6 çiftleriyle yapılır; pratik anlamlılık eşiği 0,5 yüzde puandır.', 'Talep dağılımı ve parametre düzeyleri kontrollü bir sentetik deney tasarımıdır.'],
   sources: [
     { title: 'Ders notları', detail: 'Prof. Dr. Yakup Kara, PDF s. 243, 247–260, 370, 380–386, 867–876. LTC 470, PPB 430, WW 430 doğrulama örnekleri.' },
     { title: 'Eşleştirilmiş t-testi', url: 'https://www.itl.nist.gov/div898/handbook/prc/section3/prc311.htm' },
